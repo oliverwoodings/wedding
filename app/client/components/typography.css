@@ -1,0 +1,30 @@
+@import url('https://fonts.googleapis.com/css?family=Raleway:300,400,600|Shadows+Into+Light+Two');
+@import '../variables';
+
+.title {
+  font: normal normal 400 40px/48px 'Shadows Into Light Two', cursive;
+}
+
+.strong {
+  font: normal normal 600 16px/22px 'Raleway', sans-serif;
+}
+
+.body {
+  font: normal normal 400 16px/22px 'Raleway', sans-serif;
+}
+
+.link {
+  cursor: pointer;
+  text-decoration: none;
+  border-bottom: 1px solid var(--color-black-25);
+  color: inherit;
+}
+
+.link:hover {
+  color: var(--color-blue-100);
+  border-bottom-color: var(--color-blue-25);
+}
+
+.paragraph {
+  font: normal normal 400 16px/20px 'Raleway', sans-serif;
+}

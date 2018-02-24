@@ -1,0 +1,38 @@
+{
+  "name": "wedding",
+  "version": "1.0.0",
+  "description": "Oli & Danni get hitched",
+  "main": "app/client/index.js",
+  "repository": "git@github.com:oliverwoodings/wedding.git",
+  "author": "Oliver Woodings",
+  "license": "MIT",
+  "dependencies": {
+    "apollo-server-express": "^1.3.2",
+    "body-parser": "^1.18.2",
+    "classnames": "^2.2.5",
+    "driftwood": "^1.5.2",
+    "express": "^4.16.2",
+    "express-driftwood": "^1.1.1",
+    "express-promise-router": "^3.0.1",
+    "graphql": "^0.13.1",
+    "graphql-tools": "^2.21.0",
+    "jetpack": "https://github.com/KidkArolis/jetpack#easy-middleware",
+    "knex": "^0.14.4",
+    "normalize.css": "^8.0.0",
+    "prop-types": "^15.6.0",
+    "react": "^16.2.0",
+    "react-dom": "^16.2.0",
+    "space-router": "^0.5.1",
+    "sqlite3": "^3.1.13"
+  },
+  "devDependencies": {
+    "@babel/preset-stage-0": "^7.0.0-beta.40",
+    "nodemon": "^1.15.1",
+    "postcss-browser-reporter": "^0.5.0",
+    "postcss-cssnext": "^3.1.0",
+    "postcss-import": "^11.1.0",
+    "postcss-remove-root": "^0.0.2",
+    "postcss-reporter": "^5.0.0",
+    "postcss-url": "^7.3.0"
+  }
+}

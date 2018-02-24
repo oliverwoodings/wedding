@@ -1,0 +1,44 @@
+@import '../../variables.css';
+
+.page {
+  align-items: center;
+  height: 100%;
+  width: 100%;
+  position: relative;
+  display: flex;
+  flex-direction: column;
+}
+
+.loginBox {
+  background: var(--color-white-55);
+  border-radius: var(--border-radius-l);
+  width: 400px;
+  display: flex;
+  align-items: center;
+  padding: var(--spacing-xl);
+  padding-right: var(--spacing-m);
+  margin-top: auto;
+  margin-bottom: auto;
+}
+
+.mobile .loginBox {
+  width: 100%;
+  border-radius: 0;
+}
+
+.input {
+  border: none;
+  border-radius: var(--border-radius-l);
+  background: var(--color-white-55);
+  padding: var(--spacing-m);
+  flex-grow: 1;
+}
+
+.action {
+  cursor: pointer;
+  height: 48px;
+  fill: white;
+  width: 48px;
+  flex-shrink: 0;
+  margin-left: var(--spacing-s);
+}
