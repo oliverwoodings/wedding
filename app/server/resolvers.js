@@ -9,10 +9,11 @@ module.exports = {
     },
     async user (obj, args, context) {
       await context.authenticate()
+      return context.user
     }
   },
   Mutation: {
-    login (obj, args, context) {
+    async login (obj, args, context) {
       const { codeOrEmail, password } = args
 
       const { status, sessionId, user } = await login(codeOrEmail, password)
@@ -29,6 +30,11 @@ module.exports = {
     }
   },
   PublicUser: {
+    guests (obj) {
+      return getUserGuests(obj.id)
+    }
+  },
+  User: {
     guests (obj) {
       return getUserGuests(obj.id)
     }

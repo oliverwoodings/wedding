@@ -1,6 +1,10 @@
 const knex = require('../knex')
 
 module.exports = async function authenticateUser (sessionId) {
-  const session = await knex('sessions').where('key', sessionId).first()
-  return !!session
+  if (sessionId) {
+    const session = await knex('sessions').where('key', sessionId).first()
+    if (session) {
+      return session.userId
+    }
+  }
 }
