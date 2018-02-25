@@ -1,6 +1,7 @@
 const getUser = require('./queries/getUser')
 const getUserGuests = require('./queries/getUserGuests')
 const login = require('./commands/login')
+const changePassword = require('./commands/changePassword')
 
 module.exports = {
   Query: {
@@ -16,17 +17,16 @@ module.exports = {
     async login (obj, args, context) {
       const { codeOrEmail, password } = args
 
-      const { status, sessionId, user } = await login(codeOrEmail, password)
+      const { sessionId, user } = await login(codeOrEmail, password)
 
-      if (sessionId) {
-        context.res.cookie('sessionId', sessionId, {
-          maxAge: 1000 * 60 * 60 * 24 * 30 // 30 days
-        })
+      context.res.cookie('sessionId', sessionId, {
+        maxAge: 1000 * 60 * 60 * 24 * 30 // 30 days
+      })
 
-        return { user, status }
-      }
-
-      return { status }
+      return user
+    },
+    changePassword (obj, args) {
+      return changePassword(args.code, args.email, args.password)
     }
   },
   PublicUser: {

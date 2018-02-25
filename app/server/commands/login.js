@@ -1,10 +1,12 @@
+const knex = require('../knex')
 const getUser = require('../queries/getUser')
 const { hash, generateSalt } = require('../lib/auth')
+const AuthenticationError = require('../errors/AuthenticationError')
 
 module.exports = async function login (codeOrEmail, password) {
   const user = await getUser(codeOrEmail)
   if (!user) {
-    return { status: 'INVALID_USER_ID' }
+    throw new AuthenticationError('INVALID_USER_ID')
   }
 
   if (hash(password, user.salt) === user.password) {
@@ -13,15 +15,12 @@ module.exports = async function login (codeOrEmail, password) {
       key: sessionId,
       userId: user.id
     })
-    
+
     return {
-      status: 'AUTHENTICATED',
       user,
       sessionId
     }
   }
 
-  return {
-    status: 'INVALID_PASSWORD'
-  }
+  throw new AuthenticationError('INVALID_PASSWORD')
 }

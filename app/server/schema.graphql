@@ -1,39 +1,30 @@
-enum LoginStatus {
-  AUTHENTICATED
-  UNAUTHENTICATED
-  INVALID_USER_ID
-  INVALID_PASSWORD
-}
-
 type Query {
   publicUser(codeOrEmail: String!): PublicUser
   user: User
 }
 
-type Mutation {
-  login(codeOrEmail: String!, password: String!): LoginResponse
-}
-
 type PublicUser {
   guests: [PublicGuest]!
-  new: Boolean
+  new: Boolean!
 }
 
 type PublicGuest {
   firstName: String!
 }
 
-type LoginResponse {
-  status: LoginStatus
-  user: User
-}
-
 type User {
   guests: [Guest]!
-  new: Boolean
+  new: Boolean!
+  code: String!
+  email: String!
 }
 
 type Guest {
   firstName: String!
   lastName: String!
+}
+
+type Mutation {
+  login(codeOrEmail: String!, password: String!): User
+  changePassword(code: String!, email: String!, password: String!): User
 }

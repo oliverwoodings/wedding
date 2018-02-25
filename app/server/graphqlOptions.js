@@ -7,6 +7,7 @@ const schema = require('./schema')
 module.exports = function graphqlOptions (req, res) {
   return {
     schema,
+    debug: false,
     formatError,
     context: {
       res,
