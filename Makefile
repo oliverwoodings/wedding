@@ -1,9 +1,9 @@
 BIN = ./node_modules/.bin
 
-.PHONY: start
+.PHONY: dev migrate rebuild
 
-start:
-	nodemon --watch app/server -e js,graphql $(BIN)/jetpack
+dev:
+	$(BIN)/jetpack
 
 migrate:
 	$(BIN)/knex migrate:latest

@@ -27,7 +27,6 @@ const postcssLoader = {
 
 module.exports = {
   port: 1298,
-  middleware: require('./app/server'),
   webpack (config) {
     const loaders = config.module.loaders
     loaders.pop()
