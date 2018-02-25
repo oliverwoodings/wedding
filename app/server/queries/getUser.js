@@ -1,6 +1,6 @@
 const knex = require('../knex')
 
-module.exports = async function findUser (codeOrEmail) {
+module.exports = async function getUser (codeOrEmail) {
   const user = await knex('users')
     .where('code', codeOrEmail)
     .orWhere('email', codeOrEmail)

@@ -13,7 +13,8 @@ module.exports = async function login (codeOrEmail, password) {
     const sessionId = generateSalt()
     await knex('sessions').insert({
       key: sessionId,
-      userId: user.id
+      userId: user.id,
+      createdAt: new Date()
     })
 
     return {

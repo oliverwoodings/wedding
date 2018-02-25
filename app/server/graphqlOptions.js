@@ -1,6 +1,6 @@
 const formatError = require('./lib/formatError')
 const authenticateSession = require('./queries/authenticateSession')
-const getUser = require('./queries/getUser')
+const getUserById = require('./queries/getUserById')
 const UnauthenticatedError = require('./errors/UnauthenticatedError')
 const schema = require('./schema')
 
@@ -17,7 +17,7 @@ module.exports = function graphqlOptions (req, res) {
         }
         const userId = await authenticateSession(req.cookies.sessionId)
         if (userId) {
-          this.user = await getUser(userId)
+          this.user = await getUserById(userId)
         } else {
           throw new UnauthenticatedError()
         }
