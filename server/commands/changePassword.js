@@ -26,5 +26,7 @@ module.exports = async function changePassword (code, email, password) {
     password: hash(password, salt)
   })
 
+  await knex('sessions').where('userId', user.id).delete()
+
   return getUser(code)
 }
