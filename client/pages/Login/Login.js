@@ -1,27 +1,81 @@
-import React from 'react'
+import React, { Component } from 'react'
 import classnames from 'classnames'
 import PageBackground from '../../components/PageBackground'
 import PageTitle from '../../components/PageTitle'
-import withDevice from '../../lib/withDevice'
+import withQuery from '../../lib/withQuery'
+import CodeOrEmailForm from './CodeOrEmailForm'
+import PasswordForm from './PasswordForm'
+import LookupQuery from './LookupCodeOrEmail.graphql'
 import styles from './Login.css'
 
-function Login ({ device }) {
-  return (
-    <div className={classnames(styles.page, styles[device])}>
-      <PageBackground image='church' />
-      <PageTitle />
-      <div className={styles.loginBox}>
-        <input
-          className={styles.input}
-          type='text'
-          placeholder='Invite code or email address'
-        />
-        <svg viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg" className={styles.action}>
-          <polygon points="72.2,50.2 48.7,73.7 50.2,75.3 76.4,49.1 50.2,22.9 48.7,24.5 72.2,48 18.5,48 18.5,50.2 "/>
-        </svg>
-      </div>
-    </div>
-  )
+const STAGES = {
+  CODE_OR_EMAIL: 0,
+  PASSWORD: 1,
+  RESET_PASSWORD: 2,
+  NEW_USER: 3
 }
 
-export default withDevice()(Login)
+class Login extends Component {
+  state = {
+    stage: STAGES.CODE_OR_EMAIL,
+    codeOrEmail: ''
+  }
+
+  componentWillMount () {
+    const { user, goToHome } = this.props
+    if (user) {
+      goToHome()
+    }
+  }
+
+  componentWillUpdate ({ lookupQuery, user, goToHome }) {
+    const hasLookupFinished = !lookupQuery.isPending && this.props.lookupQuery.isPending
+    const hasLookupFailed = lookupQuery.hasFailed
+
+    if (user && !this.props.user) {
+      goToHome()
+    } else if (hasLookupFinished && !hasLookupFailed && lookupQuery.data.publicUser) {
+      const { publicUser } = lookupQuery.data
+      this.setState({
+        stage: publicUser.new ? STAGES.NEW_USER : STAGES.PASSWORD
+      })
+    }
+  }
+
+  render () {
+    const { lookupQuery, refetchUser } = this.props
+    const { stage, codeOrEmail } = this.state
+
+    return (
+      <div className={styles.page}>
+        <PageBackground image='church' />
+        <PageTitle />
+        {stage === STAGES.CODE_OR_EMAIL && (
+          <CodeOrEmailForm
+            isPending={lookupQuery.isPending}
+            userNotFound={userNotFound(lookupQuery)}
+            error={lookupQuery.error}
+            codeOrEmail={codeOrEmail}
+            onChange={(codeOrEmail) => this.setState({ codeOrEmail })}
+            onSubmit={() => lookupQuery.execute({ codeOrEmail })}
+          />
+        )}
+        {stage === STAGES.PASSWORD && (
+          <PasswordForm
+            publicUser={lookupQuery.data.publicUser}
+            codeOrEmail={codeOrEmail}
+            onSuccess={refetchUser}
+          />
+        )}
+        {/*stage === STAGES.RESET_PASSWORD && <ResetPasswordForm />}
+        {stage === STAGES.NEW_USER && <NewUserForm />*/}
+      </div>
+    )
+  }
+}
+
+export default withQuery(LookupQuery, { lazy: true, name: 'lookupQuery' })(Login)
+
+function userNotFound ({ hasExecuted, isPending, hasFailed, data }) {
+  return hasExecuted && !isPending && !hasFailed && !data.publicUser
+}

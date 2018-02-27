@@ -1,0 +1,9 @@
+query App {
+  user {
+    email
+    guests {
+      firstName
+      lastName
+    }
+  }
+}

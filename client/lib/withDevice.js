@@ -1,16 +1,17 @@
 import React from 'react'
-import PropTypes from 'prop-types'
+import { ConnectAtom } from 'tiny-atom/react'
 
 export default function withDevice () {
   return (InnerComponent) => {
-    function WithDevice (props, { device }) {
-      return <InnerComponent {...props} device={device} />
+    return function WithDevice (props, { device }) {
+      return (
+        <ConnectAtom render={({ state }) => (
+          <InnerComponent
+            {...props}
+            device={state.device}
+          />
+        )} />
+      )
     }
-
-    WithDevice.contextTypes = {
-      device: PropTypes.string
-    }
-
-    return WithDevice
   }
 }

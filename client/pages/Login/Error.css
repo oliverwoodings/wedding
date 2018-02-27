@@ -1,0 +1,7 @@
+@import '../../variables.css';
+
+.error {
+  color: var(--color-red-100);
+  display: block;
+  margin-top: var(--spacing-s);
+}

@@ -1,0 +1,10 @@
+mutation Login ($codeOrEmail: String!, $password: String!) {
+  login(codeOrEmail: $codeOrEmail, password: $password) {
+    new
+		email
+    guests {
+      firstName
+      lastName
+    }
+  }
+}

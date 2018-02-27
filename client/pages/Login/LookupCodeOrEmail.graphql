@@ -1,0 +1,8 @@
+query LookupCodeOrEmail ($codeOrEmail: String!) {
+  publicUser (codeOrEmail: $codeOrEmail) {
+    new
+    guests {
+      firstName
+    }
+  }
+}

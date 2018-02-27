@@ -28,17 +28,20 @@ const postcssLoader = {
 module.exports = {
   port: 1298,
   webpack (config) {
-    const loaders = config.module.loaders
-    loaders.pop()
-    loaders[0].use.options.presets.push(require('@babel/preset-stage-0'))
-    loaders.push({
+    const rules = config.module.rules
+    rules.pop()
+    rules[0].use.options.presets.push(require('@babel/preset-stage-0'))
+    rules.push({
       test: /\.css$/,
-      include: base('app/client'),
+      include: base('client'),
       use: ['style-loader', cssLoader, postcssLoader]
     }, {
       test: /\.css$/,
-      exclude: base('app/client'),
+      exclude: base('client'),
       use: ['style-loader', 'css-loader', postcssLoader]
+    }, {
+      test: /\.g(raph)?ql$/,
+      loader: 'raw-loader'
     })
   }
 }

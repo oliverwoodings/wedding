@@ -1,0 +1,15 @@
+@import '../variables.css';
+
+.spinner {
+  animation: spin 2s infinite linear;
+  fill: black;
+}
+
+@keyframes spin {
+  0% {
+    transform: rotate(0);
+  }
+  100% {
+    transform: rotate(359deg);
+  }
+}

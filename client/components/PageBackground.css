@@ -9,11 +9,13 @@
 }
 
 .background.church {
-  background: url('../images/church.jpg');
+  background-image: url('../images/church.jpg');
 }
 
 .background {
   background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
   filter: blur(5px) contrast(150%) brightness(70%);
   width: 110%;
   height: 110%;

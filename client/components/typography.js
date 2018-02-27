@@ -3,6 +3,7 @@ import classnames from 'classnames'
 import styles from './typography.css'
 
 export const Title = createTypographyComponent('h1', styles.title)
+export const SubTitle = createTypographyComponent('h2', styles.subTitle)
 export const Paragraph = createTypographyComponent('p', styles.paragraph)
 export const Strong = createTypographyComponent('span', styles.strong)
 export const Link = createTypographyComponent('a', styles.link)

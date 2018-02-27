@@ -2,7 +2,11 @@
 @import '../variables';
 
 .title {
-  font: normal normal 400 40px/48px 'Shadows Into Light Two', cursive;
+  font: normal normal 400 40px/64px 'Shadows Into Light Two', cursive;
+}
+
+.subTitle {
+  font: normal normal 400 30px/48px 'Shadows Into Light Two', cursive;
 }
 
 .strong {

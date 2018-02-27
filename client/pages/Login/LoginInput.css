@@ -1,0 +1,14 @@
+@import '../../variables.css';
+
+.input {
+  border: none;
+  border-radius: var(--border-radius-l);
+  background: var(--color-white-55);
+  padding: var(--spacing-m);
+  flex-grow: 1;
+  width: 100%;
+}
+
+.input + .input {
+  margin-top: var(--spacing-l);
+}
