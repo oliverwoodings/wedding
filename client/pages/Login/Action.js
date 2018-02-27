@@ -1,15 +1,17 @@
 import React from 'react'
+import classnames from 'classnames'
 import styles from './Action.css'
 
-export default function Action ({ onAction, children }) {
+export default function Action ({ onAction, children, disabled }) {
   return (
-    <div className={styles.action}>
+    <div className={classnames(styles.action, {
+      [styles.disabled]: disabled
+    })}>
       {children}
-      <Arrow onClick={onAction} />
+      <Arrow onClick={() => !disabled && onAction()} />
     </div>
   )
 }
-
 
 function Arrow (props) {
   return (

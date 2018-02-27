@@ -8,7 +8,8 @@ export default function withQuery (Query, { mapPropsToVariables, name = 'query',
         isPending: false,
         hasFailed: false,
         data: null,
-        hasExecuted: false
+        hasExecuted: false,
+        lastVariables: {}
       }
 
       componentWillMount () {
@@ -34,7 +35,8 @@ export default function withQuery (Query, { mapPropsToVariables, name = 'query',
 
         this.setState({
           isPending: true,
-          hasExecuted: true
+          hasExecuted: true,
+          lastVariables: variables
         })
 
         try {
@@ -65,8 +67,15 @@ export default function withQuery (Query, { mapPropsToVariables, name = 'query',
           ...this.props,
           [name]: {
             ...this.state,
+            haveVariablesChanged: ::this.haveVariablesChanged,
             execute: ::this.execute
           }
+        })
+      }
+
+      haveVariablesChanged (toCheck) {
+        return Object.keys(toCheck).some((keyToCheck) => {
+          return toCheck[keyToCheck] !== this.state.lastVariables[keyToCheck]
         })
       }
     }

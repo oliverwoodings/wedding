@@ -5,6 +5,7 @@ import PageTitle from '../../components/PageTitle'
 import withQuery from '../../lib/withQuery'
 import CodeOrEmailForm from './CodeOrEmailForm'
 import PasswordForm from './PasswordForm'
+import ResetPasswordForm from './ResetPasswordForm'
 import LookupQuery from './LookupCodeOrEmail.graphql'
 import styles from './Login.css'
 
@@ -53,7 +54,7 @@ class Login extends Component {
         {stage === STAGES.CODE_OR_EMAIL && (
           <CodeOrEmailForm
             isPending={lookupQuery.isPending}
-            userNotFound={userNotFound(lookupQuery)}
+            userNotFound={userNotFound(lookupQuery, codeOrEmail)}
             error={lookupQuery.error}
             codeOrEmail={codeOrEmail}
             onChange={(codeOrEmail) => this.setState({ codeOrEmail })}
@@ -65,10 +66,15 @@ class Login extends Component {
             publicUser={lookupQuery.data.publicUser}
             codeOrEmail={codeOrEmail}
             onSuccess={refetchUser}
+            onResetPassword={() => this.setState({ stage: STAGES.RESET_PASSWORD })}
           />
         )}
-        {/*stage === STAGES.RESET_PASSWORD && <ResetPasswordForm />}
-        {stage === STAGES.NEW_USER && <NewUserForm />*/}
+        {stage === STAGES.RESET_PASSWORD && (
+          <ResetPasswordForm
+            onSuccess={refetchUser}
+          />
+        )}
+        {/*stage === STAGES.NEW_USER && <NewUserForm />*/}
       </div>
     )
   }
@@ -76,6 +82,6 @@ class Login extends Component {
 
 export default withQuery(LookupQuery, { lazy: true, name: 'lookupQuery' })(Login)
 
-function userNotFound ({ hasExecuted, isPending, hasFailed, data }) {
-  return hasExecuted && !isPending && !hasFailed && !data.publicUser
+function userNotFound ({ hasExecuted, isPending, hasFailed, data, haveVariablesChanged }, codeOrEmail) {
+  return hasExecuted && !isPending && !hasFailed && !data.publicUser && !haveVariablesChanged({ codeOrEmail })
 }

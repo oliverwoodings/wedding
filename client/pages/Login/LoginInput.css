@@ -10,5 +10,5 @@
 }
 
 .input + .input {
-  margin-top: var(--spacing-l);
+  margin-top: var(--spacing-m);
 }

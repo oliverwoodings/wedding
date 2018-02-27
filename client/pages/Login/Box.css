@@ -13,3 +13,11 @@
   width: 100%;
   border-radius: 0;
 }
+
+.hasTitle {
+  padding-top: var(--spacing-l);
+}
+
+.title {
+  margin-bottom: var(--spacing-m);
+}

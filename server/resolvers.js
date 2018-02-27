@@ -18,15 +18,18 @@ module.exports = {
       const { codeOrEmail, password } = args
 
       const { sessionId, user } = await login(codeOrEmail, password)
-
-      context.res.cookie('sessionId', sessionId, {
-        maxAge: 1000 * 60 * 60 * 24 * 30 // 30 days
-      })
+      context.setSessionId(sessionId)
 
       return user
     },
-    changePassword (obj, args) {
-      return changePassword(args.code, args.email, args.password)
+    async changePassword (obj, args, context) {
+      const { code, email, password } = args
+      await changePassword(code, email, password)
+      
+      const { sessionId, user } = await login(email, password)
+      context.setSessionId(sessionId)
+
+      return user
     }
   },
   PublicUser: {

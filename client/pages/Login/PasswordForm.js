@@ -1,11 +1,13 @@
 import React, { Component } from 'react'
 import withMutation from '../../lib/withMutation'
-import Hello from '../../components/Hello'
+import hello from '../../lib/hello'
+import { Link } from '../../components/typography'
 import Box from './Box'
 import Action from './Action'
 import Error from './Error'
 import LoginInput from './LoginInput'
 import LoginMutation from './Login.graphql'
+import styles from './PasswordForm.css'
 
 class PasswordForm extends Component {
   state = {
@@ -19,22 +21,26 @@ class PasswordForm extends Component {
   }
 
   render () {
-    const { publicUser, login, codeOrEmail } = this.props
+    const { publicUser, login, codeOrEmail, onResetPassword } = this.props
     const { password } = this.state
 
+    const disabled = !password.trim().length
+
     return (
-      <Box>
-        <Hello guests={publicUser.guests} />
-        <Action onAction={execute}>
+      <Box title={hello(publicUser.guests)}>
+        <Action onAction={execute} disabled={disabled}>
           <LoginInput
             type='password'
-            placeholder='Enter your password'
+            placeholder='Enter password'
             value={password}
-            onEnter={execute}
+            onEnter={!disabled && execute}
             onChange={(password) => this.setState({ password })}
           />
         </Action>
-        <Error error={login.error} />
+        {!login.haveVariablesChanged({ password }) && <Error error={login.error} />}
+        <div className={styles.forgotten}>
+          Forgotten your password? Reset it <Link onClick={onResetPassword}>here</Link>
+        </div>
       </Box>
     )
 

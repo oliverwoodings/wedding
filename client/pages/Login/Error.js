@@ -22,6 +22,10 @@ function formatError (error) {
           return 'Sorry, that code or email does not exist'
         case 'INVALID_PASSWORD':
           return 'Whoops! That password isn\'t correct'
+        case 'EMAIL_MISMATCH':
+          return 'Sorry, that isn\'t the email you signed up with'
+        case 'INVALID_CODE':
+          return 'Sorry, that code does not exist'
       }
     default:
       return 'Sorry, something went wrong :('

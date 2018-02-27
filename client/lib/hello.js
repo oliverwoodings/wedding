@@ -1,7 +1,4 @@
-import React from 'react'
-import { SubTitle } from './typography'
-
-export default function Hello ({ guests }) {
+export default function hello (guests) {
   const names = guests.reduce((memo, { firstName }, i) => {
     if (!memo) {
       return firstName
@@ -11,5 +8,5 @@ export default function Hello ({ guests }) {
     }
     return `${memo}, ${firstName}`
   }, '')
-  return <SubTitle>Hello {names}!</SubTitle>
+  return `Hello ${names}!`
 }

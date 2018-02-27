@@ -21,6 +21,11 @@ module.exports = function graphqlOptions (req, res) {
         } else {
           throw new UnauthenticatedError()
         }
+      },
+      setSessionId (sessionId) {
+        res.cookie('sessionId', sessionId, {
+          maxAge: 1000 * 60 * 60 * 24 * 30 // 30 days
+        })
       }
     }
   }

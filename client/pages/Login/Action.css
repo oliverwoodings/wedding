@@ -17,3 +17,8 @@
   width: var(--spacing-xl);
   flex-shrink: 0;
 }
+
+.disabled .arrow {
+  cursor: not-allowed;
+  opacity: 0.6;
+}

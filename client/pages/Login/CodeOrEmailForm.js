@@ -15,18 +15,19 @@ export default function CodeOrEmailForm (props) {
     userNotFound
   } = props
 
+  const disabled = !codeOrEmail.trim().length
+
   return (
     <Box>
-      <Action onAction={onSubmit}>
+      <Action onAction={onSubmit} disabled={disabled}>
         <LoginInput
           placeholder='Invite code or email address'
           value={codeOrEmail}
           onChange={onChange}
-          onEnter={onSubmit}
+          onEnter={!disabled && onSubmit}
         />
       </Action>
-      {error && <Error error={error} />}
-      {userNotFound && <Error>Sorry, that code or email doesn't exist!</Error>}
+      <Error error={error}>{userNotFound && 'Sorry, that code or email doesn\'t exist!'}</Error>
     </Box>
   )
 }
