@@ -6,6 +6,7 @@ import withQuery from '../../lib/withQuery'
 import CodeOrEmailForm from './CodeOrEmailForm'
 import PasswordForm from './PasswordForm'
 import ResetPasswordForm from './ResetPasswordForm'
+import NewUserForm from './NewUserForm'
 import LookupQuery from './LookupCodeOrEmail.graphql'
 import styles from './Login.css'
 
@@ -74,7 +75,13 @@ class Login extends Component {
             onSuccess={refetchUser}
           />
         )}
-        {/*stage === STAGES.NEW_USER && <NewUserForm />*/}
+        {stage === STAGES.NEW_USER && (
+          <NewUserForm
+            onSuccess={refetchUser}
+            code={codeOrEmail}
+            publicUser={lookupQuery.data.publicUser}
+          />
+        )}
       </div>
     )
   }
