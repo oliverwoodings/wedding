@@ -1,7 +1,5 @@
 import React, { Component } from 'react'
 import classnames from 'classnames'
-import PageBackground from '../../components/PageBackground'
-import PageTitle from '../../components/PageTitle'
 import withQuery from '../../lib/withQuery'
 import CodeOrEmailForm from './CodeOrEmailForm'
 import PasswordForm from './PasswordForm'
@@ -49,9 +47,7 @@ class Login extends Component {
     const { stage, codeOrEmail } = this.state
 
     return (
-      <div className={styles.page}>
-        <PageBackground image='church' />
-        <PageTitle />
+      <div className={styles.login}>
         {stage === STAGES.CODE_OR_EMAIL && (
           <CodeOrEmailForm
             isPending={lookupQuery.isPending}

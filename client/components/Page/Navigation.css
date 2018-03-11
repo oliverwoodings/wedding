@@ -1,0 +1,33 @@
+@import '../../variables.css';
+
+.container {
+  display: flex;
+  overflow-x: auto;
+  overflow-y: hidden;
+  margin-bottom: var(--spacing-xl);
+  width: 100%;
+}
+
+.navigation {
+  margin: 0 auto;
+  white-space: nowrap;
+  padding: 0 var(--spacing-m);
+}
+
+.item {
+  background: var(--color-white-25);
+  color: white;
+  display: inline-block;
+  padding: var(--spacing-xs) var(--spacing-s);
+  text-decoration: none;
+  transition: background var(--transition-short);
+  white-space: nowrap;
+}
+
+.item + .item {
+  margin-left: var(--spacing-s);
+}
+
+.item:hover {
+  background: var(--color-white-55);
+}

@@ -1,11 +1,9 @@
 import React from 'react'
-import { Title } from './typography'
+import { SubTitle } from './typography'
 import styles from './PageTitle.css'
 
-export default function PageTitle () {
+export default function PageTitle ({ title }) {
   return (
-    <Title className={styles.title}>
-      Oli & Danni's Wedding
-    </Title>
+    <SubTitle className={styles.pageTitle}>{title}</SubTitle>
   )
 }

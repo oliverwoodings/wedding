@@ -1,4 +1,5 @@
 import React from 'react'
+import PageTitle from '../../components/PageTitle'
 import Box from './Box'
 import Action from './Action'
 import LoginInput from './LoginInput'
@@ -19,6 +20,7 @@ export default function CodeOrEmailForm (props) {
 
   return (
     <Box>
+      <PageTitle>Welcome to our wedding!</PageTitle>
       <Action onAction={onSubmit} disabled={disabled}>
         <LoginInput
           placeholder='Invite code or email address'

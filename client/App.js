@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 import compose from 'compose-function'
 import PropTypes from 'prop-types'
-import { Body } from './components/typography'
+import Page from './components/Page'
 import Spinner from './components/Spinner'
 import withQuery from './lib/withQuery'
 import withAtom from './lib/withAtom'
@@ -29,17 +29,24 @@ class App extends Component {
   }
 
   render () {
-    const { query, children, goToHome } = this.props
+    const { query, children, goToHome, requiredAccessLevel } = this.props
 
     if (query.isPending) {
       return <Spinner />
     }
 
-    return <Body className={styles.app}>{children({
-      user: query.data && query.data.user,
-      refetchUser: query.execute,
-      goToHome
-    })}</Body>
+    return (
+      <Page
+        className={styles.app}
+        minimalist={requiredAccessLevel === ACCESS_LEVELS.PUBLIC}
+      >
+        {children({
+          user: query.data && query.data.user,
+          refetchUser: query.execute,
+          goToHome
+        })}
+      </Page>
+    )
   }
 }
 

@@ -1,0 +1,67 @@
+@import '../../variables.css';
+
+.banner {
+  background: var(--color-black-40);
+  margin: var(--spacing-xl) 0;
+}
+
+.top {
+  align-items: center;
+  border: 2px solid white;
+  display: flex;
+  justify-content: center;
+  text-transform: uppercase;
+  height: 38px;
+  white-space: nowrap;
+}
+
+.top:before,
+.top:after {
+  align-items: center;
+  justify-content: center;
+  display: flex;
+  flex-shrink: 0;
+  content: '❤';
+  height: 100%;
+  width: var(--spacing-xl);
+}
+
+.top:before {
+  border-right: 2px solid white;
+  margin-right: var(--spacing-l);
+}
+
+.top:after {
+  border-left: 2px solid white;
+  margin-left: var(--spacing-l);
+}
+
+.names {
+  align-items: center;
+  border: 2px solid white;
+  border-top: none;
+  border-bottom: none;
+  display: flex;
+  justify-content: center;
+  padding: var(--spacing-s) 0;
+}
+
+.bottom {
+  align-items: center;
+  border: 2px solid white;
+  display: flex;
+  height: 35px;
+}
+
+.chevrons {
+  fill: white;
+}
+
+.date {
+  margin-left: auto;
+}
+
+.chevrons:last-child {
+  margin-left: auto;
+  transform: rotate(180deg);
+}

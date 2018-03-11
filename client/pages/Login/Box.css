@@ -1,7 +1,7 @@
 @import '../../variables.css';
 
 .box {
-  background: var(--color-white-70);
+  background: var(--color-black-70);
   border-radius: var(--border-radius-l);
   width: 400px;
   padding: var(--spacing-xl);

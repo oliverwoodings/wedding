@@ -1,0 +1,16 @@
+@import '../../variables.css';
+
+.page {
+  height: 100%;
+  width: 100%;
+  overflow-y: scroll;
+  overflow-x: hidden;
+}
+
+.header {
+  align-items: center;
+  color: white;
+  flex-direction: column;
+  display: flex;
+  position: relative;
+}

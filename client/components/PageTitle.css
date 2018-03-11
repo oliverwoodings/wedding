@@ -1,9 +1,0 @@
-@import '../variables.css';
-
-.title {
-  background: var(--color-white-55);
-  color: black;
-  padding: var(--spacing-xl);
-  text-align: center;
-  width: 100%;
-}

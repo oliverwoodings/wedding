@@ -1,4 +1,4 @@
-@import '../variables.css';
+@import '../../variables.css';
 
 .container {
   position: absolute;
@@ -8,17 +8,12 @@
   overflow: hidden;
 }
 
-.background.church {
-  background-image: url('../images/church.jpg');
-}
-
 .background {
+  background-image: url('../../images/church.jpg');
   background-size: cover;
   background-position: center;
   background-repeat: no-repeat;
-  filter: blur(5px) contrast(150%) brightness(70%);
+  filter: blur(3px) contrast(150%);
   width: 110%;
   height: 110%;
-  margin-left: -5%;
-  margin-top: -5%;
 }
