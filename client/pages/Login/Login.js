@@ -1,4 +1,4 @@
-import React, { Component } from 'react'
+import React, { Component, Fragment } from 'react'
 import classnames from 'classnames'
 import withQuery from '../../lib/withQuery'
 import CodeOrEmailForm from './CodeOrEmailForm'
@@ -6,7 +6,6 @@ import PasswordForm from './PasswordForm'
 import ResetPasswordForm from './ResetPasswordForm'
 import NewUserForm from './NewUserForm'
 import LookupQuery from './LookupCodeOrEmail.graphql'
-import styles from './Login.css'
 
 const STAGES = {
   CODE_OR_EMAIL: 0,
@@ -47,7 +46,7 @@ class Login extends Component {
     const { stage, codeOrEmail } = this.state
 
     return (
-      <div className={styles.login}>
+      <Fragment>
         {stage === STAGES.CODE_OR_EMAIL && (
           <CodeOrEmailForm
             isPending={lookupQuery.isPending}
@@ -78,7 +77,7 @@ class Login extends Component {
             publicUser={lookupQuery.data.publicUser}
           />
         )}
-      </div>
+      </Fragment>
     )
   }
 }

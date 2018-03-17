@@ -1,4 +1,5 @@
 import React from 'react'
+import classnames from 'classnames'
 import styles from './Navigation.css'
 
 const ITEMS = {
@@ -11,12 +12,20 @@ const ITEMS = {
   'FAQs': '/faqs'
 }
 
-export default function Navigation () {
+export default function Navigation ({ path }) {
   return (
     <div className={styles.container}>
       <div className={styles.navigation}>
         {Object.keys(ITEMS).map((name) => (
-          <a href={ITEMS[name]} key={name} className={styles.item}>{name}</a>
+          <a
+            href={ITEMS[name]}
+            key={name}
+            className={classnames(styles.item, {
+              [styles.activeItem]: path === ITEMS[name]
+            })}
+          >
+            {name}
+          </a>
         ))}
       </div>
     </div>

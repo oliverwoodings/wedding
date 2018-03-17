@@ -1,6 +1,5 @@
 import React from 'react'
-import PageTitle from '../../components/PageTitle'
-import Box from './Box'
+import PageBody from '../../components/PageBody'
 import Action from './Action'
 import LoginInput from './LoginInput'
 import Error from './Error'
@@ -19,18 +18,18 @@ export default function CodeOrEmailForm (props) {
   const disabled = !codeOrEmail.trim().length
 
   return (
-    <Box>
-      <PageTitle>Welcome to our wedding!</PageTitle>
+    <PageBody title='Welcome to our wedding!' fill>
       <Action onAction={onSubmit} disabled={disabled}>
         <LoginInput
-          placeholder='Invite code or email address'
+          placeholder='Enter your invite code or email'
           value={codeOrEmail}
           onChange={onChange}
           onEnter={!disabled && onSubmit}
+          autofocus
         />
       </Action>
       <Error error={error}>{userNotFound && 'Sorry, that code or email doesn\'t exist!'}</Error>
-    </Box>
+    </PageBody>
   )
 }
 

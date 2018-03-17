@@ -28,6 +28,7 @@
   margin-left: var(--spacing-s);
 }
 
-.item:hover {
+.item:hover,
+.activeItem {
   background: var(--color-white-55);
 }

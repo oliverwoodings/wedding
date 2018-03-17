@@ -2,11 +2,16 @@
 
 .input {
   border: none;
-  border-radius: var(--border-radius-l);
-  background: var(--color-white-55);
+  background: var(--color-blue-55);
+  color: white;
   padding: var(--spacing-m);
   flex-grow: 1;
   width: 100%;
+  min-width: 255px;
+}
+
+.input::placeholder {
+  color: white;
 }
 
 .input + .input {

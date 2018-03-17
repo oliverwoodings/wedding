@@ -4,7 +4,7 @@ export default function hello (guests) {
       return firstName
     }
     if (i === guests.length - 1) {
-      return `${memo} and ${firstName}`
+      return `${memo} & ${firstName}`
     }
     return `${memo}, ${firstName}`
   }, '')

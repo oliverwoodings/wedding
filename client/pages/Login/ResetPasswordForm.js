@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 import withMutation from '../../lib/withMutation'
-import Box from './Box'
+import PageBody from '../../components/PageBody'
 import Action from './Action'
 import Error from './Error'
 import LoginInput from './LoginInput'
@@ -38,11 +38,12 @@ class ResetPasswordForm extends Component {
     const disabled = anyEmpty([code, email, password, password2]) || passwordMismatch || invalidPassword
 
     return (
-      <Box title='Reset your password'>
+      <PageBody title='Reset your password' fill>
         <LoginInput
           placeholder='Invite code'
           value={code}
           onChange={(code) => this.setState({ code })}
+          autofocus
         />
         <LoginInput
           placeholder='Email address'
@@ -65,7 +66,7 @@ class ResetPasswordForm extends Component {
           />
         </Action>
         {showError && <Error error={reset.error}>{error}</Error>}
-      </Box>
+      </PageBody>
     )
 
     function execute () {

@@ -16,4 +16,7 @@
   filter: blur(3px) contrast(150%);
   width: 110%;
   height: 110%;
+  position: relative;
+  top: -5%;
+  left: -5%;
 }

@@ -13,12 +13,18 @@
   margin-left: var(--spacing-l);
   cursor: pointer;
   height: var(--spacing-xl);
-  fill: white;
+  stroke: var(--color-black-70);
+  fill: none;
   width: var(--spacing-xl);
   flex-shrink: 0;
+  transition: stroke var(--transition-short);
+}
+
+.arrow:hover {
+  stroke: var(--color-black-40);
 }
 
 .disabled .arrow {
   cursor: not-allowed;
-  opacity: 0.6;
+  stroke: var(--color-black-25);
 }

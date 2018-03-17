@@ -22,7 +22,7 @@ const router = createRouter([
   ['', access(App, ACCESS_LEVELS.PUBLIC), [
     ['/', Home],
     ['/login', access(Login, ACCESS_LEVELS.PUBLIC)],
-    ['*', access(NotFound, ACCESS_LEVELS.PUBLIC)]
+    ['*', NotFound]
   ]]
 ])
 
@@ -45,7 +45,12 @@ function render (atom) {
   }, ACCESS_LEVELS.PUBLIC)
 
   const app = components.reduceRight((children, Component) => (props = {}) => (
-    <Component params={route.params} requiredAccessLevel={requiredAccessLevel} {...props}>
+    <Component
+      params={route.params}
+      requiredAccessLevel={requiredAccessLevel}
+      path={route.path}
+      {...props}
+    >
       {children}
     </Component>
   ), null)

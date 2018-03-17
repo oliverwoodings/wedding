@@ -2,7 +2,7 @@ import React, { Component } from 'react'
 import withMutation from '../../lib/withMutation'
 import hello from '../../lib/hello'
 import { Link } from '../../components/typography'
-import Box from './Box'
+import PageBody from '../../components/PageBody'
 import Action from './Action'
 import Error from './Error'
 import LoginInput from './LoginInput'
@@ -27,7 +27,7 @@ class PasswordForm extends Component {
     const disabled = !password.trim().length
 
     return (
-      <Box title={hello(publicUser.guests)}>
+      <PageBody title={hello(publicUser.guests)} fill>
         <Action onAction={execute} disabled={disabled}>
           <LoginInput
             type='password'
@@ -35,13 +35,14 @@ class PasswordForm extends Component {
             value={password}
             onEnter={!disabled && execute}
             onChange={(password) => this.setState({ password })}
+            autofocus
           />
         </Action>
         {!login.haveVariablesChanged({ password }) && <Error error={login.error} />}
         <div className={styles.forgotten}>
           Forgotten your password? Reset it <Link onClick={onResetPassword}>here</Link>
         </div>
-      </Box>
+      </PageBody>
     )
 
     function execute () {

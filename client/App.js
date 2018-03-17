@@ -5,7 +5,6 @@ import Page from './components/Page'
 import Spinner from './components/Spinner'
 import withQuery from './lib/withQuery'
 import withAtom from './lib/withAtom'
-import styles from './App.css'
 import Query from './App.graphql'
 import { ACCESS_LEVELS } from './constants'
 
@@ -29,7 +28,7 @@ class App extends Component {
   }
 
   render () {
-    const { query, children, goToHome, requiredAccessLevel } = this.props
+    const { query, children, goToHome, requiredAccessLevel, path } = this.props
 
     if (query.isPending) {
       return <Spinner />
@@ -37,8 +36,8 @@ class App extends Component {
 
     return (
       <Page
-        className={styles.app}
         minimalist={requiredAccessLevel === ACCESS_LEVELS.PUBLIC}
+        path={path}
       >
         {children({
           user: query.data && query.data.user,

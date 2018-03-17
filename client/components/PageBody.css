@@ -1,0 +1,47 @@
+@import '../variables.css';
+
+.body {
+  align-items: center;
+  display: flex;
+  flex-direction: column;
+}
+
+.body.fill {
+  justify-content: center;
+  padding-top: -5%;
+  flex-grow: 1;
+}
+
+.title:before,
+.title:after {
+  color: var(--color-blue-55);
+  flex-shrink: 0;
+  font-size: 16px;
+  content: '❤';
+}
+
+.title:before {
+  margin-right: var(--spacing-m);
+}
+
+.title:after {
+  margin-left: var(--spacing-m);
+}
+
+.title {
+  align-items: center;
+  display: flex;
+  flex-shrink: 0;
+  margin: var(--spacing-l) var(--spacing-m);
+  text-align: center
+}
+
+.children {
+  display: flex;
+  flex-direction: column;
+  margin-bottom: var(--spacing-l);
+}
+
+.fill .children {
+  margin-bottom: var(--spacing-xxl);
+}

@@ -8,11 +8,13 @@ export default class LoginInput extends Component {
   }
 
   componentDidMount () {
-    this.input.focus()
+    if (this.props.autofocus) {
+      this.input.focus()
+    }
   }
 
   render () {
-    const { className, onChange, type, onEnter, ...props } = this.props
+    const { className, onChange, type, onEnter, autofocus, ...props } = this.props
     return (
       <input
         {...props}
