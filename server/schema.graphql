@@ -1,5 +1,6 @@
 type Query {
   publicUser(codeOrEmail: String!): PublicUser
+  tracks(query: String!): SpotifySearchResults
   user: User
 }
 
@@ -22,6 +23,42 @@ type User {
 type Guest {
   firstName: String!
   lastName: String!
+}
+
+type SpotifySearchResults {
+  limit: Int
+  offset: Int
+  total: Int
+  items: [SpotifyTrack]!
+}
+
+type SpotifyTrack {
+  id: String!
+  album: SpotifyAlbum
+  artists: [SpotifyArtist]!
+  name: String!
+  previewUrl: String
+  durationMs: Int!
+  externalUrls: SpotifyExternalUrls!
+}
+
+type SpotifyAlbum {
+  name: String!
+  images: [SpotifyImage]!
+}
+
+type SpotifyImage {
+  height: Int!
+  width: Int!
+  url: String!
+}
+
+type SpotifyArtist {
+  name: String!
+}
+
+type SpotifyExternalUrls {
+  spotify: String
 }
 
 type Mutation {

@@ -1,0 +1,27 @@
+query SearchSpotify ($query: String!) {
+  tracks(query: $query) {
+    limit
+    offset
+    total
+    items {
+      id
+      name
+      externalUrls {
+        spotify
+      }
+      artists {
+        name
+      }
+      album {
+        name
+        images {
+          url
+          width
+          height
+        }
+      }
+      previewUrl
+      durationMs
+    }
+  }
+}

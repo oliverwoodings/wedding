@@ -1,5 +1,6 @@
 const getUser = require('./queries/getUser')
 const getUserGuests = require('./queries/getUserGuests')
+const searchSpotify = require('./queries/searchSpotify')
 const login = require('./commands/login')
 const changePassword = require('./commands/changePassword')
 
@@ -11,6 +12,9 @@ module.exports = {
     async user (obj, args, context) {
       await context.authenticate()
       return context.user
+    },
+    tracks (obj, args) {
+      return searchSpotify(args.query)
     }
   },
   Mutation: {

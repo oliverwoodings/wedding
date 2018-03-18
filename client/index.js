@@ -10,6 +10,7 @@ import { ProvideAtom } from 'tiny-atom/react'
 import Home from './pages/Home'
 import Login from './pages/Login'
 import NotFound from './pages/NotFound'
+import Music from './pages/Music'
 import App from './App'
 import { evolve, initialState } from './evolve'
 import createDeviceListener from './lib/deviceListener'
@@ -22,6 +23,7 @@ const router = createRouter([
   ['', access(App, ACCESS_LEVELS.PUBLIC), [
     ['/', Home],
     ['/login', access(Login, ACCESS_LEVELS.PUBLIC)],
+    ['/music', Music],
     ['*', NotFound]
   ]]
 ])
