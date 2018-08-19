@@ -6,6 +6,7 @@ export default function withQuery (Query, { mapPropsToVariables, name = 'query',
     return class WithQuery extends Component {
       state = {
         isPending: false,
+        isRefetching: false,
         hasFailed: false,
         data: null,
         hasExecuted: false,
@@ -35,6 +36,7 @@ export default function withQuery (Query, { mapPropsToVariables, name = 'query',
 
         this.setState({
           isPending: true,
+          isRefetching: this.state.hasExecuted,
           hasExecuted: true,
           lastVariables: variables
         })

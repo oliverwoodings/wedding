@@ -3,6 +3,7 @@ const getUserGuests = require('./queries/getUserGuests')
 const searchSpotify = require('./queries/searchSpotify')
 const login = require('./commands/login')
 const changePassword = require('./commands/changePassword')
+const updateGuest = require('./commands/updateGuest')
 
 module.exports = {
   Query: {
@@ -13,7 +14,8 @@ module.exports = {
       await context.authenticate()
       return context.user
     },
-    tracks (obj, args) {
+    async tracks (obj, args, context) {
+      await context.authenticate()
       return searchSpotify(args.query)
     }
   },
@@ -34,6 +36,11 @@ module.exports = {
       context.setSessionId(sessionId)
 
       return user
+    },
+    async updateGuest (obj, args, context) {
+      await context.authenticate()
+      const guest = await updateGuest(context.user.id, args.guestId, args.guest)
+      return guest
     }
   },
   PublicUser: {

@@ -1,17 +1,23 @@
-import React from 'react'
+import React, { Fragment } from 'react'
 import { Title } from '../typography'
 import styles from './Banner.css'
 
-export default function Banner () {
+export default function Banner ({ minimalist }) {
   return (
     <div className={styles.banner}>
-      <div className={styles.top}>We are getting married!</div>
-      <Title className={styles.names}>Oli & Danni</Title>
-      <div className={styles.bottom}>
-        <Chevrons />
-        <div className={styles.date}>27th July 2019</div>
-        <Chevrons />
+      <div className={styles.top}>
+        {minimalist ? 'Oli & Danni - 27th July 2019' : 'We are getting married!'}
       </div>
+      {!minimalist && (
+        <Fragment>
+          <Title className={styles.names}>Oli & Danni</Title>
+          <div className={styles.bottom}>
+            <Chevrons />
+            <div className={styles.date}>27th July 2019</div>
+            <Chevrons />
+          </div>
+        </Fragment>
+      )}
     </div>
   )
 }

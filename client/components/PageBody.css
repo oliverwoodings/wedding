@@ -39,6 +39,7 @@
 .children {
   display: flex;
   flex-direction: column;
+  flex-shrink: 0;
   margin-bottom: var(--spacing-l);
 }
 

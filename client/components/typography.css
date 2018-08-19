@@ -9,26 +9,36 @@
   font: normal normal 400 30px/48px 'Shadows Into Light Two', cursive;
 }
 
+.header {
+  font: normal normal 400 24px/32px 'Raleway', sans-serif;
+}
+
 .strong {
   font: normal normal 600 16px/22px 'Raleway', sans-serif;
 }
 
 .body {
+  color: var(--color-font-primary);
   font: normal normal 400 16px/22px 'Raleway', sans-serif;
 }
 
 .link {
   cursor: pointer;
   text-decoration: none;
-  border-bottom: 1px solid var(--color-black-25);
-  color: inherit;
+  border-bottom: 1px solid var(--color-blue-55);
+  color: var(--color-blue-55);
 }
 
 .link:hover {
   color: var(--color-blue-100);
-  border-bottom-color: var(--color-blue-25);
+  border-bottom-color: var(--color-blue-100);
 }
 
 .paragraph {
   font: normal normal 400 16px/20px 'Raleway', sans-serif;
+  padding: 0 var(--spacing-m);
+}
+
+.paragraph + .paragraph {
+  margin-top: var(--spacing-m);
 }

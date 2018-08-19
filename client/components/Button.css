@@ -1,0 +1,20 @@
+@import '../variables.css';
+
+.button {
+  align-items: center;
+  background: var(--color-blue-55);
+  border-radius: var(--border-radius-m);
+  cursor: pointer;
+  color: white;
+  display: flex;
+  flex-grow: 0;
+  justify-content: center;
+  text-decoration: none;
+  transition: background var(--transition-short);
+  height: var(--spacing-xxl);
+  padding: 0 var(--spacing-l);
+}
+
+.button:hover {
+  background: var(--color-blue-70);
+}

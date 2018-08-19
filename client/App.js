@@ -1,10 +1,12 @@
 import React, { Component } from 'react'
 import compose from 'compose-function'
+import { get } from 'lodash-es'
 import PropTypes from 'prop-types'
 import Page from './components/Page'
 import Spinner from './components/Spinner'
 import withQuery from './lib/withQuery'
 import withAtom from './lib/withAtom'
+import withDevice from './lib/withDevice'
 import Query from './App.graphql'
 import { ACCESS_LEVELS } from './constants'
 
@@ -17,7 +19,7 @@ function mapAtom (state, split) {
 
 class App extends Component {
   componentWillUpdate ({ query, requiredAccessLevel, goToLogin, goToHome }) {
-    if (query.hasFailed) {
+    if (query.hasFailed && get(query, 'error.type') === 'UNAUTHENTICATED') {
       switch (requiredAccessLevel) {
         case ACCESS_LEVELS.PRIVATE:
           return goToLogin()
@@ -28,15 +30,29 @@ class App extends Component {
   }
 
   render () {
-    const { query, children, goToHome, requiredAccessLevel, path } = this.props
+    const {
+      query,
+      children,
+      goToHome,
+      requiredAccessLevel,
+      path,
+      device
+    } = this.props
 
-    if (query.isPending) {
+    if (query.isPending && !query.isRefetching) {
       return <Spinner />
+    }
+
+    const isPublicRoute = requiredAccessLevel === ACCESS_LEVELS.PUBLIC
+
+    if (!isPublicRoute && query.hasFailed) {
+      return null
     }
 
     return (
       <Page
-        minimalist={requiredAccessLevel === ACCESS_LEVELS.PUBLIC}
+        minimalist={device === 'mobile' && !isPublicRoute && path !== '/'}
+        nav={!isPublicRoute}
         path={path}
       >
         {children({
@@ -49,4 +65,4 @@ class App extends Component {
   }
 }
 
-export default compose(withAtom(mapAtom), withQuery(Query))(App)
+export default compose(withAtom(mapAtom), withQuery(Query), withDevice())(App)

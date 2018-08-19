@@ -5,13 +5,13 @@ import HeaderBackground from './HeaderBackground'
 import Navigation from './Navigation'
 import styles from './Page.css'
 
-export default function Page ({ children, minimalist, path }) {
+export default function Page ({ children, minimalist, nav, path }) {
   return (
     <Body className={styles.page}>
       <div className={styles.header}>
         <HeaderBackground image='church' />
-        <Banner />
-        {!minimalist && <Navigation path={path} />}
+        <Banner minimalist={minimalist} />
+        {nav && <Navigation path={path} />}
       </div>
       {children}
     </Body>

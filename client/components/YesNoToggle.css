@@ -1,0 +1,42 @@
+@import '../variables.css';
+
+.container {
+  display: flex;
+}
+
+.toggle {
+  align-items: center;
+  border: 1px solid var(--color-blue-55);
+  color: var(--color-blue-55);
+  cursor: pointer;
+  display: flex;
+  justify-content: center;
+  height: var(--spacing-xl);
+  padding: 0 var(--spacing-l);
+  text-align: center;
+  transition: all var(--transition-short);
+}
+
+.toggle:hover {
+  background: var(--color-blue-10);
+}
+
+.toggle:first-child {
+  border-top-left-radius: var(--border-radius-m);
+  border-bottom-left-radius: var(--border-radius-m);
+  border-right: none;
+}
+
+.toggle:last-child {
+  border-top-right-radius: var(--border-radius-m);
+  border-bottom-right-radius: var(--border-radius-m);
+  border-left: none;
+}
+
+.yes .toggle:first-child,
+.no .toggle:last-child,
+.maybe .toggle:not(:last-child):not(:first-child) {
+  background: var(--color-blue-55);
+  cursor: default;
+  color: white;
+}

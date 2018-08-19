@@ -2,8 +2,12 @@ query App {
   user {
     email
     guests {
+      id
       firstName
       lastName
+      isAttending
+      hasDietaryRequirements
+      dietaryRequirements
     }
   }
 }

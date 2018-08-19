@@ -11,6 +11,7 @@ import Home from './pages/Home'
 import Login from './pages/Login'
 import NotFound from './pages/NotFound'
 import Music from './pages/Music'
+import RSVP from './pages/RSVP'
 import App from './App'
 import { evolve, initialState } from './evolve'
 import createDeviceListener from './lib/deviceListener'
@@ -22,6 +23,7 @@ document.body.appendChild(container)
 const router = createRouter([
   ['', access(App, ACCESS_LEVELS.PUBLIC), [
     ['/', Home],
+    ['/rsvp', RSVP],
     ['/login', access(Login, ACCESS_LEVELS.PUBLIC)],
     ['/music', Music],
     ['*', NotFound]

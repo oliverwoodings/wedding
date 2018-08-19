@@ -1,0 +1,11 @@
+@import '../../variables.css';
+
+.home {
+  max-width: 700px;
+}
+
+.letsGo {
+  align-self: center;
+  margin-top: var(--spacing-m);
+  width: 250px;
+}

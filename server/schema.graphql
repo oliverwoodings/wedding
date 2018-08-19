@@ -21,8 +21,12 @@ type User {
 }
 
 type Guest {
+  id: Int!
   firstName: String!
   lastName: String!
+  isAttending: Boolean
+  hasDietaryRequirements: Boolean!
+  dietaryRequirements: String
 }
 
 type SpotifySearchResults {
@@ -61,7 +65,14 @@ type SpotifyExternalUrls {
   spotify: String
 }
 
+input GuestInput {
+  isAttending: Boolean
+  hasDietaryRequirements: Boolean
+  dietaryRequirements: String
+}
+
 type Mutation {
   login(codeOrEmail: String!, password: String!): User
   changePassword(code: String!, email: String!, password: String!): User
+  updateGuest(guestId: Int!, guest: GuestInput!): Guest
 }

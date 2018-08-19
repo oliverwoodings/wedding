@@ -5,11 +5,9 @@ import styles from './Navigation.css'
 const ITEMS = {
   'Welcome!': '/',
   'RSVP': '/rsvp',
-  'The Big Day': '/plan',
   'Accomodation & Transport': '/logistics',
   'Photos': '/photos',
-  'Music': '/music',
-  'FAQs': '/faqs'
+  'Music': '/music'
 }
 
 export default function Navigation ({ path }) {
