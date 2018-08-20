@@ -12,6 +12,7 @@ import Login from './pages/Login'
 import NotFound from './pages/NotFound'
 import Music from './pages/Music'
 import RSVP from './pages/RSVP'
+import Logistics from './pages/Logistics'
 import App from './App'
 import { evolve, initialState } from './evolve'
 import createDeviceListener from './lib/deviceListener'
@@ -24,6 +25,7 @@ const router = createRouter([
   ['', access(App, ACCESS_LEVELS.PUBLIC), [
     ['/', Home],
     ['/rsvp', RSVP],
+    ['/logistics', Logistics],
     ['/login', access(Login, ACCESS_LEVELS.PUBLIC)],
     ['/music', Music],
     ['*', NotFound]

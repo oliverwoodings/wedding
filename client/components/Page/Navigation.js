@@ -5,7 +5,7 @@ import styles from './Navigation.css'
 const ITEMS = {
   'Welcome!': '/',
   'RSVP': '/rsvp',
-  'Accomodation & Transport': '/logistics',
+  'Logistics': '/logistics',
   'Photos': '/photos',
   'Music': '/music'
 }
