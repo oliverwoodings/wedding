@@ -1,0 +1,20 @@
+@import '../../variables.css';
+
+.root {
+  max-width: 920px;
+  padding: 0 var(--spacing-m);
+}
+
+.map {
+  border: none;
+  height: 480px;
+  width: 100%;
+}
+
+.header:not(:first-child) {
+  margin-top: var(--spacing-s);
+}
+
+.header {
+  margin-bottom: var(--spacing-xs);
+}

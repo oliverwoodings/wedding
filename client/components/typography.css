@@ -36,7 +36,6 @@
 
 .paragraph {
   font: normal normal 400 16px/20px 'Raleway', sans-serif;
-  padding: 0 var(--spacing-m);
 }
 
 .paragraph + .paragraph {
