@@ -3,6 +3,7 @@ import Banner from './Banner'
 import { Body } from '../typography'
 import HeaderBackground from './HeaderBackground'
 import Navigation from './Navigation'
+import Footer from './Footer'
 import styles from './Page.css'
 
 export default function Page ({ children, minimalist, nav, path }) {
@@ -14,6 +15,7 @@ export default function Page ({ children, minimalist, nav, path }) {
         {nav && <Navigation path={path} />}
       </div>
       {children}
+      <Footer />
     </Body>
   )
 }

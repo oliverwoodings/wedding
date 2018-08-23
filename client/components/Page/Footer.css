@@ -1,0 +1,14 @@
+@import '../../variables.css';
+
+.footer {
+  font-size: 12px;
+  text-align: center;
+  margin-bottom: var(--spacing-l);
+}
+
+.footer:before,
+.footer:after {
+  content: '❤';
+  color: var(--color-blue-55);
+  margin: 0 var(--spacing-xxs);
+}

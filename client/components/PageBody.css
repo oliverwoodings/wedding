@@ -46,3 +46,7 @@
 .fill .children {
   margin-bottom: var(--spacing-xxl);
 }
+
+.body {
+  flex-shrink: 0;
+}
