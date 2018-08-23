@@ -1,6 +1,7 @@
 import React, { Fragment } from 'react'
 import PageBody from '../../components/PageBody'
 import { Paragraph as P, Header, Link, Strong } from '../../components/typography'
+import InviteType from '../../components/InviteType'
 import styles from './Logistics.css'
 
 const Block = ({ header, children }) => (
@@ -10,7 +11,7 @@ const Block = ({ header, children }) => (
   </Fragment>
 )
 
-export default function Logistics () {
+export default function Logistics ({ user }) {
   return (
     <PageBody title='Logistics' className={styles.root}>
       <Block header='Getting to the area'>
@@ -22,7 +23,7 @@ export default function Logistics () {
         <P>The nearest static caravan holiday park can be found in <Link href='http://www.parkdeanholidays.co.uk/devon-holidays/challaborough-bay/challaborough-bay-holiday-park.htm'>Challaborough Park Dean</Link> (10 minute walk to Ringmore), while the nearest camping and caraving ground is <Link href='http://www.pennymoor-camping.co.uk/'>Pennymoor</Link> in Modbury.</P>
       </Block>
       <Block header='On the day'>
-        <P>We would love for you to join us from <Strong>7pm</Strong> for our <Strong>evening party</Strong> in Mandeva Field, Ringmore.</P>
+        <InviteType eveningOnly={user.eveningOnly} />
         <P>Parking will be available in a nearby field in Ringmore. We'll update you once we have a location confirmed! There will also be signage on the day. Please <Strong>do not</Strong> use the pub car park (opposite the church) or the National Trust car park in the village.</P>
         <P>All activities for the day are based within Ringmore in easy walking distance, so no need to worry about taxis to the reception!</P>
       </Block>

@@ -9,5 +9,6 @@ query App {
       hasDietaryRequirements
       dietaryRequirements
     }
+    eveningOnly
   }
 }
