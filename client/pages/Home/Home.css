@@ -7,6 +7,6 @@
 
 .letsGo {
   align-self: center;
-  margin-top: var(--spacing-m);
+  margin-top: var(--spacing-l);
   width: 250px;
 }

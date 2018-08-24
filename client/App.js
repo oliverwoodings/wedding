@@ -18,7 +18,7 @@ function mapAtom (state, split) {
 }
 
 class App extends Component {
-  componentWillUpdate ({ query, requiredAccessLevel, goToLogin, goToHome }) {
+  componentWillUpdate ({ query, requiredAccessLevel, goToLogin, goToHome, path }) {
     if (query.hasFailed && get(query, 'error.type') === 'UNAUTHENTICATED') {
       switch (requiredAccessLevel) {
         case ACCESS_LEVELS.PRIVATE:

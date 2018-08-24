@@ -11,10 +11,15 @@
   justify-content: center;
   text-decoration: none;
   transition: background var(--transition-short);
-  height: var(--spacing-xxl);
-  padding: 0 var(--spacing-l);
+  height: calc(var(--spacing-xl) + var(--spacing-s));
+  padding: 0 var(--spacing-m);
 }
 
 .button:hover {
   background: var(--color-blue-70);
+}
+
+.button.mega {
+  height: var(--spacing-xxl);
+  padding: 0 var(--spacing-l);
 }

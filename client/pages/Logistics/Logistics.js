@@ -13,7 +13,12 @@ const Block = ({ header, children }) => (
 
 export default function Logistics ({ user }) {
   return (
-    <PageBody title='Logistics' className={styles.root}>
+    <PageBody
+      title='Logistics'
+      className={styles.root}
+      prev='/rsvp'
+      next='/photos'
+    >
       <Block header='Getting to the area'>
         <P>The big day will take place in the village of Ringmore in South Devon. A car or taxi is absolutely necessary for getting around once you are in the area; there is a bus, but it only comes once a week!</P>
         <P>The nearest mainline train stations are Ivybridge, Totnes, Plymouth and Exeter, all of which have direct trains from London. It is a good idea to book your onward taxi in advance (there is no Uber down here!).</P>

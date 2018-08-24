@@ -17,11 +17,6 @@
   font: normal normal 600 16px/22px 'Raleway', sans-serif;
 }
 
-.body {
-  color: var(--color-font-primary);
-  font: normal normal 400 16px/22px 'Raleway', sans-serif;
-}
-
 .link {
   cursor: pointer;
   text-decoration: none;

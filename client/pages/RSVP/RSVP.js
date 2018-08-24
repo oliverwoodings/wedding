@@ -10,6 +10,8 @@ function RSVP ({ user, refetchUser, device }) {
     <PageBody
       title='RSVP'
       className={classnames(styles.container, styles[device])}
+      prev='/'
+      next='/logistics'
     >
       {user.guests.map((guest, index) => (
         <Guest

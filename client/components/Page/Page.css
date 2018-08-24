@@ -1,6 +1,8 @@
 @import '../../variables.css';
 
 .page {
+  color: var(--color-font-primary);
+  font: normal normal 400 16px/22px 'Raleway', sans-serif;
   overflow-y: scroll;
   overflow-x: hidden;
   min-width: 385px;

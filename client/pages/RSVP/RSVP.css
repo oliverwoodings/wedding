@@ -4,27 +4,18 @@
 }
 
 .container {
-  max-width: 280px;
+  /* Computed as guest width + (2 * spacing-s) */
+  max-width: 269px;
 }
 
-@media (min-width: 640px) {
+@media (min-width: 538px) {
   .container {
-    max-width: 640px;
+    max-width: 538px;
   }
 }
 
-@media (min-width: 940px) {
+@media (min-width: 807px) {
   .container {
-    max-width: 940px;
+    max-width: 807px;
   }
-}
-
-@media (min-width: 1240px) {
-  .container {
-    max-width: 1240px;
-  }
-}
-
-.container.mobile {
-  max-width: 280px;
 }

@@ -50,3 +50,17 @@
 .body {
   flex-shrink: 0;
 }
+
+.prevnext {
+  align-items: center;
+  display: flex;
+  justify-content: center;
+  margin: var(--spacing-s) 0 var(--spacing-l) 0;
+  padding: 0 var(--spacing-m);
+  max-width: 920px;
+  width: 100%;
+}
+
+.prevnext > * + * {
+  margin-left: var(--spacing-m);
+}

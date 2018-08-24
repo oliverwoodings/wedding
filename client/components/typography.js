@@ -8,7 +8,6 @@ export const Header = createTypographyComponent('h3', styles.header)
 export const Paragraph = createTypographyComponent('p', styles.paragraph)
 export const Strong = createTypographyComponent('span', styles.strong)
 export const Link = createTypographyComponent('a', styles.link)
-export const Body = createTypographyComponent('div', styles.body)
 
 function createTypographyComponent (defaultElement, typeClassName) {
   return ({ className, children, element, ...props }) => React.createElement(element || defaultElement, {

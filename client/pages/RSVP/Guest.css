@@ -1,15 +1,10 @@
 @import '../../variables.css';
 
 .guest {
-  border-bottom: 1px solid var(--color-blue-25);
   padding-bottom: var(--spacing-l);
-  margin-top: var(--spacing-m);
   flex-shrink: 0;
-  width: 280px;
-}
-
-.guest:not(.mobile) {
-  margin-left: var(--spacing-l);
+  margin: 0 var(--spacing-s);
+  width: 245px;
 }
 
 .section {

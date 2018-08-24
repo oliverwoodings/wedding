@@ -16,7 +16,7 @@ class Music extends Component {
     const { user, searchSpotify } = this.props
     const tracks = get(searchSpotify, 'data.tracks.items', [])
     return (
-      <PageBody title='Music'>
+      <PageBody title='Music' prev='/photos'>
         <input
           onChange={::this.onSearch}
           value={this.state.query}
