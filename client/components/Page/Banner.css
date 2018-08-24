@@ -2,6 +2,7 @@
 
 .banner {
   background: var(--color-black-40);
+  font-size: 14px;
   margin: var(--spacing-xl) 0;
 }
 
@@ -29,12 +30,12 @@
 
 .top:before {
   border-right: 2px solid white;
-  margin-right: var(--spacing-l);
+  margin-right: var(--spacing-m);
 }
 
 .top:after {
   border-left: 2px solid white;
-  margin-left: var(--spacing-l);
+  margin-left: var(--spacing-m);
 }
 
 .names {
