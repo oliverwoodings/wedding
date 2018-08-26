@@ -23,6 +23,7 @@
     "jetpack": "^0.5.0",
     "knex": "^0.14.4",
     "lodash-es": "^4.17.7",
+    "mysql": "^2.16.0",
     "normalize.css": "^8.0.0",
     "prop-types": "^15.6.0",
     "raw-loader": "^0.5.1",
@@ -30,7 +31,6 @@
     "react-dom": "^16.2.0",
     "space-router": "^0.5.1",
     "spotify-web-api-node": "^3.0.0",
-    "sqlite3": "^3.1.13",
     "tiny-atom": "^1.0.1",
     "web-audio-player": "^1.3.2"
   },

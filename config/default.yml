@@ -1,3 +1,9 @@
 spotify:
   clientId: 4eeb5550292f43b8b632d4981777b8bb
   secret: nope
+
+mysql:
+  host: localhost
+  database: wedding
+  user: root
+  password: password

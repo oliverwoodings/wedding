@@ -1,9 +1,9 @@
-const path = require('path')
+const config = require('config')
 
 module.exports = {
-  client: 'sqlite3',
+  client: 'mysql',
   connection: {
-    filename: path.resolve(__dirname, './database.sqlite')
+    ...config.mysql
   },
   useNullAsDefault: true
 }
