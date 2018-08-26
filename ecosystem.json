@@ -13,7 +13,7 @@
       "ref": "origin/master",
       "repo": "git@github.com:oliverwoodings/wedding.git",
       "path": "/root/apps/wedding",
-      "post-deploy" : "nvm use && yarn && npx jetpack build && pm2 startOrRestart ecosystem.json --env production"
+      "post-deploy" : "nvm use && yarn && npx jetpack build && npx pm2 startOrRestart ecosystem.json --env production"
     }
   }
 }
