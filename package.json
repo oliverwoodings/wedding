@@ -38,6 +38,7 @@
     "@babel/preset-stage-0": "^7.0.0-beta.40",
     "babel-polyfill": "^6.26.0",
     "nodemon": "^1.15.1",
+    "pm2": "^3.0.4",
     "postcss-browser-reporter": "^0.5.0",
     "postcss-cssnext": "^3.1.0",
     "postcss-import": "^11.1.0",

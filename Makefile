@@ -3,11 +3,14 @@ BIN = ./node_modules/.bin
 .PHONY: dev migrate rebuild
 
 dev:
-	$(BIN)/nodemon --watch ./server -e js,graphql $(BIN)/jetpack
+	npx nodemon --watch ./server -e js,graphql $(BIN)/jetpack
 
 migrate:
-	$(BIN)/knex migrate:latest
+	npx knex migrate:latest
 
 rebuild:
 	rm -rf database.sqlite
 	make migrate
+
+deploy:
+	npx pm2 deploy production
