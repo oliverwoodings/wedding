@@ -12,7 +12,7 @@
       "host": "danniandoli.wedding",
       "ref": "origin/master",
       "repo": "git@github.com:oliverwoodings/wedding.git",
-      "path": "~/apps/wedding",
+      "path": "/root/apps/wedding",
       "post-deploy" : "nvm use && yarn && npx jetpack build && pm2 startOrRestart ecosystem.json --env production"
     }
   }
