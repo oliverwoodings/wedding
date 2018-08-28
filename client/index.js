@@ -6,6 +6,7 @@ import createRouter from 'space-router'
 import createAtom from 'tiny-atom'
 import { ProvideAtom } from 'tiny-atom/react'
 import raven from 'raven-js'
+import ga from 'universal-ga'
 
 import Home from './pages/Home'
 import Login from './pages/Login'
@@ -21,6 +22,7 @@ import { ACCESS_LEVELS } from './constants'
 
 if (process.env.NODE_ENV === 'production') {
   raven.config('https://94e680aa0e3b4cec8fb1b78c735f5124@sentry.io/1270305').install()
+  ga.initialize('UA-40284850-2')
 }
 
 const container = document.createElement('div')
@@ -43,7 +45,10 @@ console.log('This is probably what you are after: https://github.com/oliverwoodi
 
 const atom = createAtom(initialState, evolve(router), render)
 
-router.start((route) => atom.split({ route }))
+router.start((route) => {
+  ga.pageview(route.pattern)
+  atom.split({ route })
+})
 
 createDeviceListener({
   mobile: { maxWidth: 767 },

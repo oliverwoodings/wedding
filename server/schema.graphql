@@ -14,6 +14,7 @@ type PublicGuest {
 }
 
 type User {
+  id: ID!
   guests: [Guest]!
   new: Boolean!
   code: String!

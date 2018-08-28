@@ -2,6 +2,7 @@ import React, { Component } from 'react'
 import compose from 'compose-function'
 import { get } from 'lodash-es'
 import PropTypes from 'prop-types'
+import ga from 'universal-ga'
 import Page from './components/Page'
 import Spinner from './components/Spinner'
 import withQuery from './lib/withQuery'
@@ -49,6 +50,11 @@ class App extends Component {
       return null
     }
 
+    const user = query.data && query.data.user
+    if (user) {
+      ga.set('userId', user.id)
+    }
+
     return (
       <Page
         minimalist={device === 'mobile' && !isPublicRoute && path !== '/'}
@@ -56,7 +62,7 @@ class App extends Component {
         path={path}
       >
         {children({
-          user: query.data && query.data.user,
+          user,
           refetchUser: query.execute,
           goToHome
         })}
