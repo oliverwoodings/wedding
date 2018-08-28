@@ -1,0 +1,14 @@
+@import '../variables.css';
+
+.img {
+  align-self: center;
+  border: 1px solid var(--color-grey-55);
+  height: auto;
+  margin: var(--spacing-m) 0;
+  padding: var(--spacing-xs);
+  width: 60%;
+}
+
+.mobile.img {
+  width: 100%;
+}
