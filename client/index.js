@@ -5,6 +5,7 @@ import ReactDom from 'react-dom'
 import createRouter from 'space-router'
 import createAtom from 'tiny-atom'
 import { ProvideAtom } from 'tiny-atom/react'
+import raven from 'raven-js'
 
 import Home from './pages/Home'
 import Login from './pages/Login'
@@ -17,6 +18,10 @@ import App from './App'
 import { evolve, initialState } from './evolve'
 import createDeviceListener from './lib/deviceListener'
 import { ACCESS_LEVELS } from './constants'
+
+if (process.env.NODE_ENV === 'production') {
+  raven.config('https://94e680aa0e3b4cec8fb1b78c735f5124@sentry.io/1270305').install()
+}
 
 const container = document.createElement('div')
 document.body.appendChild(container)
@@ -45,6 +50,8 @@ createDeviceListener({
   tablet: { minWidth: 768, maxWidth: 991 },
   desktop: { minWidth: 992 }
 }, (device) => atom.split('changeDevice', device ))
+
+throw new Error('hi')
 
 function render (atom) {
   const { route } = atom.get()

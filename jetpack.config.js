@@ -45,7 +45,7 @@ module.exports = {
       loader: 'raw-loader'
     })
 
-    if (process.env.SOURCEMAPS) {
+    if (process.env.NODE_ENV === 'production') {
       config.devtool = 'source-map'
     }
   },

@@ -17,6 +17,5 @@ rollback:
 deploy:
 	npx pm2 deploy production
 
-analyse:
-	NODE_ENV=production SOURCEMAPS=true npx jetpack build
+analyse: build
 	npx source-map-explorer dist/client/bundle.js dist/client/bundle.js.map

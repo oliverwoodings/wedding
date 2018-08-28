@@ -7,3 +7,7 @@ mysql:
   database: wedding
   user: root
   password: password
+
+sentry:
+  enabled: false
+  dsn: https://94e680aa0e3b4cec8fb1b78c735f5124@sentry.io/1270305

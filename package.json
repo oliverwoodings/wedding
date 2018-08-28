@@ -26,6 +26,8 @@
     "mysql": "^2.16.0",
     "normalize.css": "^8.0.0",
     "prop-types": "^15.6.0",
+    "raven": "^2.6.3",
+    "raven-js": "^3.26.4",
     "raw-loader": "^0.5.1",
     "react": "^16.2.0",
     "react-dom": "^16.2.0",
