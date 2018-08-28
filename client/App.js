@@ -10,7 +10,6 @@ import withAtom from './lib/withAtom'
 import withDevice from './lib/withDevice'
 import Query from './App.graphql'
 import { ACCESS_LEVELS } from './constants'
-import styles from './App.css'
 
 function mapAtom (state, split) {
   return {
@@ -42,7 +41,7 @@ class App extends Component {
     } = this.props
 
     if (query.isPending && !query.isRefetching) {
-      return <div className={styles.loading}><Spinner /></div>
+      return null
     }
 
     const isPublicRoute = requiredAccessLevel === ACCESS_LEVELS.PUBLIC
