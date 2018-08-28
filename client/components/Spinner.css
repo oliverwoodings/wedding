@@ -2,7 +2,7 @@
 
 .spinner {
   animation: spin 2s infinite linear;
-  fill: black;
+  fill: var(--color-blue-70);
 }
 
 @keyframes spin {
