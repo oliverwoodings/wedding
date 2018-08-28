@@ -5,10 +5,9 @@ import styles from './Image.css'
 
 function Image ({ className, device, ...props }) {
   return (
-    <img
-      className={classnames(styles.img, styles[device], className)}
-      {...props}
-    />
+    <div className={classnames(styles.container, styles[device], className)}>
+      <img className={styles.img} {...props} />
+    </div>
   )
 }
 
