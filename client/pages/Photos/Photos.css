@@ -1,0 +1,17 @@
+@import '../../variables.css';
+
+.root {
+  max-width: 920px;
+  padding: 0 var(--spacing-m);
+}
+
+.mabel {
+  align-self: center;
+  height: auto;
+  margin: var(--spacing-m) 0;
+  width: 60%;
+}
+
+.mobile .mabel {
+  width: 100%;
+}
