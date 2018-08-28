@@ -51,8 +51,6 @@ createDeviceListener({
   desktop: { minWidth: 992 }
 }, (device) => atom.split('changeDevice', device ))
 
-throw new Error('hi')
-
 function render (atom) {
   const { route } = atom.get()
   const components = router.data(route.pattern)
