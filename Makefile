@@ -5,12 +5,18 @@ BIN = ./node_modules/.bin
 dev:
 	npx nodemon --watch ./server -e js,graphql $(BIN)/jetpack
 
+build:
+	NODE_ENV=production npx jetpack build
+
 migrate:
 	npx knex migrate:latest
 
-rebuild:
-	rm -rf database.sqlite
-	make migrate
+rollback:
+	npx knex migrate:rollback
 
 deploy:
 	npx pm2 deploy production
+
+analyse:
+	NODE_ENV=production SOURCEMAPS=true npx jetpack build
+	npx source-map-explorer dist/client/bundle.js dist/client/bundle.js.map

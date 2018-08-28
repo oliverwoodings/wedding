@@ -36,7 +36,6 @@
   },
   "devDependencies": {
     "@babel/preset-stage-0": "^7.0.0-beta.40",
-    "babel-polyfill": "^6.26.0",
     "nodemon": "^1.15.1",
     "pm2": "^3.0.4",
     "postcss-browser-reporter": "^0.5.0",
@@ -44,6 +43,7 @@
     "postcss-import": "^11.1.0",
     "postcss-remove-root": "^0.0.2",
     "postcss-reporter": "^5.0.0",
-    "postcss-url": "^7.3.0"
+    "postcss-url": "^7.3.0",
+    "source-map-explorer": "^1.6.0"
   }
 }

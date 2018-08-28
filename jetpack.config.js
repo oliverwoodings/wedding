@@ -14,9 +14,6 @@ const postcssLoader = {
   options: {
     plugins: [
       require('postcss-import')(),
-      require('postcss-url')({
-        url: 'inline'
-      }),
       require('postcss-cssnext')(),
       require('postcss-browser-reporter')(),
       require('postcss-reporter')(),
@@ -30,7 +27,11 @@ module.exports = {
   webpack (config) {
     const rules = config.module.rules
     rules.pop()
-    rules[0].use.options.presets.push(require('@babel/preset-stage-0'))
+    const babelPresets = rules[0].use.options.presets
+    babelPresets[0][1].useBuiltIns = 'usage'
+    babelPresets[0][1].targets = '> 1%'
+    babelPresets.push(require('@babel/preset-stage-0'))
+
     rules.push({
       test: /\.css$/,
       include: base('client'),
@@ -43,6 +44,10 @@ module.exports = {
       test: /\.g(raph)?ql$/,
       loader: 'raw-loader'
     })
+
+    if (process.env.SOURCEMAPS) {
+      config.devtool = 'source-map'
+    }
   },
   html: 'server/index.html'
 }

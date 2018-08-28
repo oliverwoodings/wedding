@@ -9,7 +9,7 @@
 }
 
 .background {
-  background-image: url('../../images/church.jpg');
+  background-image: url('/static/images/church.jpg');
   background-size: cover;
   background-position: center;
   background-repeat: no-repeat;
