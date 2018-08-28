@@ -1,4 +1,5 @@
 const server = require('jetpack/server')
+const path = require('path')
 const { graphqlExpress, graphiqlExpress } = require('apollo-server-express')
 const bodyParser = require('body-parser')
 const cookieParser = require('cookie-parser')

@@ -43,7 +43,8 @@ module.exports = {
       test: /\.g(raph)?ql$/,
       loader: 'raw-loader'
     })
-  }
+  },
+  html: 'server/index.html'
 }
 
 function base (loc) {
