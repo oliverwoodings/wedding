@@ -19,6 +19,8 @@
     "driftwood": "^1.5.2",
     "es6-error": "^4.1.1",
     "express": "^4.16.2",
+    "express-promise-router": "^3.0.3",
+    "fs-extra": "^7.0.0",
     "graphql": "^0.13.1",
     "graphql-tools": "^2.21.0",
     "jetpack": "^0.5.0",

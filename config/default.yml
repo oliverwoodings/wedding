@@ -1,6 +1,11 @@
 spotify:
-  clientId: 4eeb5550292f43b8b632d4981777b8bb
-  secret: nope
+  opts:
+    clientId: 4eeb5550292f43b8b632d4981777b8bb
+    clientSecret: nope
+    redirectUri: http://localhost:1298/spotify/callback
+  scopes:
+    - playlist-read-private
+    - playlist-modify-private
 
 mysql:
   host: localhost
