@@ -3,4 +3,4 @@ sentry:
 
 spotify:
   opts:
-    redirectUri: https://danniandoli.wedding
+    redirectUri: https://danniandoli.wedding/spotify/callback
