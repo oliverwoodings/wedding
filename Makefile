@@ -17,3 +17,6 @@ deploy:
 
 analyse: build
 	npx source-map-explorer dist/client/bundle.js dist/client/bundle.js.map
+
+logs:
+	npx pm2 deploy production exec "pm2 logs wedding"

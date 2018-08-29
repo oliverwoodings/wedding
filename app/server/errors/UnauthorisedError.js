@@ -5,5 +5,6 @@ module.exports = class UnauthorisedError extends ExtendableError {
     super('User is not authorised to perform that action')
     this.type = 'UNAUTHORISED'
     this.client = true
+    this.status = 401
   }
 }

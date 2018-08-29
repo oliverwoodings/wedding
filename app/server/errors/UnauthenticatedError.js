@@ -5,5 +5,6 @@ module.exports = class UnauthenticatedError extends ExtendableError {
     super('User is not authenticated')
     this.type = 'UNAUTHENTICATED'
     this.client = true
+    this.status = 403
   }
 }
