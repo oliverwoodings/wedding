@@ -34,6 +34,7 @@ router.get('*', (req, res) => {
       <meta name='viewport' content='width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no' />
       <title>Danni & Oli's Wedding</title>
       <link rel='icon' href='/static/favicon.png' />
+      <link rel='stylesheet' preload href='https://fonts.googleapis.com/css?family=Raleway:300,400,600|Shadows+Into+Light+Two' />
     </head>
     <body>
       ${options.assets.map(asset =>

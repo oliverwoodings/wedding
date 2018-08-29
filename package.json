@@ -13,6 +13,7 @@
     "change-case-object": "^2.0.0",
     "classnames": "^2.2.5",
     "compose-function": "^3.0.3",
+    "compression": "^1.7.3",
     "config": "^1.30.0",
     "cookie-parser": "^1.4.3",
     "core-js": "^2.5.7",
