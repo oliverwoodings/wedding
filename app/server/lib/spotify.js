@@ -3,14 +3,14 @@ const config = require('config')
 const fs = require('fs-extra')
 const raven = require('raven')
 const path = require('path')
-const log = require('../log')
+const log = require('../log')('spotify')
 
-const CACHE_FILE = path.resolve(__dirname, '../../.spotify-tokens')
+const CACHE_FILE = path.resolve(__dirname, '../../../.spotify-tokens')
 
 const spotify = new SpotifyWebApi(config.spotify.opts)
 let tokens = null
 
-log.info('Restoring Spotify tokens from cache')
+log.info('Restoring tokens from cache')
 fromCache()
 
 module.exports = {
@@ -30,7 +30,7 @@ async function authCallback (code) {
   tokens.granted_at = Date.now()
   await toCache()
   await fromCache()
-  log.info('Succesfully authenticated with Spotify')
+  log.info('Succesfully authenticated')
 }
 
 function getClient () {
@@ -44,12 +44,12 @@ function scheduleRefresh () {
   const expiresAt = tokens.granted_at + (tokens.expires_in * 1000)
   const expiresIn = expiresAt - Date.now()
 
-  log.info(`Refreshing Spotify token in ${Math.round(expiresIn / 1000)}s`)
+  log.info(`Refreshing access token in ${Math.round(expiresIn / 1000)}s`)
   setTimeout(async () => {
     try {
       await refresh()
     } catch (e) {
-      log.error('Error refreshing Spotify token', e)
+      log.error('Error refreshing access token', e)
     }
     scheduleRefresh()
   }, expiresIn)
@@ -64,7 +64,7 @@ async function refresh () {
   }
   spotify.setAccessToken(tokens.access_token)
   await toCache()
-  log.info('Succesfully refreshed Spotify token')
+  log.info('Succesfully refreshed access token')
 }
 
 async function fromCache () {

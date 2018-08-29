@@ -25,13 +25,20 @@ const postcssLoader = {
 module.exports = {
   port: 1298,
   webpack (config) {
+    config.entry.bundle.shift()
     const rules = config.module.rules
-    rules.pop()
-    const babelPresets = rules[0].use.options.presets
-    babelPresets[0][1].useBuiltIns = 'usage'
-    babelPresets[0][1].targets = '> 1%'
-    babelPresets.push(require('@babel/preset-stage-0'))
+    const babelOptions = rules[0].use.options
+    babelOptions.presets[0][1].useBuiltIns = 'usage'
+    babelOptions.plugins.push(
+      '@babel/plugin-proposal-export-default-from',
+      '@babel/plugin-proposal-function-bind',
+      '@babel/plugin-syntax-import-meta',
+      ['@babel/plugin-proposal-class-properties', { loose: false }],
+      '@babel/plugin-proposal-json-strings'
+    )
 
+    rules.pop()
+    rules.pop()
     rules.push({
       test: /\.css$/,
       include: base('client'),
@@ -48,10 +55,11 @@ module.exports = {
     if (process.env.NODE_ENV === 'production') {
       config.devtool = 'source-map'
     }
-  },
-  html: 'server/index.html'
+
+    return config
+  }
 }
 
 function base (loc) {
-  return path.resolve(__dirname, loc)
+  return path.resolve(__dirname, 'app', loc)
 }

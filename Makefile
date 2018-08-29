@@ -1,12 +1,10 @@
-BIN = ./node_modules/.bin
-
 .PHONY: dev migrate rebuild
 
 dev:
-	npx nodemon --watch ./server -e js,graphql $(BIN)/jetpack
+	npx jetpack
 
 build:
-	NODE_ENV=production npx jetpack build
+	npx jetpack build
 
 migrate:
 	npx knex migrate:latest
