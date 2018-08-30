@@ -1,4 +1,5 @@
 const getUser = require('./queries/getUser')
+const getUsers = require('./queries/getUsers')
 const getUserGuests = require('./queries/getUserGuests')
 const searchSpotify = require('./queries/searchSpotify')
 const login = require('./commands/login')
@@ -17,6 +18,10 @@ module.exports = {
     async tracks (obj, args, context) {
       await context.authenticate()
       return searchSpotify(args.query)
+    },
+    async users (obj, args, context) {
+      await context.requireAdmin()
+      return getUsers()
     }
   },
   Mutation: {

@@ -2,6 +2,7 @@ type Query {
   publicUser(codeOrEmail: String!): PublicUser
   tracks(query: String!): SpotifySearchResults
   user: User
+  users: [User!]!
 }
 
 type PublicUser {

@@ -13,13 +13,13 @@ export default class Page extends Component {
   }
 
   render () {
-    const { children, minimalist, nav, path } = this.props
+    const { children, minimalist, nav, path, isAdmin } = this.props
     return (
       <div className={styles.page} ref={(node) => { this.node = node }}>
         <div className={styles.header}>
           <HeaderBackground image='church' />
           <Banner minimalist={minimalist} />
-          {nav && <Navigation path={path} />}
+          {nav && <Navigation path={path} isAdmin={isAdmin} />}
         </div>
         {children}
         <Footer />

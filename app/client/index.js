@@ -14,6 +14,7 @@ import NotFound from './pages/NotFound'
 import Music from './pages/Music'
 import Photos from './pages/Photos'
 import RSVP from './pages/RSVP'
+import Admin from './pages/Admin'
 import Logistics from './pages/Logistics'
 import App from './App'
 import { evolve, initialState } from './evolve'
@@ -36,6 +37,7 @@ const router = createRouter([
     ['/photos', Photos],
     ['/login', access(Login, ACCESS_LEVELS.PUBLIC)],
     ['/music', Music],
+    ['/admin', access(Admin, ACCESS_LEVELS.ADMIN)],
     ['*', NotFound]
   ]]
 ])

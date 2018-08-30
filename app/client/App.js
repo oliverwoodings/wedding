@@ -21,12 +21,12 @@ function mapAtom (state, split) {
 class App extends Component {
   componentWillUpdate ({ query, requiredAccessLevel, goToLogin, goToHome, path }) {
     if (query.hasFailed && get(query, 'error.type') === 'UNAUTHENTICATED') {
-      switch (requiredAccessLevel) {
-        case ACCESS_LEVELS.PRIVATE:
-          return goToLogin()
-        case ACCESS_LEVELS.ADMIN:
-          return goToHome()
-      }
+      return goToLogin()
+    }
+
+    const user = get(query, 'data.user')
+    if (user && !user.isAdmin && requiredAccessLevel === ACCESS_LEVELS.ADMIN) {
+      return goToHome()
     }
   }
 
@@ -60,6 +60,7 @@ class App extends Component {
         minimalist={device === 'mobile' && !isPublicRoute && path !== '/'}
         nav={!isPublicRoute}
         path={path}
+        isAdmin={user && user.isAdmin}
       >
         {children({
           user,

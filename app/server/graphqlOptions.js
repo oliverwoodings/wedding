@@ -2,6 +2,7 @@ const formatError = require('./lib/formatError')
 const authenticateSession = require('./queries/authenticateSession')
 const getUserById = require('./queries/getUserById')
 const UnauthenticatedError = require('./errors/UnauthenticatedError')
+const UnauthorisedError = require('./errors/UnauthorisedError')
 const schema = require('./schema')
 
 module.exports = function graphqlOptions (req, res) {
@@ -20,6 +21,14 @@ module.exports = function graphqlOptions (req, res) {
           this.user = await getUserById(userId)
         } else {
           throw new UnauthenticatedError()
+        }
+      },
+      async requireAdmin () {
+        if (!this.user) {
+          await this.authenticate()
+        }
+        if (!this.user.isAdmin) {
+          throw new UnauthorisedError()
         }
       },
       setSessionId (sessionId) {
