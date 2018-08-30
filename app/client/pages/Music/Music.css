@@ -1,0 +1,6 @@
+@import '../../variables.css';
+
+.body {
+  padding: 0 var(--spacing-l);
+  max-width: 720px;
+}
