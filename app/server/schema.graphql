@@ -82,6 +82,7 @@ input GuestInput {
 
 input UserInput {
   eveningOnly: Boolean
+  address: String
 }
 
 type Mutation {
