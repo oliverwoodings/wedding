@@ -22,6 +22,7 @@ type User {
   email: String!
   eveningOnly: Boolean!
   isAdmin: Boolean!
+  address: String!
 }
 
 type Guest {
