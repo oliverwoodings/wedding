@@ -5,6 +5,10 @@ const searchSpotify = require('./queries/searchSpotify')
 const login = require('./commands/login')
 const changePassword = require('./commands/changePassword')
 const updateGuest = require('./commands/updateGuest')
+const createUser = require('./commands/createUser')
+const updateUser = require('./commands/updateUser')
+const addGuest = require('./commands/addGuest')
+const removeGuest = require('./commands/removeGuest')
 
 module.exports = {
   Query: {
@@ -44,8 +48,27 @@ module.exports = {
     },
     async updateGuest (obj, args, context) {
       await context.authenticate()
-      const guest = await updateGuest(context.user.id, args.guestId, args.guest)
-      return guest
+      let userId = context.user.id
+      if (context.user.isAdmin && args.userId) {
+        userId = args.userId
+      }
+      return updateGuest(userId, args.guestId, args.guest)
+    },
+    async createUser (obj, args, context) {
+      await context.requireAdmin()
+      return createUser(args.user, args.guests)
+    },
+    async updateUser (obj, args, context) {
+      await context.requireAdmin()
+      return updateUser(args.userId, args.user)
+    },
+    async addGuest (obj, args, context) {
+      await context.requireAdmin()
+      return addGuest(args.userId, args.guest)
+    },
+    async removeGuest (obj, args, context) {
+      await context.requireAdmin()
+      return removeGuest(args.guestId)
     }
   },
   PublicUser: {

@@ -2,8 +2,8 @@ const knex = require('../knex')
 
 module.exports = async function getUser (codeOrEmail) {
   const user = await knex('users')
-    .where('code', codeOrEmail)
-    .orWhere('email', codeOrEmail)
+    .where('code', codeOrEmail.toUpperCase())
+    .orWhere('email', codeOrEmail.toLowerCase())
     .first()
 
   if (user) {

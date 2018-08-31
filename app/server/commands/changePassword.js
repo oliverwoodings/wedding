@@ -10,7 +10,7 @@ module.exports = async function changePassword (code, email, password) {
     throw new AuthenticationError('INVALID_CODE')
   }
 
-  if (!user.new && user.email !== email) {
+  if (!user.new && user.email.toLowerCase() !== email.toLowerCase()) {
     throw new AuthenticationError('EMAIL_MISMATCH')
   }
 
@@ -21,7 +21,7 @@ module.exports = async function changePassword (code, email, password) {
   const salt = generateSalt()
 
   await knex('users').where('code', code).update({
-    email,
+    email: email.toLowerCase(),
     salt,
     password: hash(password, salt)
   })
