@@ -1,5 +1,9 @@
 const knex = require('../knex')
 
 module.exports = async function getUser (codeOrEmail) {
-  return await knex('users')
+  const users = await knex('users')
+  return users.map((user) => ({
+    ...user,
+    new: !user.email
+  }))
 }

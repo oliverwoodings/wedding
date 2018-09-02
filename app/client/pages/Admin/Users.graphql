@@ -1,0 +1,20 @@
+query Users {
+  users {
+    id
+    email
+    new
+    code
+    group
+    guests {
+      id
+      firstName
+      lastName
+      isAttending
+      hasDietaryRequirements
+      dietaryRequirements
+      isChild
+    }
+    eveningOnly
+    address
+  }
+}

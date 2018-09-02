@@ -1,5 +1,5 @@
-mutation UpdateGuest ($guestId: Int!, $guest: GuestInput!) {
-  updateGuest(guestId: $guestId, guest: $guest) {
+mutation UpdateGuest ($userId: Int, $guestId: Int!, $guest: GuestInput!) {
+  updateGuest(userId: $userId, guestId: $guestId, guest: $guest) {
     id
   }
 }

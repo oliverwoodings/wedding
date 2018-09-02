@@ -1,0 +1,5 @@
+mutation UpdateGuest ($userId: Int!, $user: UserInput!) {
+  updateUser(userId: $userId, user: $user) {
+    id
+  }
+}

@@ -1,0 +1,5 @@
+mutation RemoveGuest ($guestId: Int!) {
+  removeGuest(guestId: $guestId) {
+    id
+  }
+}

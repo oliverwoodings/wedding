@@ -27,7 +27,7 @@ class PasswordForm extends Component {
     const disabled = !password.trim().length
 
     return (
-      <PageBody title={hello(publicUser.guests)} fill>
+      <PageBody title={`Hello ${hello(publicUser.guests)}!`} fill>
         <Action onAction={execute} disabled={disabled}>
           <LoginInput
             type='password'

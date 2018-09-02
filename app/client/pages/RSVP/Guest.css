@@ -11,6 +11,39 @@
   margin-top: var(--spacing-s);
 }
 
+.header {
+  display: flex;
+}
+
 .input {
   margin-top: var(--spacing-xxs);
+}
+
+.textInput {
+  border: 1px solid var(--color-grey-70);
+  color: var(--color-font-primary);
+  font-size: 18px;
+  padding: var(--spacing-xxs) var(--spacing-xs);
+  margin: 0;
+}
+
+.textInput:first-child {
+  border-right: none;
+  border-top-left-radius: var(--border-radius-m);
+  border-bottom-left-radius: var(--border-radius-m);
+  width: 105px;
+}
+
+.textInput:last-child {
+  border-top-right-radius: var(--border-radius-m);
+  border-bottom-right-radius: var(--border-radius-m);
+  width: 140px;
+}
+
+.diet .textInput {
+  border-radius: var(--border-radius-m);
+  font-size: 14px;
+  margin-top: var(--spacing-s);
+  padding: var(--spacing-xs);
+  width: 100%;
 }

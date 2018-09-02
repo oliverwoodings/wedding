@@ -1,11 +1,11 @@
 exports.up = async (knex) => {
   await knex.schema.table('users', (table) => {
-    table.string('address')
+    table.string('group')
   })
 }
 
 exports.down = async (knex) => {
   await knex.schema.table('users', (table) => {
-    table.dropColumn('address')
+    table.dropColumn('group')
   })
 }

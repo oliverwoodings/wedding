@@ -48,10 +48,11 @@ function scheduleRefresh () {
   setTimeout(async () => {
     try {
       await refresh()
+      scheduleRefresh()
     } catch (e) {
       log.error('Error refreshing access token', e)
+      setTimeout(scheduleRefresh, 3000)
     }
-    scheduleRefresh()
   }, expiresIn)
 }
 

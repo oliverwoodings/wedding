@@ -9,7 +9,7 @@ import styles from './Home.css'
 
 export default function Home ({ user }) {
   return (
-    <PageBody title={hello(user.guests)} className={styles.home}>
+    <PageBody title={`Hello ${hello(user.guests)}!`} className={styles.home}>
       <P>You are invited to join us at our wedding on the 27th of July 2019! The big day will be taking place in the lovely village of Ringmore, South Devon.</P>
       <Image src='/static/images/us.jpg' />
       <InviteType eveningOnly={user.eveningOnly} />

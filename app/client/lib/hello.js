@@ -1,5 +1,5 @@
 export default function hello (guests) {
-  const names = guests.reduce((memo, { firstName }, i) => {
+  return guests.reduce((memo, { firstName }, i) => {
     if (!memo) {
       return firstName
     }
@@ -8,5 +8,4 @@ export default function hello (guests) {
     }
     return `${memo}, ${firstName}`
   }, '')
-  return `Hello ${names}!`
 }

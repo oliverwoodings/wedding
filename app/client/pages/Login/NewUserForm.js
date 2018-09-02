@@ -38,7 +38,7 @@ class NewUserForm extends Component {
     const disabled = anyEmpty([email, password, password2]) || passwordMismatch || invalidPassword
 
     return (
-      <PageBody title={hello(publicUser.guests)} fill>
+      <PageBody title={`Hello ${hello(publicUser.guests)}!`} fill>
         <LoginInput
           placeholder='Enter your email address'
           value={email}

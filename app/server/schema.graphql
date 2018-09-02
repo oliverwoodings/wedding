@@ -19,10 +19,11 @@ type User {
   guests: [Guest]!
   new: Boolean!
   code: String!
-  email: String!
+  email: String
   eveningOnly: Boolean!
   isAdmin: Boolean!
-  address: String!
+  address: String
+  group: String
 }
 
 type Guest {
@@ -83,6 +84,7 @@ input GuestInput {
 input UserInput {
   eveningOnly: Boolean
   address: String
+  group: String
 }
 
 type Mutation {

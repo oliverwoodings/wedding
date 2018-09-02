@@ -1,0 +1,28 @@
+@import '../../../variables.css';
+
+.select {
+  background: white;
+  border: 1px solid var(--color-blue-55);
+  color: var(--color-blue-55);
+  display: block;
+  height: var(--spacing-xl);
+  margin-top: var(--spacing-xxs);
+}
+
+.address {
+  border: 1px solid var(--color-blue-55);
+  border-radius: var(--border-radius-m);
+  display: block;
+  min-height: 55px;
+  font-size: 14px;
+  margin-top: var(--spacing-xxs);
+  width: 245px;
+}
+
+.section {
+  margin-top: var(--spacing-s);
+}
+
+.evening {
+  margin-top: var(--spacing-xxs);
+}

@@ -1,13 +1,26 @@
 import React from 'react'
+import compose from 'compose-function'
 import classnames from 'classnames'
 import withMutation from '../../lib/withMutation'
 import { Header } from '../../components/typography'
 import YesNoToggle from '../../components/YesNoToggle'
-import DietaryRequirements from './DietaryRequirements'
+import DebouncedInput from '../../components/DebouncedInput'
+import Button from '../../components/Button'
 import UpdateGuestMutation from './UpdateGuest.graphql'
+import RemoveGuestMutation from './RemoveGuest.graphql'
 import styles from './Guest.css'
 
-function Guest ({ guest, index, refetchUser, updateGuest, device }) {
+function Guest (props) {
+  const {
+    guest,
+    refetchUser,
+    updateGuest,
+    className,
+    fullControl,
+    userId,
+    removeGuest
+  } = props
+
   const {
     id,
     firstName,
@@ -17,23 +30,21 @@ function Guest ({ guest, index, refetchUser, updateGuest, device }) {
   } = guest
 
   return (
-    <div className={classnames(styles.guest, styles[device])}>
-      <Header>{firstName} {lastName}</Header>
-      <div className={styles.section}>
+    <div className={classnames(styles.guest, className)}>
+      <Header className={styles.header}>{textInput('firstName', true)} {textInput('lastName', true)}</Header>
+      <Section>
         Attending? {toggle('isAttending', true)}
-      </div>
-      <div className={styles.section}>
+      </Section>
+      {fullControl && <Section>
+        Child? {toggle('isChild')}
+      </Section>}
+      <Section className={styles.diet}>
         Dietary requirements? {toggle('hasDietaryRequirements', false, { dietaryRequirements: '' })}
-      </div>
-      {hasDietaryRequirements && <DietaryRequirements
-        initialValue={dietaryRequirements}
-        onChange={(value) => updateGuest.execute({
-          guestId: id,
-          guest: {
-            dietaryRequirements: value
-          }
-        }).then(refetchUser)}
-      />}
+        {hasDietaryRequirements && textInput('dietaryRequirements')}
+      </Section>
+      {fullControl && <Section>
+        <Button secondary onClick={remove}>Remove guest</Button>
+      </Section>}
     </div>
   )
 
@@ -44,6 +55,7 @@ function Guest ({ guest, index, refetchUser, updateGuest, device }) {
         toggled={guest[name]}
         maybe={maybe}
         onToggle={(toggled) => updateGuest.execute({
+          userId,
           guestId: id,
           guest: {
             [name]: toggled,
@@ -53,6 +65,49 @@ function Guest ({ guest, index, refetchUser, updateGuest, device }) {
       />
     )
   }
+
+  function textInput (propName, requireFullControl) {
+    if (!fullControl && requireFullControl) {
+      return guest[propName]
+    }
+
+    return (
+      <DebouncedInput
+        initialValue={guest[propName]}
+        onChange={(value) => {
+          updateGuest.execute({
+            userId,
+            guestId: guest.id,
+            guest: {
+              [propName]: value
+            }
+          }).then(refetchUser)
+        }}
+      >
+        {(props) => (
+          <input
+            type='text'
+            className={styles.textInput}
+            placeholder={propName === 'dietaryRequirements' ? 'What should we cater for?' : ''}
+            {...props}
+          />
+        )}
+      </DebouncedInput>
+    )
+  }
+
+  function remove () {
+    removeGuest.execute({
+      guestId: id
+    }).then(refetchUser)
+  }
 }
 
-export default withMutation(UpdateGuestMutation, { name: 'updateGuest' })(Guest)
+export default compose(
+  withMutation(UpdateGuestMutation, { name: 'updateGuest' }),
+  withMutation(RemoveGuestMutation, { name: 'removeGuest' })
+)(Guest)
+
+function Section ({ children, className }) {
+  return <div className={classnames(styles.section, className)}>{children}</div>
+}

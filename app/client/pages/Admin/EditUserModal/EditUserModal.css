@@ -1,0 +1,13 @@
+@import '../../../variables.css';
+
+.guests {
+  display: flex;
+  flex-wrap: wrap;
+  margin: 0 calc(var(--spacing-s) * -1);
+  width: 245px;
+}
+
+.multiGuests {
+  width: calc(245px * 2 + var(--spacing-s) * 4);
+}
+

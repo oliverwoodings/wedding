@@ -1,3 +1,4 @@
+const { pick } = require('lodash')
 const getUser = require('./queries/getUser')
 const getUsers = require('./queries/getUsers')
 const getUserGuests = require('./queries/getUserGuests')
@@ -9,6 +10,12 @@ const createUser = require('./commands/createUser')
 const updateUser = require('./commands/updateUser')
 const addGuest = require('./commands/addGuest')
 const removeGuest = require('./commands/removeGuest')
+
+const NON_ADMIN_GUEST_WHITELIST = [
+  'isAttending',
+  'hasDietaryRequirements',
+  'dietaryRequirements'
+]
 
 module.exports = {
   Query: {
@@ -49,9 +56,15 @@ module.exports = {
     async updateGuest (obj, args, context) {
       await context.authenticate()
       let userId = context.user.id
+      let guest = args.guest
+
+      console.log('HI', context.user.isAdmin, args.userId, userId)
       if (context.user.isAdmin && args.userId) {
         userId = args.userId
+      } else if (!context.user.isAdmin) {
+        guest = pick(params, NON_ADMIN_GUEST_WHITELIST)
       }
+
       return updateGuest(userId, args.guestId, args.guest)
     },
     async createUser (obj, args, context) {

@@ -23,3 +23,17 @@
   height: var(--spacing-xxl);
   padding: 0 var(--spacing-l);
 }
+
+.secondary {
+  background: none;
+  border: 1px solid var(--color-blue-55);
+  color: var(--color-blue-55);
+  font-size: 14px;
+  height: var(--spacing-xl);
+}
+
+.secondary:hover {
+  background: none;
+  border-color: var(--color-blue-70);
+  color: var(--color-blue-70);
+}

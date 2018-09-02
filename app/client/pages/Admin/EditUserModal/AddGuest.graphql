@@ -1,0 +1,5 @@
+mutation AddGuest ($userId: Int!, $guest: GuestInput!) {
+  addGuest(userId: $userId, guest: $guest) {
+    id
+  }
+}
