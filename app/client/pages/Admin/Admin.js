@@ -1,14 +1,18 @@
-import React from 'react'
+import React, { Fragment } from 'react'
 import { get } from 'lodash-es'
+import compose from 'compose-function'
 import PageBody from '../../components/PageBody'
 import withQuery from '../../lib/withQuery'
+import withMutation from '../../lib/withMutation'
 import ModalLauncher from '../../components/ModalLauncher'
+import Button from '../../components/Button'
 import EditUserModal from './EditUserModal'
 import UsersTable from './UsersTable'
 import UsersQuery from './Users.graphql'
+import CreateUserMutation from './CreateUser.graphql'
 import styles from './Admin.css'
 
-function Admin ({ query }) {
+function Admin ({ query, createUser }) {
   const users = get(query, 'data.users')
   if (!users) {
     return null
@@ -27,14 +31,28 @@ function Admin ({ query }) {
         />
       )}>
         {({ openModal }) => (
-          <UsersTable
-            users={users}
-            onClickRow={(user) => openModal({ userId: user.id })}
-          />
+          <Fragment>
+            <UsersTable
+              users={users}
+              onClickRow={(user) => openModal({ userId: user.id })}
+            />
+            <Button className={styles.new} onClick={() => createNewUser(openModal)}>
+              New invite
+            </Button>
+          </Fragment>
         )}
       </ModalLauncher>
     </PageBody>
   )
+
+  async function createNewUser (openModal) {
+    const result = await createUser.execute()
+    await query.execute()
+    openModal({ userId: result.createUser.id })
+  }
 }
 
-export default withQuery(UsersQuery)(Admin)
+export default compose(
+  withQuery(UsersQuery),
+  withMutation(CreateUserMutation, { name: 'createUser' })
+)(Admin)

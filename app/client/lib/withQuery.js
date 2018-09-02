@@ -49,6 +49,7 @@ export default function withQuery (Query, { mapPropsToVariables, name = 'query',
             error: errors && errors[0],
             hasFailed: !!errors
           })
+          return data
         } catch (e) {
           if (!this.cancelled) {
             this.setState({

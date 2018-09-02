@@ -1,0 +1,5 @@
+@import '../../variables.css';
+
+.new {
+  margin-top: var(--spacing-l);
+}

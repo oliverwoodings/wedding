@@ -10,6 +10,7 @@ const createUser = require('./commands/createUser')
 const updateUser = require('./commands/updateUser')
 const addGuest = require('./commands/addGuest')
 const removeGuest = require('./commands/removeGuest')
+const removeUser = require('./commands/removeUser')
 
 const NON_ADMIN_GUEST_WHITELIST = [
   'isAttending',
@@ -58,7 +59,6 @@ module.exports = {
       let userId = context.user.id
       let guest = args.guest
 
-      console.log('HI', context.user.isAdmin, args.userId, userId)
       if (context.user.isAdmin && args.userId) {
         userId = args.userId
       } else if (!context.user.isAdmin) {
@@ -82,6 +82,10 @@ module.exports = {
     async removeGuest (obj, args, context) {
       await context.requireAdmin()
       return removeGuest(args.guestId)
+    },
+    async removeUser (obj, args, context) {
+      await context.requireAdmin()
+      return removeUser(args.userId)
     }
   },
   PublicUser: {

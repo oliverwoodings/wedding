@@ -91,8 +91,9 @@ type Mutation {
   login(codeOrEmail: String!, password: String!): User
   changePassword(code: String!, email: String!, password: String!): User
   updateGuest(userId: Int, guestId: Int!, guest: GuestInput!): Guest
-  createUser(user: UserInput!, guests: [GuestInput!]!): User
+  createUser(user: UserInput, guests: [GuestInput!]): User
   updateUser(userId: Int!, user: UserInput!): User
   addGuest(userId: Int!, guest: GuestInput!): Guest
   removeGuest(guestId: Int!): Guest
+  removeUser(userId: Int!): User
 }

@@ -2,7 +2,7 @@ import React from 'react'
 import classnames from 'classnames'
 import Modal from '../../../components/Modal'
 import Guest from '../../RSVP/Guest'
-import AddGuest from './AddGuest'
+import UserControls from './UserControls'
 import EditUser from './EditUser'
 import styles from './EditUserModal.css'
 
@@ -22,7 +22,11 @@ export default function EditUserModal ({ user, onClose, refetchUser }) {
           />
         ))}
       </div>
-      <AddGuest userId={user.id} refetchUser={refetchUser} />
+      <UserControls
+        userId={user.id}
+        refetchUser={refetchUser}
+        onRemove={onClose}
+      />
       <EditUser user={user} refetchUser={refetchUser} />
     </Modal>
   )

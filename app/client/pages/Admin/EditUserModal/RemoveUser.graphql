@@ -1,0 +1,5 @@
+mutation UpdateGuest ($userId: Int!) {
+  removeUser(userId: $userId) {
+    id
+  }
+}
