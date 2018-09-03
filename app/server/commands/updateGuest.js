@@ -2,9 +2,7 @@ const knex = require('../knex')
 const getUserGuests = require('../queries/getUserGuests')
 const UnauthorisedError = require('../errors/UnauthorisedError')
 
-
 module.exports = async function updateGuest (userId, guestId, params) {
-  console.log(arguments)
   const userGuests = await getUserGuests(userId)
   const belongsToUser = userGuests.some((guest) => guest.id === guestId)
 
