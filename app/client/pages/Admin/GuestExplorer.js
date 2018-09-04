@@ -34,9 +34,10 @@ export default class GuestExplorer extends Component {
   }
 
   render () {
+    const { users, onClickRow } = this.props
     const view = VIEWS[this.state.viewIndex]
   
-    const data = flatten(map(this.props.users, (user) => (
+    const data = flatten(map(users, (user) => (
       user.guests.map((guest) => ({
         ...guest,
         user
@@ -68,7 +69,7 @@ export default class GuestExplorer extends Component {
         </Select>
         {data.length ? <Table columns={columns} data={data}>
           {(guest) => (
-            <tr key={`guest-${guest.id}`}>
+            <tr key={`guest-${guest.id}`} onClick={() => onClickRow(guest.user.id)}>
               {renderers.map((render, i) => (
                 <td key={`column-${i}`}>{render(guest)}</td>
               ))}

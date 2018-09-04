@@ -26,7 +26,6 @@ function Admin ({ query, createUser }) {
       title='Admin'
       className={styles.root}
     >
-      <H>Invites</H>
       <ModalLauncher renderModal={({ closeModal, userId }) => (
         <EditUserModal
           user={users.find(({ id }) => id === userId)}
@@ -36,6 +35,7 @@ function Admin ({ query, createUser }) {
       )}>
         {({ openModal }) => (
           <Fragment>
+            <H>Invites</H>
             <UsersTable
               users={users}
               onClickRow={(userId) => openModal({ userId })}
@@ -47,13 +47,16 @@ function Admin ({ query, createUser }) {
             >
               New invite
             </Button>
+            <H>Summary</H>
+            <UsersSummary users={users} />
+            <H>Guest list</H>
+            <GuestExplorer
+              users={users}
+              onClickRow={(userId) => openModal({ userId })}
+            />
           </Fragment>
         )}
       </ModalLauncher>
-      <H>Summary</H>
-      <UsersSummary users={users} />
-      <H>Guest list</H>
-      <GuestExplorer users={users} />
     </PageBody>
   )
 
