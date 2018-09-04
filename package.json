@@ -37,6 +37,7 @@
     "raw-loader": "^0.5.1",
     "react": "^16.2.0",
     "react-dom": "^16.2.0",
+    "react-minimal-pie-chart": "^3.3.0",
     "short-unique-id": "^1.1.1",
     "space-router": "^0.5.1",
     "spotify-web-api-node": "^3.0.0",

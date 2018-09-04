@@ -1,37 +1,18 @@
 import React from 'react'
 import { startCase } from 'lodash-es'
 import hello from '../../lib/hello'
-import styles from './UsersTable.css'
+import Table from '../../components/Table'
 
 export default function UserTable ({ users, onClickRow }) {
   return (
-    <table className={styles.table}>
-      <thead>
-        <tr className={styles.head}>
-          <td>Guests</td>
-          <td>Type</td>
-          <td>Group</td>
+    <Table columns={['Guests', 'Type', 'Group']} data={users}>
+      {({ guests, eveningOnly, group, id }) => (
+        <tr onClick={() => onClickRow(id)} key={`guest-${id}`}>
+          <td>{hello(guests)}</td>
+          <td>{eveningOnly ? 'Evening' : 'Reception'}</td>
+          <td>{startCase(group) || '–'}</td>
         </tr>
-      </thead>
-      <tbody>
-        {users.map((user) => (
-          <Row
-            {...user}
-            key={user.code}
-            onClick={() => onClickRow(user)}
-          />
-        ))}
-      </tbody>
-    </table>
-  )
-}
-
-function Row ({ guests, eveningOnly, group, onClick }) {
-  return (
-    <tr className={styles.row} onClick={onClick}>
-      <td>{hello(guests)}</td>
-      <td>{eveningOnly ? 'Evening' : 'Reception'}</td>
-      <td>{startCase(group) || '–'}</td>
-    </tr>
+      )}
+    </Table>
   )
 }

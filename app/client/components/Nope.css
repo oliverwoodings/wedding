@@ -1,0 +1,7 @@
+@import '../variables.css';
+
+.nope {
+  font-size: 18px;
+  margin: var(--spacing-m) 0;
+  text-align: center;
+}

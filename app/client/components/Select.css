@@ -1,0 +1,9 @@
+@import '../variables.css';
+
+.select {
+  background: white;
+  border: 1px solid var(--color-blue-55);
+  color: var(--color-blue-55);
+  display: block;
+  height: var(--spacing-xl);
+}

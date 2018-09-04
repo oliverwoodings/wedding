@@ -2,6 +2,7 @@ import React from 'react'
 import { startCase } from 'lodash-es'
 import YesNoToggle from '../../../components/YesNoToggle'
 import DebouncedInput from '../../../components/DebouncedInput'
+import Select from '../../../components/Select'
 import withMutation from '../../../lib/withMutation'
 import UpdateUserMutation from './UpdateUser.graphql'
 import styles from './EditUser.css'
@@ -22,7 +23,7 @@ function EditUser ({ user, updateUser, refetchUser }) {
     <div>
       <div className={styles.section}>
         Group
-        <select
+        <Select
           className={styles.select}
           onChange={update('group', (e) => e.target.value)}
           value={group || ''}
@@ -32,7 +33,7 @@ function EditUser ({ user, updateUser, refetchUser }) {
               {startCase(group) || '-'}
             </option>
           ))}
-        </select>
+        </Select>
       </div>
       <div className={styles.section}>
         Evening only?

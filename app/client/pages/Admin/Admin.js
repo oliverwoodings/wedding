@@ -1,6 +1,7 @@
 import React, { Fragment } from 'react'
 import { get } from 'lodash-es'
 import compose from 'compose-function'
+import { Header } from '../../components/typography'
 import PageBody from '../../components/PageBody'
 import withQuery from '../../lib/withQuery'
 import withMutation from '../../lib/withMutation'
@@ -8,6 +9,8 @@ import ModalLauncher from '../../components/ModalLauncher'
 import Button from '../../components/Button'
 import EditUserModal from './EditUserModal'
 import UsersTable from './UsersTable'
+import UsersSummary from './UsersSummary'
+import GuestExplorer from './GuestExplorer'
 import UsersQuery from './Users.graphql'
 import CreateUserMutation from './CreateUser.graphql'
 import styles from './Admin.css'
@@ -23,6 +26,7 @@ function Admin ({ query, createUser }) {
       title='Admin'
       className={styles.root}
     >
+      <H>Invites</H>
       <ModalLauncher renderModal={({ closeModal, userId }) => (
         <EditUserModal
           user={users.find(({ id }) => id === userId)}
@@ -34,14 +38,22 @@ function Admin ({ query, createUser }) {
           <Fragment>
             <UsersTable
               users={users}
-              onClickRow={(user) => openModal({ userId: user.id })}
+              onClickRow={(userId) => openModal({ userId })}
             />
-            <Button className={styles.new} onClick={() => createNewUser(openModal)}>
+            <Button
+              className={styles.new}
+              onClick={() => createNewUser(openModal)}
+              secondary
+            >
               New invite
             </Button>
           </Fragment>
         )}
       </ModalLauncher>
+      <H>Summary</H>
+      <UsersSummary users={users} />
+      <H>Guest list</H>
+      <GuestExplorer users={users} />
     </PageBody>
   )
 
@@ -56,3 +68,7 @@ export default compose(
   withQuery(UsersQuery),
   withMutation(CreateUserMutation, { name: 'createUser' })
 )(Admin)
+
+function H ({ children }) {
+  return <Header className={styles.header}>{children}</Header>
+}
