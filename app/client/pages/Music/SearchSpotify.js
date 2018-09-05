@@ -13,7 +13,7 @@ class SearchSpotify extends Component {
 
   render () {
     const { user, searchSpotify } = this.props
-    const tracks = get(searchSpotify, 'data.tracks.items', [])
+    const tracks = get(searchSpotify, 'data.tracks', [])
     return (
       <div>
         <input

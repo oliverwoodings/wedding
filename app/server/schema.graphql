@@ -1,6 +1,7 @@
 type Query {
   publicUser(codeOrEmail: String!): PublicUser
-  tracks(query: String!): SpotifySearchResults
+  tracks(query: String!): [SpotifyTrack!]!
+  playlist: [SpotifyTrack!]!
   user: User
   users: [User!]!
 }
@@ -34,13 +35,6 @@ type Guest {
   hasDietaryRequirements: Boolean!
   dietaryRequirements: String
   isChild: Boolean!
-}
-
-type SpotifySearchResults {
-  limit: Int
-  offset: Int
-  total: Int
-  items: [SpotifyTrack]!
 }
 
 type SpotifyTrack {

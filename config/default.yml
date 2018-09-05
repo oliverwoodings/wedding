@@ -6,6 +6,8 @@ spotify:
   scopes:
     - playlist-read-private
     - playlist-modify-private
+  userId: 1173188384
+  playlistId: 7ECCTRm37FPMkOMJ5nNvmr
 
 mysql:
   host: localhost
