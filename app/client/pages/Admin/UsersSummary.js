@@ -75,7 +75,7 @@ export default class UsersSummary extends Component {
 
 function Chart ({ data }) {
   if (!data.length) {
-    return <Nope>No matching data</Nope>
+    return <Nope>No matching guests</Nope>
   }
 
   const total = sum(map(data, 'value'))

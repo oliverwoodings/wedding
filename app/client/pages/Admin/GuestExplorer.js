@@ -75,7 +75,7 @@ export default class GuestExplorer extends Component {
               ))}
             </tr>
           )}
-        </Table> : <Nope>No matching users</Nope>}
+        </Table> : <Nope>No matching guests</Nope>}
       </Fragment>
     )
   }

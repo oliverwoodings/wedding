@@ -18,7 +18,12 @@ import styles from './Admin.css'
 function Admin ({ query, createUser }) {
   const users = get(query, 'data.users')
   if (!users) {
-    return null
+    return (
+      <PageBody
+        title='Admin'
+        className={styles.root}
+      />
+    )
   }
 
   return (
