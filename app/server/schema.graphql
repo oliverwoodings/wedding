@@ -90,4 +90,5 @@ type Mutation {
   addGuest(userId: Int!, guest: GuestInput!): Guest
   removeGuest(guestId: Int!): Guest
   removeUser(userId: Int!): User
+  addTrackToPlaylist(trackId: String!): SpotifyTrack
 }

@@ -12,6 +12,7 @@ const updateUser = require('./commands/updateUser')
 const addGuest = require('./commands/addGuest')
 const removeGuest = require('./commands/removeGuest')
 const removeUser = require('./commands/removeUser')
+const addTrackToPlaylist = require('./commands/addTrackToPlaylist')
 
 const NON_ADMIN_GUEST_WHITELIST = [
   'isAttending',
@@ -91,6 +92,10 @@ module.exports = {
     async removeUser (obj, args, context) {
       await context.requireAdmin()
       return removeUser(args.userId)
+    },
+    async addTrackToPlaylist (obj, args, context) {
+      await context.authenticate()
+      return addTrackToPlaylist(args.trackId)
     }
   },
   PublicUser: {
