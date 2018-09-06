@@ -13,6 +13,7 @@ const addGuest = require('./commands/addGuest')
 const removeGuest = require('./commands/removeGuest')
 const removeUser = require('./commands/removeUser')
 const addTrackToPlaylist = require('./commands/addTrackToPlaylist')
+const auditAction = require('./commands/auditAction')
 
 const NON_ADMIN_GUEST_WHITELIST = [
   'isAttending',
@@ -31,7 +32,9 @@ module.exports = {
     },
     async tracks (obj, args, context) {
       await context.authenticate()
-      return searchSpotify(args.query)
+      const { query } = args
+      await context.audit('SEARCH_SPOTIFY', { query })
+      return searchSpotify(query)
     },
     async playlist (obj, args, context) {
       await context.authenticate()
@@ -48,6 +51,8 @@ module.exports = {
 
       const { sessionId, user } = await login(codeOrEmail, password)
       context.setSessionId(sessionId)
+      context.user = user
+      await context.audit('LOGIN')
 
       return user
     },
@@ -57,45 +62,60 @@ module.exports = {
       
       const { sessionId, user } = await login(email, password)
       context.setSessionId(sessionId)
+      context.user = user
+      await context.audit('CHANGE_PASSWORD')
 
       return user
     },
     async updateGuest (obj, args, context) {
       await context.authenticate()
       let userId = context.user.id
-      let guest = args.guest
+      let { guest, guestId } = args
 
       if (context.user.isAdmin && args.userId) {
         userId = args.userId
       } else if (!context.user.isAdmin) {
         guest = pick(params, NON_ADMIN_GUEST_WHITELIST)
       }
+      await context.audit('UPDATE_GUEST', { guestId, guest })
 
-      return updateGuest(userId, args.guestId, args.guest)
+      return updateGuest(userId, guestId, guest)
     },
     async createUser (obj, args, context) {
       await context.requireAdmin()
-      return createUser(args.user, args.guests)
+      const { user, guests } = args
+      await context.audit('CREATE_USER', { user, guests })
+      return createUser(user, guests)
     },
     async updateUser (obj, args, context) {
       await context.requireAdmin()
-      return updateUser(args.userId, args.user)
+      const { userId, user } = args
+      await context.audit('UPDATE_USER', { userId, user })
+      return updateUser(userId, user)
     },
     async addGuest (obj, args, context) {
       await context.requireAdmin()
-      return addGuest(args.userId, args.guest)
+      const { userId, guest } = args
+      await context.audit('ADD_GUEST', { userId, guest })
+      return addGuest(userId, guest)
     },
     async removeGuest (obj, args, context) {
       await context.requireAdmin()
-      return removeGuest(args.guestId)
+      const { guestId } = args
+      await context.audit('REMOVE_GUEST', { guestId })
+      return removeGuest(guestId)
     },
     async removeUser (obj, args, context) {
       await context.requireAdmin()
-      return removeUser(args.userId)
+      const { userId } = args
+      await context.audit('REMOVE_USER', { userId })
+      return removeUser(userId)
     },
     async addTrackToPlaylist (obj, args, context) {
       await context.authenticate()
-      return addTrackToPlaylist(args.trackId)
+      const { trackId } = args
+      await context.audit('ADD_TO_PLAYLIST', { trackId })
+      return addTrackToPlaylist(trackId)
     }
   },
   PublicUser: {

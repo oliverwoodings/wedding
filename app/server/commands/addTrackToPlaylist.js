@@ -1,7 +1,7 @@
 const config = require('config')
 const { getClient } = require('../lib/spotify')
 
-module.exports = async function addTrackToPlaylist (trackId) {
+module.exports = async function addTrackToPlaylist (userId, trackId) {
   const spotify = await getClient()
   await spotify.addTracksToPlaylist(
     config.spotify.userId,
