@@ -2,7 +2,7 @@ import React, { Component } from 'react'
 import withMutation from '../../lib/withMutation'
 import hello from '../../lib/hello'
 import PageBody from '../../components/PageBody'
-import Action from './Action'
+import Button from '../../components/Button'
 import Error from './Error'
 import LoginInput from './LoginInput'
 import ChangePasswordMutation from './ChangePassword.graphql'
@@ -51,15 +51,16 @@ class NewUserForm extends Component {
           value={password}
           onChange={(password) => this.setState({ password })}
         />
-        <Action onAction={execute} disabled={disabled}>
-          <LoginInput
-            type='password'
-            placeholder='...and type it again!'
-            value={password2}
-            onEnter={!disabled && execute}
-            onChange={(password2) => this.setState({ password2 })}
-          />
-        </Action>
+        <LoginInput
+          type='password'
+          placeholder='...and type it again!'
+          value={password2}
+          onEnter={!disabled && execute}
+          onChange={(password2) => this.setState({ password2 })}
+        />
+        <Button secondary onClick={execute} disabled={disabled}>
+          Create account
+        </Button>
         {showError && <Error error={signup.error}>{error}</Error>}
       </PageBody>
     )

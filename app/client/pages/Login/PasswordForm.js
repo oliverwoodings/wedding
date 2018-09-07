@@ -3,7 +3,7 @@ import withMutation from '../../lib/withMutation'
 import hello from '../../lib/hello'
 import { Link } from '../../components/typography'
 import PageBody from '../../components/PageBody'
-import Action from './Action'
+import Button from '../../components/Button'
 import Error from './Error'
 import LoginInput from './LoginInput'
 import LoginMutation from './Login.graphql'
@@ -28,16 +28,17 @@ class PasswordForm extends Component {
 
     return (
       <PageBody title={`Hello ${hello(publicUser.guests)}!`} fill>
-        <Action onAction={execute} disabled={disabled}>
-          <LoginInput
-            type='password'
-            placeholder='Enter password'
-            value={password}
-            onEnter={!disabled && execute}
-            onChange={(password) => this.setState({ password })}
-            autofocus
-          />
-        </Action>
+        <LoginInput
+          type='password'
+          placeholder='Enter password'
+          value={password}
+          onEnter={!disabled && execute}
+          onChange={(password) => this.setState({ password })}
+          autofocus
+        />
+        <Button secondary onClick={execute} disabled={disabled}>
+          Login
+        </Button>
         {!login.haveVariablesChanged({ password }) && <Error error={login.error} />}
         <div className={styles.forgotten}>
           Forgotten your password? Reset it <Link onClick={onResetPassword}>here</Link>
