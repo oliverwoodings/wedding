@@ -1,5 +1,9 @@
 @import '../../variables.css';
 
+.root {
+  padding: 0 var(--spacing-s);
+}
+
 .new {
   margin-top: var(--spacing-m);
 }
