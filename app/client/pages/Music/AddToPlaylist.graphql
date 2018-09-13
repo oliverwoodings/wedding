@@ -1,0 +1,5 @@
+mutation AddToPlaylist ($trackId: String!) {
+  addTrackToPlaylist (trackId: $trackId) {
+    id
+  }
+}

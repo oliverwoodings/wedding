@@ -9,6 +9,12 @@
   width: 100%;
 }
 
+.inputContainer {
+  margin-bottom: var(--spacing-xs);
+  padding: 0 8px;
+  width: 100%;
+}
+
 .input {
   border: 1px solid var(--color-blue-55);
   border-radius: var(--border-radius-m);
@@ -26,6 +32,5 @@
   align-items: center;
   display: flex;
   height: 48px;
-  margin-top: var(--spacing-m);
   justify-content: center;
 }

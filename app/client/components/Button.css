@@ -4,6 +4,7 @@
   align-items: center;
   background: var(--color-blue-55);
   border-radius: var(--border-radius-m);
+  border: none;
   cursor: pointer;
   color: white;
   display: flex;
@@ -15,7 +16,7 @@
   padding: 0 var(--spacing-m);
 }
 
-.button:hover {
+.button:hover:not(.disabled) {
   background: var(--color-blue-70);
 }
 
@@ -32,7 +33,7 @@
   height: var(--spacing-xl);
 }
 
-.secondary:hover {
+.secondary:hover:not(.disabled) {
   background: none;
   border-color: var(--color-blue-85);
   color: var(--color-blue-85);
@@ -41,4 +42,14 @@
 .disabled {
   cursor: not-allowed;
   opacity: 0.5;
+}
+
+.secondary.inverted {
+  border-color: white;
+  color: white;
+}
+
+.secondary.inverted:hover:not(.disabled) {
+  border-color: var(--color-white-55);
+  color: var(--color-white-55);
 }

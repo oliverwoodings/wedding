@@ -1,11 +1,27 @@
 @import '../../variables.css';
 
 .track {
-  align-items: center;
   display: flex;
-  height: 48px;
-  margin-top: var(--spacing-m);
+  position: relative;
   width: 100%;
+}
+
+.body {
+  align-items: center;
+  cursor: pointer;
+  height: var(--spacing-xxl);
+  display: flex;
+  padding: 0 var(--spacing-xs);
+  width: 100%;
+}
+
+.body:hover {
+  background-color: var(--color-black-10);
+  transition: background-color var(--transition-short);
+}
+
+.isActive .body {
+  opacity: 0.2;
 }
 
 .info {
@@ -50,4 +66,19 @@
   overflow: hidden;
   text-overflow: ellipsis;
   white-space: nowrap;
+}
+
+.overlay {
+  align-items: center;
+  background-color: var(--color-black-55);
+  display: flex;
+  height: 100%;
+  justify-content: center;
+  position: absolute;
+  z-index: var(--zIndex-infront);
+  width: 100%;
+}
+
+.button + .button {
+  margin-left: var(--spacing-s);
 }

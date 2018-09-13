@@ -1,15 +1,20 @@
 import React, { Component } from 'react'
 import { debounce, get } from 'lodash-es'
 import createPlayer from 'web-audio-player'
+import compose from 'compose-function'
 import withQuery from '../../lib/withQuery'
+import withMutation from '../../lib/withMutation'
 import Spinner from '../../components/Spinner'
 import Track from './Track'
 import SearchSpotifyQuery from './SearchSpotify.graphql'
+import AddToPlaylistMutation from './AddToPlaylist.graphql'
 import styles from './SearchSpotify.css'
 
 class SearchSpotify extends Component {
   state = {
-    query: ''
+    query: '',
+    activeTrackId: null,
+    isPlaying: false
   }
 
   debouncedSearch = debounce(this.props.searchSpotify.execute, 300)
@@ -18,17 +23,23 @@ class SearchSpotify extends Component {
     this.input.focus()
   }
 
+  componentWillUnmount () {
+    this.stopPlaying()
+  }
+
   render () {
     const { user, searchSpotify } = this.props
     return (
       <div className={styles.root}>
-        <input
-          onChange={::this.onSearch}
-          value={this.state.query}
-          className={styles.input}
-          placeholder='Search for an artist, song or album'
-          ref={(node) => { this.input = node }}
-        />
+        <div className={styles.inputContainer}>
+          <input
+            onChange={::this.onSearch}
+            value={this.state.query}
+            className={styles.input}
+            placeholder='Search for an artist, song or album'
+            ref={(node) => { this.input = node }}
+          />
+        </div>
         {this.renderTracks()}
       </div>
     )
@@ -36,6 +47,7 @@ class SearchSpotify extends Component {
 
   renderTracks () {
     const { searchSpotify } = this.props
+    const { addingToPlaylist, activeTrackId, isPlaying } = this.state
     const { isPending, hasExecuted, lastVariables } = searchSpotify
     const hasQuery = !!this.state.query
     const hadQuery = !!lastVariables.query
@@ -53,9 +65,31 @@ class SearchSpotify extends Component {
       <Track
         key={track.id}
         track={track}
-        playTrack={() => this.playTrack(track)}
+        isPlaying={isPlaying}
+        startPlaying={() => this.startPlaying(track)}
+        stopPlaying={() => this.stopPlaying()}
+        isActive={activeTrackId === track.id}
+        onActivate={() => this.setActiveTrack(track)}
+        addToPlaylist={() => this.addToPlaylist(track.id)}
+        addingToPlaylist={addingToPlaylist}
       />
     ))
+  }
+
+  async addToPlaylist (trackId) {
+    const { addToPlaylist, searchSpotify } = this.props
+    this.setState({
+      addingToPlaylist: true
+    })
+    try {
+      await addToPlaylist.execute({ trackId })
+      await searchSpotify.execute({ query: this.state.query })
+    } catch (e) {
+      console.error(e)
+    }
+    this.setState({
+      addingToPlaylist: false
+    })
   }
 
   onSearch ({ target }) {
@@ -65,10 +99,20 @@ class SearchSpotify extends Component {
     })
   }
 
-  playTrack (track) {
-    if (this.audio) {
-      this.audio.stop()
+  setActiveTrack (track) {
+    const { activeTrackId, isPlaying } = this.state
+    if (track.id !== activeTrackId) {
+      if (isPlaying) {
+        this.startPlaying(track)
+      }
+      this.setState({
+        activeTrackId: track.id
+      })
     }
+  }
+
+  startPlaying (track) {
+    this.stopPlaying()
     const url = '/preview/' + encodeURIComponent(track.previewUrl)
     const audio = createPlayer(url)
     audio.on('load', () => {
@@ -76,10 +120,27 @@ class SearchSpotify extends Component {
       audio.node.connect(audio.context.destination)
     })
     this.audio = audio
+    this.setState({
+      isPlaying: true
+    })
+  }
+
+  stopPlaying () {
+    if (this.audio) {
+      this.audio.stop()
+      this.setState({
+        isPlaying: false
+      })
+    }
   }
 }
 
-export default withQuery(SearchSpotifyQuery, {
-  lazy: true,
-  name: 'searchSpotify'
-})(SearchSpotify)
+export default compose(
+  withQuery(SearchSpotifyQuery, {
+    lazy: true,
+    name: 'searchSpotify'
+  }),
+  withMutation(AddToPlaylistMutation, {
+    name: 'addToPlaylist'
+  })
+)(SearchSpotify)
