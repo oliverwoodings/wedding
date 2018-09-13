@@ -1,7 +1,6 @@
 type Query {
   publicUser(codeOrEmail: String!): PublicUser
   tracks(query: String!): [SpotifyTrack!]!
-  playlist: [SpotifyTrack!]!
   user: User
   users: [User!]!
 }
@@ -45,6 +44,7 @@ type SpotifyTrack {
   previewUrl: String
   durationMs: Int!
   externalUrls: SpotifyExternalUrls!
+  isInPlaylist: Boolean
 }
 
 type SpotifyAlbum {

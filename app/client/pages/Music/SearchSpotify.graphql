@@ -18,5 +18,6 @@ query SearchSpotify ($query: String!) {
     }
     previewUrl
     durationMs
+    isInPlaylist
   }
 }

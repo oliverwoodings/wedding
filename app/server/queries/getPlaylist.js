@@ -3,9 +3,20 @@ const { map } = require('lodash')
 const config = require('config')
 const { getClient } = require('../lib/spotify')
 
+const CACHE_FOR = 1000 * 120
+let playlist = null
+
 module.exports = async function getPlaylist () {
-  const tracks = await getAllPlaylistTracks()
-  return camelCase(map(tracks, 'track'))
+  if (!playlist) {
+    const tracks = await getAllPlaylistTracks()
+    playlist = camelCase(map(tracks, 'track'))
+    setTimeout(module.exports.clearCache, CACHE_FOR)
+  }
+  return playlist
+}
+
+module.exports.clearCache = function clearCache () {
+  playlist = null
 }
 
 async function getAllPlaylistTracks (tracks = [], offset = 0) {

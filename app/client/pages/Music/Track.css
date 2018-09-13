@@ -1,0 +1,53 @@
+@import '../../variables.css';
+
+.track {
+  align-items: center;
+  display: flex;
+  height: 48px;
+  margin-top: var(--spacing-m);
+  width: 100%;
+}
+
+.info {
+  display: flex;
+  flex-direction: column;
+  margin-left: var(--spacing-m);
+  min-width: 0;
+}
+
+.subtext {
+  color: var(--color-darkGrey-85);
+  display: flex;
+  font-size: 14px;
+}
+
+.artist {
+  flex-shrink: 0;
+  margin-right: var(--spacing-xs);
+}
+
+.album {
+  margin-left: var(--spacing-xs);
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.image {
+  flex-shrink: 0;
+  margin: 0;
+  padding: 2px;
+  width: 48px !important;
+}
+
+.duration {
+  flex-shrink: 0;
+  margin-left: auto;
+  padding-left: var(--spacing-m);
+}
+
+.name {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}

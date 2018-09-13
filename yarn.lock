@@ -842,6 +842,10 @@ acorn@^5.0.0, acorn@^5.3.0, acorn@^5.6.2:
   version "5.7.2"
   resolved "https://registry.yarnpkg.com/acorn/-/acorn-5.7.2.tgz#91fa871883485d06708800318404e72bfb26dcc5"
 
+add-zero@^1.0.0:
+  version "1.0.0"
+  resolved "https://registry.yarnpkg.com/add-zero/-/add-zero-1.0.0.tgz#88e221696717f66db467672f3f9aa004de9f1a2c"
+
 ajv-keywords@^3.1.0:
   version "3.2.0"
   resolved "https://registry.yarnpkg.com/ajv-keywords/-/ajv-keywords-3.2.0.tgz#e86b819c602cf8821ad637413698f1dec021847a"
@@ -3001,6 +3005,13 @@ form-data@~2.1.1:
     combined-stream "^1.0.5"
     mime-types "^2.1.12"
 
+format-duration@^1.2.0:
+  version "1.2.0"
+  resolved "https://registry.yarnpkg.com/format-duration/-/format-duration-1.2.0.tgz#c54e0fb2af715b0fd552be4a8c1277f27eba1fe3"
+  dependencies:
+    add-zero "^1.0.0"
+    parse-ms "^1.0.1"
+
 formidable@^1.0.17:
   version "1.2.0"
   resolved "https://registry.yarnpkg.com/formidable/-/formidable-1.2.0.tgz#ce291bfec67c176e282f891ece2c37de0c83ae84"
@@ -4810,6 +4821,10 @@ parse-json@^4.0.0:
   dependencies:
     error-ex "^1.3.1"
     json-parse-better-errors "^1.0.1"
+
+parse-ms@^1.0.1:
+  version "1.0.1"
+  resolved "https://registry.yarnpkg.com/parse-ms/-/parse-ms-1.0.1.tgz#56346d4749d78f23430ca0c713850aef91aa361d"
 
 parse-passwd@^1.0.0:
   version "1.0.0"

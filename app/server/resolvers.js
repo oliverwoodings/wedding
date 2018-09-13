@@ -3,7 +3,6 @@ const getUser = require('./queries/getUser')
 const getUsers = require('./queries/getUsers')
 const getUserGuests = require('./queries/getUserGuests')
 const searchSpotify = require('./queries/searchSpotify')
-const getPlaylist = require('./queries/getPlaylist')
 const login = require('./commands/login')
 const changePassword = require('./commands/changePassword')
 const updateGuest = require('./commands/updateGuest')
@@ -35,10 +34,6 @@ module.exports = {
       const { query } = args
       await context.audit('SEARCH_SPOTIFY', { query })
       return searchSpotify(query)
-    },
-    async playlist (obj, args, context) {
-      await context.authenticate()
-      return getPlaylist()
     },
     async users (obj, args, context) {
       await context.requireAdmin()

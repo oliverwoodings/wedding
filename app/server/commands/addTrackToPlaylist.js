@@ -1,5 +1,6 @@
 const config = require('config')
 const { getClient } = require('../lib/spotify')
+const getPlaylist = require('../queries/getPlaylist')
 
 module.exports = async function addTrackToPlaylist (userId, trackId) {
   const spotify = await getClient()
@@ -8,4 +9,5 @@ module.exports = async function addTrackToPlaylist (userId, trackId) {
     config.spotify.playlistId,
     [`spotify:track:${trackId}`]
   )
+  getPlaylist.clearCache()
 }
