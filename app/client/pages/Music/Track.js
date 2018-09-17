@@ -66,7 +66,7 @@ function TrackOverlay (props) {
         className={styles.button}
         onClick={isPlaying ? stopPlaying : startPlaying}
       >
-        {isPlaying ? 'Pause' : 'Preview'}
+        {isPlaying ? 'Pause' : 'Play'}
       </Button>}
       <Button
         secondary
