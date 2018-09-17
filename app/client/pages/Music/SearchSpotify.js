@@ -51,7 +51,7 @@ class SearchSpotify extends Component {
     const { isPending, hasExecuted, lastVariables } = searchSpotify
     const hasQuery = !!this.state.query
     const hadQuery = !!lastVariables.query
-    const tracks = get(searchSpotify, 'data.tracks', [])
+    const tracks = this.getTracks()
 
     if (!tracks.length) {
       if (hasQuery && (isPending || (!hasExecuted && hasQuery) || (!hadQuery && hasQuery))) {
@@ -114,12 +114,29 @@ class SearchSpotify extends Component {
   startPlaying (track) {
     this.stopPlaying()
     const url = '/preview/' + encodeURIComponent(track.previewUrl)
-    const audio = createPlayer(url)
+    const audio = createPlayer(url, {
+      context: this.audioContext,
+      loop: false
+    })
     audio.on('load', () => {
       audio.play()
       audio.node.connect(audio.context.destination)
     })
+    audio.on('end', () => {
+      if (this.state.isPlaying) {
+        const nextTrack = this.getNextTrack()
+        if (nextTrack) {
+          this.setActiveTrack(nextTrack)
+        }
+      } else {
+        this.setState({
+          isPlaying: false
+        })
+      }
+    })
     this.audio = audio
+    // Re-use contexts
+    this.audioContext = audio.context
     this.setState({
       isPlaying: true
     })
@@ -127,11 +144,26 @@ class SearchSpotify extends Component {
 
   stopPlaying () {
     if (this.audio) {
-      this.audio.stop()
       this.setState({
         isPlaying: false
+      }, () => {
+        this.audio.stop()
       })
     }
+  }
+
+  getTracks () {
+    return get(this.props.searchSpotify, 'data.tracks', [])
+  }
+
+  getNextTrack () {
+    const tracks = this.getTracks()
+    for (let i = 1; i < tracks.length; i++) {
+      if (tracks[i - 1].id === this.state.activeTrackId) {
+        return tracks[i]
+      }
+    }
+    return tracks[0]
   }
 }
 
