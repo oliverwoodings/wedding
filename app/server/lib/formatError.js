@@ -1,3 +1,4 @@
+const raven = require('raven')
 const log = require('../log')
 
 module.exports = function formatError (error) {
@@ -12,6 +13,7 @@ module.exports = function formatError (error) {
   if (originalError.client) {
     log.warn(stack || message)
   } else {
+    raven.captureException(error.originalError || error)
     log.error(stack || message)
   }
 
