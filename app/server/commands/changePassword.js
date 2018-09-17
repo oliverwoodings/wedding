@@ -20,11 +20,18 @@ module.exports = async function changePassword (code, email, password) {
 
   const salt = generateSalt()
 
-  await knex('users').where('code', code).update({
-    email: email.toLowerCase(),
-    salt,
-    password: hash(password, salt)
-  })
+  try {
+    await knex('users').where('code', code).update({
+      email: email.toLowerCase(),
+      salt,
+      password: hash(password, salt)
+    })
+  } catch (e) {
+    if (e.code === 'ER_DUP_ENTRY') {
+      throw new AuthenticationError('DUPLICATE_EMAIL')
+    }
+    throw e
+  }
 
   await knex('sessions').where('userId', user.id).delete()
 

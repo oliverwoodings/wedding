@@ -26,6 +26,8 @@ function formatError (error) {
           return 'Sorry, that isn\'t the email you signed up with'
         case 'INVALID_CODE':
           return 'Sorry, that code does not exist'
+        case 'DUPLICATE_EMAIL':
+          return 'Sorry, that email is already taken'
       }
     default:
       return 'Sorry, something went wrong :('
