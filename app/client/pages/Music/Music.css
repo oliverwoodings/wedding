@@ -11,6 +11,12 @@
   }
 }
 
-.p {
+.p,
+.playlistLink {
   padding: 0 var(--spacing-xs);
+}
+
+.playlistLink {
+  font-size: 14px;
+  font-style: italic;
 }

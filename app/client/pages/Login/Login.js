@@ -1,11 +1,13 @@
 import React, { Component, Fragment } from 'react'
 import classnames from 'classnames'
+import { Link } from '../../components/typography'
 import withQuery from '../../lib/withQuery'
 import CodeOrEmailForm from './CodeOrEmailForm'
 import PasswordForm from './PasswordForm'
 import ResetPasswordForm from './ResetPasswordForm'
 import NewUserForm from './NewUserForm'
 import LookupQuery from './LookupCodeOrEmail.graphql'
+import styles from './Login.css'
 
 const STAGES = {
   CODE_OR_EMAIL: 0,
@@ -77,6 +79,9 @@ class Login extends Component {
             publicUser={lookupQuery.data.publicUser}
           />
         )}
+        <div className={styles.support}>
+          Having trouble logging in? Oli is on 24/7 tech support, just drop him an <Link href='mailto:hello@danniandoli.wedding'>email</Link>.
+        </div>
       </Fragment>
     )
   }
