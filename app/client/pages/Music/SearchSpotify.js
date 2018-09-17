@@ -6,6 +6,7 @@ import withQuery from '../../lib/withQuery'
 import withMutation from '../../lib/withMutation'
 import Spinner from '../../components/Spinner'
 import Track from './Track'
+import AudioGraph from './AudioGraph'
 import SearchSpotifyQuery from './SearchSpotify.graphql'
 import AddToPlaylistMutation from './AddToPlaylist.graphql'
 import styles from './SearchSpotify.css'
@@ -32,6 +33,7 @@ class SearchSpotify extends Component {
     return (
       <div className={styles.root}>
         <div className={styles.inputContainer}>
+          <AudioGraph audio={this.audio} isPlaying={this.state.isPlaying} />
           <input
             onChange={::this.onSearch}
             value={this.state.query}
@@ -113,9 +115,11 @@ class SearchSpotify extends Component {
 
   startPlaying (track) {
     this.stopPlaying()
+    if (!track.previewUrl) return
+
     const url = '/preview/' + encodeURIComponent(track.previewUrl)
     const audio = createPlayer(url, {
-      context: this.audioContext,
+      context: this.audio ? this.audio.context : undefined,
       loop: false
     })
     audio.on('load', () => {
@@ -135,8 +139,6 @@ class SearchSpotify extends Component {
       }
     })
     this.audio = audio
-    // Re-use contexts
-    this.audioContext = audio.context
     this.setState({
       isPlaying: true
     })
@@ -158,8 +160,12 @@ class SearchSpotify extends Component {
 
   getNextTrack () {
     const tracks = this.getTracks()
+    let foundCurrent = false
     for (let i = 1; i < tracks.length; i++) {
       if (tracks[i - 1].id === this.state.activeTrackId) {
+        foundCurrent = true
+      }
+      if (foundCurrent === true && tracks[i].previewUrl) {
         return tracks[i]
       }
     }
