@@ -9,6 +9,6 @@
 .footer:before,
 .footer:after {
   content: '❤';
-  color: var(--color-blue-55);
+  color: var(--color-blue-55) !important;
   margin: 0 var(--spacing-xxs);
 }

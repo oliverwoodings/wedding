@@ -21,7 +21,7 @@
   align-items: center;
   justify-content: center;
   display: flex;
-  color: var(--color-blue-55);
+  color: var(--color-blue-55) !important;
   flex-shrink: 0;
   content: '❤';
   height: 100%;
