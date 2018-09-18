@@ -113,8 +113,8 @@ class SearchSpotify extends Component {
     }
   }
 
-  startPlaying (track) {
-    this.stopPlaying()
+  async startPlaying (track) {
+    await this.stopPlaying()
     if (!track.previewUrl) return
 
     const url = '/preview/' + encodeURIComponent(track.previewUrl)
@@ -144,12 +144,15 @@ class SearchSpotify extends Component {
     })
   }
 
-  stopPlaying () {
+  async stopPlaying () {
     if (this.audio) {
-      this.setState({
-        isPlaying: false
-      }, () => {
-        this.audio.stop()
+      return new Promise((resolve) => {
+        this.setState({
+          isPlaying: false
+        }, () => {
+          this.audio.stop()
+          resolve()
+        })
       })
     }
   }
