@@ -7,7 +7,6 @@
   width: 245px;
 }
 
-.multiGuests {
+.multiGuests:not(.mobile) {
   width: calc(245px * 2 + var(--spacing-s) * 4);
 }
-

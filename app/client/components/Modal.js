@@ -1,11 +1,12 @@
 import React from 'react'
 import classnames from 'classnames'
+import withDevice from '../lib/withDevice'
 import { SubTitle } from './typography'
 import styles from './Modal.css'
 
-export default function Modal ({ title, children, className, onClose }) {
+function Modal ({ title, children, className, onClose, device }) {
   return (
-    <div className={styles.container}>
+    <div className={classnames(styles.container, styles[device])}>
       <div className={styles.modal}>
         <div className={styles.header}>
           <SubTitle className={styles.title}>{title}</SubTitle>
@@ -18,3 +19,5 @@ export default function Modal ({ title, children, className, onClose }) {
     </div>
   )
 }
+
+export default withDevice()(Modal)

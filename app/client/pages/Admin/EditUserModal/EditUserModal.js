@@ -2,14 +2,15 @@ import React from 'react'
 import classnames from 'classnames'
 import Modal from '../../../components/Modal'
 import Guest from '../../RSVP/Guest'
+import withDevice from '../../../lib/withDevice'
 import UserControls from './UserControls'
 import EditUser from './EditUser'
 import styles from './EditUserModal.css'
 
-export default function EditUserModal ({ user, onClose, refetchUser }) {
+function EditUserModal ({ user, onClose, refetchUser, device }) {
   return (
     <Modal title={`Edit invite - ${user.code}`} onClose={onClose}>
-      <div className={classnames(styles.guests, {
+      <div className={classnames(styles.guests, styles[device], {
         [styles.multiGuests]: user.guests.length > 1
       })}>
         {user.guests.map((guest) => (
@@ -31,3 +32,5 @@ export default function EditUserModal ({ user, onClose, refetchUser }) {
     </Modal>
   )
 }
+
+export default withDevice()(EditUserModal)
