@@ -21,30 +21,27 @@ function Guest (props) {
     removeGuest
   } = props
 
-  const {
-    id,
-    firstName,
-    lastName,
-    hasDietaryRequirements,
-    dietaryRequirements
-  } = guest
+  const { id, hasDietaryRequirements } = guest
 
   return (
     <div className={classnames(styles.guest, className)}>
-      <Header className={styles.header}>{textInput('firstName', true)} {textInput('lastName', true)}</Header>
-      <Section>
-        Attending? {toggle('isAttending', true)}
-      </Section>
-      {fullControl && <Section>
-        Child? {toggle('isChild')}
-      </Section>}
+      <Header className={styles.header}>
+        {textInput('firstName', true)} {textInput('lastName', true)}
+      </Header>
+      <Section>Attending? {toggle('isAttending', true)}</Section>
+      {fullControl && <Section>Child? {toggle('isChild')}</Section>}
       <Section className={styles.diet}>
-        Dietary requirements? {toggle('hasDietaryRequirements', false, { dietaryRequirements: '' })}
+        Dietary requirements?{' '}
+        {toggle('hasDietaryRequirements', false, { dietaryRequirements: '' })}
         {hasDietaryRequirements && textInput('dietaryRequirements')}
       </Section>
-      {fullControl && <Section>
-        <Button secondary onClick={remove}>Remove guest</Button>
-      </Section>}
+      {fullControl && (
+        <Section>
+          <Button secondary onClick={remove}>
+            Remove guest
+          </Button>
+        </Section>
+      )}
     </div>
   )
 
@@ -54,14 +51,18 @@ function Guest (props) {
         className={styles.input}
         toggled={guest[name]}
         maybe={maybe}
-        onToggle={(toggled) => updateGuest.execute({
-          userId,
-          guestId: id,
-          guest: {
-            [name]: toggled,
-            ...additionalFields
-          }
-        }).then(refetchUser)}
+        onToggle={toggled =>
+          updateGuest
+            .execute({
+              userId,
+              guestId: id,
+              guest: {
+                [name]: toggled,
+                ...additionalFields
+              }
+            })
+            .then(refetchUser)
+        }
       />
     )
   }
@@ -74,21 +75,27 @@ function Guest (props) {
     return (
       <DebouncedInput
         initialValue={guest[propName]}
-        onChange={(value) => {
-          updateGuest.execute({
-            userId,
-            guestId: guest.id,
-            guest: {
-              [propName]: value
-            }
-          }).then(refetchUser)
+        onChange={value => {
+          updateGuest
+            .execute({
+              userId,
+              guestId: guest.id,
+              guest: {
+                [propName]: value
+              }
+            })
+            .then(refetchUser)
         }}
       >
-        {(props) => (
+        {props => (
           <input
             type='text'
             className={styles.textInput}
-            placeholder={propName === 'dietaryRequirements' ? 'What should we cater for?' : ''}
+            placeholder={
+              propName === 'dietaryRequirements'
+                ? 'What should we cater for?'
+                : ''
+            }
             {...props}
           />
         )}
@@ -97,9 +104,11 @@ function Guest (props) {
   }
 
   function remove () {
-    removeGuest.execute({
-      guestId: id
-    }).then(refetchUser)
+    removeGuest
+      .execute({
+        guestId: id
+      })
+      .then(refetchUser)
   }
 }
 

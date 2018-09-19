@@ -39,18 +39,22 @@ module.exports = {
 
     rules.pop()
     rules.pop()
-    rules.push({
-      test: /\.css$/,
-      include: base('client'),
-      use: ['style-loader', cssLoader, postcssLoader]
-    }, {
-      test: /\.css$/,
-      exclude: base('client'),
-      use: ['style-loader', 'css-loader', postcssLoader]
-    }, {
-      test: /\.g(raph)?ql$/,
-      loader: 'raw-loader'
-    })
+    rules.push(
+      {
+        test: /\.css$/,
+        include: base('client'),
+        use: ['style-loader', cssLoader, postcssLoader]
+      },
+      {
+        test: /\.css$/,
+        exclude: base('client'),
+        use: ['style-loader', 'css-loader', postcssLoader]
+      },
+      {
+        test: /\.g(raph)?ql$/,
+        loader: 'raw-loader'
+      }
+    )
 
     if (process.env.NODE_ENV === 'production') {
       config.devtool = 'source-map'

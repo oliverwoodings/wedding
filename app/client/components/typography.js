@@ -10,11 +10,16 @@ export const Strong = createTypographyComponent('span', styles.strong)
 export const Link = createTypographyComponent('a', styles.link)
 
 function createTypographyComponent (defaultElement, typeClassName) {
-  return ({ className, children, element, ...props }) => React.createElement(element || defaultElement, {
-    target: isExternalLink(props.href) ? '_blank' : undefined,
-    ...props,
-    className: classnames(typeClassName, className)
-  }, children)
+  return ({ className, children, element, ...props }) =>
+    React.createElement(
+      element || defaultElement,
+      {
+        target: isExternalLink(props.href) ? '_blank' : undefined,
+        ...props,
+        className: classnames(typeClassName, className)
+      },
+      children
+    )
 }
 
 function isExternalLink (href) {

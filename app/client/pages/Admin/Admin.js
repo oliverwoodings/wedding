@@ -18,32 +18,26 @@ import styles from './Admin.css'
 function Admin ({ query, createUser }) {
   const users = get(query, 'data.users')
   if (!users) {
-    return (
-      <PageBody
-        title='Admin'
-        className={styles.root}
-      />
-    )
+    return <PageBody title='Admin' className={styles.root} />
   }
 
   return (
-    <PageBody
-      title='Admin'
-      className={styles.root}
-    >
-      <ModalLauncher renderModal={({ closeModal, userId }) => (
-        <EditUserModal
-          user={users.find(({ id }) => id === userId)}
-          onClose={closeModal}
-          refetchUser={query.execute}
-        />
-      )}>
+    <PageBody title='Admin' className={styles.root}>
+      <ModalLauncher
+        renderModal={({ closeModal, userId }) => (
+          <EditUserModal
+            user={users.find(({ id }) => id === userId)}
+            onClose={closeModal}
+            refetchUser={query.execute}
+          />
+        )}
+      >
         {({ openModal }) => (
           <Fragment>
             <H>Invites</H>
             <UsersTable
               users={users}
-              onClickRow={(userId) => openModal({ userId })}
+              onClickRow={userId => openModal({ userId })}
             />
             <Button
               className={styles.new}
@@ -57,7 +51,7 @@ function Admin ({ query, createUser }) {
             <H>Guest list</H>
             <GuestExplorer
               users={users}
-              onClickRow={(userId) => openModal({ userId })}
+              onClickRow={userId => openModal({ userId })}
             />
           </Fragment>
         )}

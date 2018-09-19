@@ -29,7 +29,6 @@ class SearchSpotify extends Component {
   }
 
   render () {
-    const { user, searchSpotify } = this.props
     return (
       <div className={styles.root}>
         <div className={styles.inputContainer}>
@@ -39,7 +38,9 @@ class SearchSpotify extends Component {
             value={this.state.query}
             className={styles.input}
             placeholder='Search for an artist, song or album'
-            ref={(node) => { this.input = node }}
+            ref={node => {
+              this.input = node
+            }}
           />
         </div>
         {this.renderTracks()}
@@ -56,14 +57,21 @@ class SearchSpotify extends Component {
     const tracks = this.getTracks()
 
     if (!tracks.length) {
-      if (hasQuery && (isPending || (!hasExecuted && hasQuery) || (!hadQuery && hasQuery))) {
-        return <div className={styles.loading}><Spinner /></div>
+      if (
+        hasQuery &&
+        (isPending || (!hasExecuted && hasQuery) || (!hadQuery && hasQuery))
+      ) {
+        return (
+          <div className={styles.loading}>
+            <Spinner />
+          </div>
+        )
       } else if (hadQuery && searchSpotify.hasExecuted) {
         return <div className={styles.noMatch}>No match</div>
       }
     }
 
-    return tracks.map((track) => (
+    return tracks.map(track => (
       <Track
         key={track.id}
         track={track}
@@ -146,13 +154,16 @@ class SearchSpotify extends Component {
 
   async stopPlaying () {
     if (this.audio) {
-      return new Promise((resolve) => {
-        this.setState({
-          isPlaying: false
-        }, () => {
-          this.audio.stop()
-          resolve()
-        })
+      return new Promise(resolve => {
+        this.setState(
+          {
+            isPlaying: false
+          },
+          () => {
+            this.audio.stop()
+            resolve()
+          }
+        )
       })
     }
   }

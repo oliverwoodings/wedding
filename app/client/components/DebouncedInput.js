@@ -1,4 +1,4 @@
-import React, { Component } from 'react'
+import { Component } from 'react'
 import { debounce } from 'lodash-es'
 
 export default class DebouncedInput extends Component {
@@ -9,7 +9,7 @@ export default class DebouncedInput extends Component {
   debouncedOnChange = debounce(this.props.onChange, 400)
 
   render () {
-    const { className, children } = this.props
+    const { children } = this.props
 
     return children({
       value: this.state.value,

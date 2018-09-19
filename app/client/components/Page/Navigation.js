@@ -4,10 +4,10 @@ import styles from './Navigation.css'
 
 const ITEMS = {
   'Welcome!': '/',
-  'RSVP': '/rsvp',
-  'Logistics': '/logistics',
-  'Photos': '/photos',
-  'Music': '/music'
+  RSVP: '/rsvp',
+  Logistics: '/logistics',
+  Photos: '/photos',
+  Music: '/music'
 }
 
 export default function Navigation ({ path, isAdmin }) {
@@ -18,7 +18,7 @@ export default function Navigation ({ path, isAdmin }) {
 
   return (
     <div className={styles.container}>
-      {Object.keys(items).map((name) => {
+      {Object.keys(items).map(name => {
         const isActive = path === items[name]
         return (
           <a

@@ -41,7 +41,7 @@ function getClient () {
 }
 
 function scheduleRefresh () {
-  const expiresAt = tokens.granted_at + (tokens.expires_in * 1000)
+  const expiresAt = tokens.granted_at + tokens.expires_in * 1000
   const expiresIn = expiresAt - Date.now()
 
   log.info(`Refreshing access token in ${Math.round(expiresIn / 1000)}s`)

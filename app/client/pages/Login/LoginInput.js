@@ -14,17 +14,26 @@ export default class LoginInput extends Component {
   }
 
   render () {
-    const { className, onChange, type, onEnter, autofocus, ...props } = this.props
+    const {
+      className,
+      onChange,
+      type,
+      onEnter,
+      autofocus,
+      ...props
+    } = this.props
     return (
       <input
         {...props}
         className={classnames(styles.input, className)}
         type={type}
-        onChange={(e) => onChange(e.target.value)}
-        onKeyPress={(e) => {
+        onChange={e => onChange(e.target.value)}
+        onKeyPress={e => {
           if (e.key === 'Enter' && onEnter) onEnter()
         }}
-        ref={(input) => { this.input = input }}
+        ref={input => {
+          this.input = input
+        }}
       />
     )
   }

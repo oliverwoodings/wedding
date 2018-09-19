@@ -9,18 +9,31 @@ import styles from './UserControls.css'
 function UserControls ({ userId, refetchUser, addGuest, removeUser, onRemove }) {
   return (
     <div className={styles.controls}>
-      <Button onClick={() => addGuest.execute({
-        userId,
-        guest: {
-          firstName: 'Joe',
-          lastName: 'Bloggs'
+      <Button
+        onClick={() =>
+          addGuest
+            .execute({
+              userId,
+              guest: {
+                firstName: 'Joe',
+                lastName: 'Bloggs'
+              }
+            })
+            .then(refetchUser)
         }
-      }).then(refetchUser)}>
+      >
         Add guest
       </Button>
-      <Button onClick={() => removeUser.execute({
-        userId
-      }).then(onRemove).then(refetchUser)}>
+      <Button
+        onClick={() =>
+          removeUser
+            .execute({
+              userId
+            })
+            .then(onRemove)
+            .then(refetchUser)
+        }
+      >
         Delete invite
       </Button>
     </div>

@@ -5,15 +5,7 @@ import LoginInput from './LoginInput'
 import Error from './Error'
 
 export default function CodeOrEmailForm (props) {
-  const {
-    query,
-    codeOrEmail,
-    onChange,
-    onSubmit,
-    isPending,
-    error,
-    userNotFound
-  } = props
+  const { codeOrEmail, onChange, onSubmit, error, userNotFound } = props
 
   const disabled = !codeOrEmail.trim().length
 
@@ -29,8 +21,9 @@ export default function CodeOrEmailForm (props) {
       <Button secondary onClick={onSubmit} disabled={disabled}>
         Next
       </Button>
-      <Error error={error}>{userNotFound && 'Sorry, that code or email doesn\'t exist!'}</Error>
+      <Error error={error}>
+        {userNotFound && "Sorry, that code or email doesn't exist!"}
+      </Error>
     </PageBody>
   )
 }
-

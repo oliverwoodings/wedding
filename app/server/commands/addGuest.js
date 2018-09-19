@@ -5,5 +5,7 @@ module.exports = async function addGuest (userId, params) {
     ...params,
     userId
   })
-  return knex('guests').where('id', guestId).first()
+  return knex('guests')
+    .where('id', guestId)
+    .first()
 }

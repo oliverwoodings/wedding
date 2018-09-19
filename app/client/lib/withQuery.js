@@ -1,8 +1,11 @@
 import React, { Component } from 'react'
 import axios from 'axios'
 
-export default function withQuery (Query, { mapPropsToVariables, name = 'query', lazy = false } = {}) {
-  return (InnerComponent) => {
+export default function withQuery (
+  Query,
+  { mapPropsToVariables, name = 'query', lazy = false } = {}
+) {
+  return InnerComponent => {
     return class WithQuery extends Component {
       state = {
         isPending: false,
@@ -28,7 +31,9 @@ export default function withQuery (Query, { mapPropsToVariables, name = 'query',
           return
         }
 
-        const mappedVariables = mapPropsToVariables ? mapPropsToVariables(this.props) : {}
+        const mappedVariables = mapPropsToVariables
+          ? mapPropsToVariables(this.props)
+          : {}
         const variables = {
           ...mappedVariables,
           ...additionalVariables
@@ -77,7 +82,7 @@ export default function withQuery (Query, { mapPropsToVariables, name = 'query',
       }
 
       haveVariablesChanged (toCheck) {
-        return Object.keys(toCheck).some((keyToCheck) => {
+        return Object.keys(toCheck).some(keyToCheck => {
           return toCheck[keyToCheck] !== this.state.lastVariables[keyToCheck]
         })
       }
@@ -86,10 +91,14 @@ export default function withQuery (Query, { mapPropsToVariables, name = 'query',
 }
 
 async function runQuery (query, variables) {
-  const { data } = await axios.post('/graphql', {
-    query,
-    variables
-  }, { withCredentials: true })
+  const { data } = await axios.post(
+    '/graphql',
+    {
+      query,
+      variables
+    },
+    { withCredentials: true }
+  )
 
   return data
 }

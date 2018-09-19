@@ -52,10 +52,6 @@ export default class AudioGraph extends Component {
       bars.unshift(<div key={`bar-${i}-2`} style={{ height }} />)
     }
 
-    return (
-      <div className={styles.graph}>
-        {bars}
-      </div>
-    )
+    return <div className={styles.graph}>{bars}</div>
   }
 }

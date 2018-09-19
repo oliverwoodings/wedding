@@ -12,7 +12,6 @@ const addGuest = require('./commands/addGuest')
 const removeGuest = require('./commands/removeGuest')
 const removeUser = require('./commands/removeUser')
 const addTrackToPlaylist = require('./commands/addTrackToPlaylist')
-const auditAction = require('./commands/auditAction')
 
 const NON_ADMIN_GUEST_WHITELIST = [
   'isAttending',
@@ -54,7 +53,7 @@ module.exports = {
     async changePassword (obj, args, context) {
       const { code, email, password } = args
       await changePassword(code, email, password)
-      
+
       const { sessionId, user } = await login(email, password)
       context.setSessionId(sessionId)
       context.user = user

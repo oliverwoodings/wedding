@@ -1,5 +1,4 @@
 import React, { Component, Fragment } from 'react'
-import classnames from 'classnames'
 import { Link } from '../../components/typography'
 import withQuery from '../../lib/withQuery'
 import CodeOrEmailForm from './CodeOrEmailForm'
@@ -30,12 +29,17 @@ class Login extends Component {
   }
 
   componentWillUpdate ({ lookupQuery, user, goToHome }) {
-    const hasLookupFinished = !lookupQuery.isPending && this.props.lookupQuery.isPending
+    const hasLookupFinished =
+      !lookupQuery.isPending && this.props.lookupQuery.isPending
     const hasLookupFailed = lookupQuery.hasFailed
 
     if (user && !this.props.user) {
       goToHome()
-    } else if (hasLookupFinished && !hasLookupFailed && lookupQuery.data.publicUser) {
+    } else if (
+      hasLookupFinished &&
+      !hasLookupFailed &&
+      lookupQuery.data.publicUser
+    ) {
       const { publicUser } = lookupQuery.data
       this.setState({
         stage: publicUser.new ? STAGES.NEW_USER : STAGES.PASSWORD
@@ -55,7 +59,7 @@ class Login extends Component {
             userNotFound={userNotFound(lookupQuery, codeOrEmail)}
             error={lookupQuery.error}
             codeOrEmail={codeOrEmail}
-            onChange={(codeOrEmail) => this.setState({ codeOrEmail })}
+            onChange={codeOrEmail => this.setState({ codeOrEmail })}
             onSubmit={() => lookupQuery.execute({ codeOrEmail })}
           />
         )}
@@ -64,13 +68,13 @@ class Login extends Component {
             publicUser={lookupQuery.data.publicUser}
             codeOrEmail={codeOrEmail}
             onSuccess={refetchUser}
-            onResetPassword={() => this.setState({ stage: STAGES.RESET_PASSWORD })}
+            onResetPassword={() =>
+              this.setState({ stage: STAGES.RESET_PASSWORD })
+            }
           />
         )}
         {stage === STAGES.RESET_PASSWORD && (
-          <ResetPasswordForm
-            onSuccess={refetchUser}
-          />
+          <ResetPasswordForm onSuccess={refetchUser} />
         )}
         {stage === STAGES.NEW_USER && (
           <NewUserForm
@@ -80,15 +84,27 @@ class Login extends Component {
           />
         )}
         <div className={styles.support}>
-          Having trouble logging in? Oli is on 24/7 tech support, just drop him an <Link href='mailto:hello@danniandoli.wedding'>email</Link>.
+          Having trouble logging in? Oli is on 24/7 tech support, just drop him
+          an <Link href='mailto:hello@danniandoli.wedding'>email</Link>.
         </div>
       </Fragment>
     )
   }
 }
 
-export default withQuery(LookupQuery, { lazy: true, name: 'lookupQuery' })(Login)
+export default withQuery(LookupQuery, { lazy: true, name: 'lookupQuery' })(
+  Login
+)
 
-function userNotFound ({ hasExecuted, isPending, hasFailed, data, haveVariablesChanged }, codeOrEmail) {
-  return hasExecuted && !isPending && !hasFailed && !data.publicUser && !haveVariablesChanged({ codeOrEmail })
+function userNotFound (
+  { hasExecuted, isPending, hasFailed, data, haveVariablesChanged },
+  codeOrEmail
+) {
+  return (
+    hasExecuted &&
+    !isPending &&
+    !hasFailed &&
+    !data.publicUser &&
+    !haveVariablesChanged({ codeOrEmail })
+  )
 }

@@ -10,10 +10,12 @@ import styles from './EditUserModal.css'
 function EditUserModal ({ user, onClose, refetchUser, device }) {
   return (
     <Modal title={`Edit invite - ${user.code}`} onClose={onClose}>
-      <div className={classnames(styles.guests, styles[device], {
-        [styles.multiGuests]: user.guests.length > 1
-      })}>
-        {user.guests.map((guest) => (
+      <div
+        className={classnames(styles.guests, styles[device], {
+          [styles.multiGuests]: user.guests.length > 1
+        })}
+      >
+        {user.guests.map(guest => (
           <Guest
             fullControl
             userId={user.id}

@@ -4,10 +4,7 @@ import styles from './Select.css'
 
 export default function Select ({ className, children, ...props }) {
   return (
-    <select
-      className={classnames(styles.select, className)}
-      {...props}
-    >
+    <select className={classnames(styles.select, className)} {...props}>
       {children}
     </select>
   )

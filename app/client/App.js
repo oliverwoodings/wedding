@@ -1,10 +1,8 @@
 import React, { Component } from 'react'
 import compose from 'compose-function'
 import { get } from 'lodash-es'
-import PropTypes from 'prop-types'
 import ga from 'universal-ga'
 import Page from './components/Page'
-import Spinner from './components/Spinner'
 import withQuery from './lib/withQuery'
 import withAtom from './lib/withAtom'
 import withDevice from './lib/withDevice'
@@ -19,11 +17,21 @@ function mapAtom (state, split) {
 }
 
 class App extends Component {
-  componentWillUpdate ({ query, requiredAccessLevel, goToLogin, goToHome, path }) {
+  componentWillUpdate ({
+    query,
+    requiredAccessLevel,
+    goToLogin,
+    goToHome,
+    path
+  }) {
     const isPublicRoute = requiredAccessLevel === ACCESS_LEVELS.PUBLIC
     const isAdminRoute = requiredAccessLevel === ACCESS_LEVELS.ADMIN
 
-    if (query.hasFailed && get(query, 'error.type') === 'UNAUTHENTICATED' && !isPublicRoute) {
+    if (
+      query.hasFailed &&
+      get(query, 'error.type') === 'UNAUTHENTICATED' &&
+      !isPublicRoute
+    ) {
       return goToLogin()
     }
 

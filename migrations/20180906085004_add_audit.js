@@ -1,5 +1,5 @@
-exports.up = async (knex) => {
-  await knex.schema.createTable('audit', (table) => {
+exports.up = async knex => {
+  await knex.schema.createTable('audit', table => {
     table.increments()
     table.datetime('createdAt')
     table.integer('userId')
@@ -8,6 +8,6 @@ exports.up = async (knex) => {
   })
 }
 
-exports.down = async (knex) => {
+exports.down = async knex => {
   await knex.schema.dropTable('audit')
 }

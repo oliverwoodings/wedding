@@ -33,15 +33,18 @@ class PasswordForm extends Component {
           placeholder='Enter password'
           value={password}
           onEnter={!disabled && execute}
-          onChange={(password) => this.setState({ password })}
+          onChange={password => this.setState({ password })}
           autofocus
         />
         <Button secondary onClick={execute} disabled={disabled}>
           Login
         </Button>
-        {!login.haveVariablesChanged({ password }) && <Error error={login.error} />}
+        {!login.haveVariablesChanged({ password }) && (
+          <Error error={login.error} />
+        )}
         <div className={styles.forgotten}>
-          Forgotten your password? Reset it <Link onClick={onResetPassword}>here</Link>
+          Forgotten your password? Reset it{' '}
+          <Link onClick={onResetPassword}>here</Link>
         </div>
       </PageBody>
     )

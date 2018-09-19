@@ -6,7 +6,10 @@ module.exports = async function searchSpotify (query) {
   if (!query) return []
 
   const spotify = await getClient()
-  const { body } = await spotify.searchTracks(query, { market: 'gb', limit: 50 })
+  const { body } = await spotify.searchTracks(query, {
+    market: 'gb',
+    limit: 50
+  })
   const tracks = camelCase(body.tracks.items)
   for (const track of tracks) {
     track.isInPlaylist = await isTrackInPlaylist(track.id)
@@ -16,5 +19,5 @@ module.exports = async function searchSpotify (query) {
 
 async function isTrackInPlaylist (trackId) {
   const playlist = await getPlaylist()
-  return playlist.some((track) => track.id === trackId)
+  return playlist.some(track => track.id === trackId)
 }

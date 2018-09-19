@@ -5,7 +5,7 @@ const getUserById = require('../queries/getUserById')
 const uid = new ShortUniqueId()
 
 module.exports = async function createUser (user = {}, guests = []) {
-  const userId = await knex.transaction(async (trx) => {
+  const userId = await knex.transaction(async trx => {
     const code = await generateCode(trx)
     const [userId] = await trx('users').insert({
       code,
@@ -31,7 +31,9 @@ async function generateCode (trx, attempt = 1) {
   }
 
   const code = uid.randomUUID(6).toUpperCase()
-  const existingUser = await trx('users').where('code', code).first()
+  const existingUser = await trx('users')
+    .where('code', code)
+    .first()
   if (existingUser) {
     return generateCode(trx, attempt + 1)
   }

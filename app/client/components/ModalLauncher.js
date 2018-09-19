@@ -13,18 +13,21 @@ export default class ModalLauncher extends Component {
     return (
       <Fragment>
         {renderChildren({
-          openModal: (props) => this.setState({
-            modalOpen: true,
-            modalProps: props
-          })
+          openModal: props =>
+            this.setState({
+              modalOpen: true,
+              modalProps: props
+            })
         })}
-        {modalOpen && renderModal({
-          ...modalProps,
-          closeModal: () => this.setState({
-            modalOpen: false,
-            modalProps: null
-          })
-        })}
+        {modalOpen &&
+          renderModal({
+            ...modalProps,
+            closeModal: () =>
+              this.setState({
+                modalOpen: false,
+                modalProps: null
+              })
+          })}
       </Fragment>
     )
   }

@@ -15,10 +15,15 @@ const router = Router()
 router.use('/graphql', bodyParser.json(), graphqlExpress(graphqlOptions))
 router.get('/graphiql', graphiqlExpress({ endpointURL: '/graphql' }))
 router.get('/preview/:url', authenticate, previewSpotifyTrack)
-router.get('/spotify/callback', authenticate, requireAdmin, async (req, res, next) => {
-  await spotify.authCallback(req.query.code)
-  res.send('ok')
-})
+router.get(
+  '/spotify/callback',
+  authenticate,
+  requireAdmin,
+  async (req, res, next) => {
+    await spotify.authCallback(req.query.code)
+    res.send('ok')
+  }
+)
 router.get('/spotify/auth', authenticate, requireAdmin, (req, res) => {
   res.redirect(spotify.getAuthUrl())
 })
@@ -38,9 +43,9 @@ router.get('*', (req, res) => {
       <link rel='stylesheet' preload href='https://fonts.googleapis.com/css?family=Raleway:300,400,600|Shadows+Into+Light+Two' />
     </head>
     <body>
-      ${options.assets.map(asset =>
-        `<script type='text/javascript' src='${asset}'></script>`
-      ).join('\n')}
+      ${options.assets
+    .map(asset => `<script type='text/javascript' src='${asset}'></script>`)
+    .join('\n')}
     </body>
   </html>
 `)

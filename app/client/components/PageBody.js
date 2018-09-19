@@ -4,11 +4,20 @@ import { SubTitle } from './typography'
 import Button from './Button'
 import styles from './PageBody.css'
 
-export default function PageBody ({ title, children, fill, className, next, prev }) {
+export default function PageBody ({
+  title,
+  children,
+  fill,
+  className,
+  next,
+  prev
+}) {
   return (
-    <div className={classnames(styles.body, {
-      [styles.fill]: fill
-    })}>
+    <div
+      className={classnames(styles.body, {
+        [styles.fill]: fill
+      })}
+    >
       {title && <SubTitle className={styles.title}>{title}</SubTitle>}
       <div className={classnames(styles.children, className)}>{children}</div>
       <PrevNext prev={prev} next={next} />

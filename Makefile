@@ -20,3 +20,6 @@ analyse: build
 
 logs:
 	npx pm2 deploy production exec "pm2 logs wedding"
+
+lint:
+	npx standard

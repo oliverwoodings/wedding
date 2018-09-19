@@ -21,14 +21,15 @@ function formatError (error) {
         case 'INVALID_USER_ID':
           return 'Sorry, that code or email does not exist'
         case 'INVALID_PASSWORD':
-          return 'Whoops! That password isn\'t correct'
+          return "Whoops! That password isn't correct"
         case 'EMAIL_MISMATCH':
-          return 'Sorry, that isn\'t the email you signed up with'
+          return "Sorry, that isn't the email you signed up with"
         case 'INVALID_CODE':
           return 'Sorry, that code does not exist'
         case 'DUPLICATE_EMAIL':
           return 'Sorry, that email is already taken'
       }
+      break
     default:
       return 'Sorry, something went wrong :('
   }

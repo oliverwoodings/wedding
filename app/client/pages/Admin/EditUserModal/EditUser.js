@@ -25,10 +25,10 @@ function EditUser ({ user, updateUser, refetchUser }) {
         Group
         <Select
           className={styles.select}
-          onChange={update('group', (e) => e.target.value)}
+          onChange={update('group', e => e.target.value)}
           value={group || ''}
         >
-          {GROUPS.map((group) => (
+          {GROUPS.map(group => (
             <option value={group} key={group}>
               {startCase(group) || '-'}
             </option>
@@ -47,38 +47,39 @@ function EditUser ({ user, updateUser, refetchUser }) {
         Address
         <DebouncedInput
           initialValue={address}
-          onChange={(value) => updateUser.execute({
-            userId: user.id,
-            user: {
-              address: value
-            }
-          })}
+          onChange={value =>
+            updateUser.execute({
+              userId: user.id,
+              user: {
+                address: value
+              }
+            })
+          }
         >
-          {(props) => (
-            <textarea
-              {...props}
-              className={styles.address}
-            />
-          )}
+          {props => <textarea {...props} className={styles.address} />}
         </DebouncedInput>
       </div>
     </div>
   )
 
   function update (attribute, getValue) {
-    return (value) => {
+    return value => {
       if (getValue) {
         value = getValue(value)
       }
 
-      updateUser.execute({
-        userId: user.id,
-        user: {
-          [attribute]: value
-        }
-      }).then(refetchUser)
+      updateUser
+        .execute({
+          userId: user.id,
+          user: {
+            [attribute]: value
+          }
+        })
+        .then(refetchUser)
     }
   }
 }
 
-export default withMutation(UpdateUserMutation, { name: 'updateUser' })(EditUser)
+export default withMutation(UpdateUserMutation, { name: 'updateUser' })(
+  EditUser
+)

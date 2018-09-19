@@ -6,8 +6,5 @@ module.exports = function previewSpotifyTrack (req, res, next) {
     method: 'GET',
     url,
     responseType: 'stream'
-  }).then(
-    ({ data }) => data.pipe(res),
-    (err) => next(err)
-  )
+  }).then(({ data }) => data.pipe(res), err => next(err))
 }

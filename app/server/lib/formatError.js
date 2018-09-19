@@ -2,13 +2,7 @@ const raven = require('raven')
 const log = require('../log')
 
 module.exports = function formatError (error) {
-  const {
-    message,
-    locations,
-    path,
-    originalError = {},
-    stack
-  } = error
+  const { message, locations, path, originalError = {}, stack } = error
 
   if (originalError.client) {
     log.warn(stack || message)

@@ -10,11 +10,11 @@ function Modal ({ title, children, className, onClose, device }) {
       <div className={styles.modal}>
         <div className={styles.header}>
           <SubTitle className={styles.title}>{title}</SubTitle>
-          <div onClick={onClose} className={styles.close}>✕</div>
+          <div onClick={onClose} className={styles.close}>
+            ✕
+          </div>
         </div>
-        <div className={classnames(styles.body, className)}>
-          {children}
-        </div>
+        <div className={classnames(styles.body, className)}>{children}</div>
       </div>
     </div>
   )

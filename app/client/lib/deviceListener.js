@@ -19,7 +19,5 @@ function convertQuery (query) {
 }
 
 function hyphenateStyle (styleName) {
-  return styleName
-    .replace(/[A-Z]/g, '-$&')
-    .toLowerCase()
+  return styleName.replace(/[A-Z]/g, '-$&').toLowerCase()
 }

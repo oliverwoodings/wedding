@@ -1,12 +1,5 @@
 import React, { Component } from 'react'
-import {
-  mapValues,
-  lowerCase,
-  upperFirst,
-  map,
-  sum,
-  round
-} from 'lodash-es'
+import { mapValues, lowerCase, upperFirst, map, sum, round } from 'lodash-es'
 import PieChart from 'react-minimal-pie-chart'
 import Select from '../../components/Select'
 import Nope from '../../components/Nope'
@@ -21,11 +14,7 @@ const COLORS = [
   '#cdd7e2'
 ]
 
-const METRICS = [
-  'invitedByGroup',
-  'attendingByAge',
-  'attendance'
-]
+const METRICS = ['invitedByGroup', 'attendingByAge', 'attendance']
 
 export default class UsersSummary extends Component {
   state = {
@@ -41,20 +30,14 @@ export default class UsersSummary extends Component {
     return (
       <div className={styles.container}>
         <div className={styles.selects}>
-          <Select
-            onChange={this.select('metric')}
-            value={metric}
-          >
-            {METRICS.map((metric) => (
+          <Select onChange={this.select('metric')} value={metric}>
+            {METRICS.map(metric => (
               <option value={metric} key={metric}>
                 {upperFirst(lowerCase(metric))}
               </option>
             ))}
           </Select>
-          <Select
-            onChange={this.select('type')}
-            value={type}
-          >
+          <Select onChange={this.select('type')} value={type}>
             <option value='reception'>Reception</option>
             <option value='evening'>Evening</option>
           </Select>
@@ -65,7 +48,7 @@ export default class UsersSummary extends Component {
   }
 
   select (attr) {
-    return (e) => {
+    return e => {
       this.setState({
         [attr]: e.target.value
       })
@@ -86,7 +69,9 @@ function Chart ({ data }) {
         {data.map(({ title, value, color }) => (
           <div key={title} className={styles.legendItem}>
             <span style={{ backgroundColor: color }} />
-            {upperFirst(lowerCase(title))} - {value} ({round(100 / total * value, 1)}%)
+            {upperFirst(lowerCase(title))} - {value} (
+            {round(100 / total * value, 1)}
+            %)
           </div>
         ))}
       </div>
@@ -105,30 +90,36 @@ function getBreakdown (users) {
   }
 
   for (const user of users) {
-    inc('invitedByGroup', user.group || '-', user.guests.length)
+    inc(user, 'invitedByGroup', user.group || '-', user.guests.length)
 
     for (const guest of user.guests) {
-      inc('attendingByAge', guest.isChild ? 'child' : 'adult')
-      inc('attendance', guest.isAttending === true ? 'yes' : guest.isAttending === false ? 'no' : 'maybe')
-    }
-
-    function inc (metric, series, by = 1) {
-      const obj = user.eveningOnly ? data.evening : data.reception
-      obj[metric] = obj[metric] || {}
-      obj[metric][series] = obj[metric][series] || 0
-      obj[metric][series] += by
+      inc(user, 'attendingByAge', guest.isChild ? 'child' : 'adult')
+      inc(
+        user,
+        'attendance',
+        guest.isAttending === true
+          ? 'yes'
+          : guest.isAttending === false ? 'no' : 'maybe'
+      )
     }
   }
 
   return mapValues(data, toSeries)
+
+  function inc (user, metric, series, by = 1) {
+    const obj = user.eveningOnly ? data.evening : data.reception
+    obj[metric] = obj[metric] || {}
+    obj[metric][series] = obj[metric][series] || 0
+    obj[metric][series] += by
+  }
 }
 
 function toSeries (data) {
-  return mapValues(data, (series) => (
+  return mapValues(data, series =>
     Object.keys(series).map((key, index) => ({
       title: key,
       value: series[key],
       color: COLORS[index]
     }))
-  ))
+  )
 }

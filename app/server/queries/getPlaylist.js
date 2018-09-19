@@ -21,10 +21,14 @@ module.exports.clearCache = function clearCache () {
 
 async function getAllPlaylistTracks (tracks = [], offset = 0) {
   const spotify = await getClient()
-  const { body } = await spotify.getPlaylistTracks(config.spotify.userId, config.spotify.playlistId, {
-    limit: 1,
-    offset
-  })
+  const { body } = await spotify.getPlaylistTracks(
+    config.spotify.userId,
+    config.spotify.playlistId,
+    {
+      limit: 1,
+      offset
+    }
+  )
 
   tracks = [...tracks, ...body.items]
   if (body.next) {
