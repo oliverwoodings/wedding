@@ -14,6 +14,10 @@ module.exports = async function changePassword (code, email, password) {
     throw new AuthenticationError('EMAIL_MISMATCH')
   }
 
+  if (user.isAdmin) {
+    throw new AuthenticationError('EMAIL_MISMATCH')
+  }
+
   if (password.length < 8) {
     throw new AuthenticationError('INSECURE_PASSWORD')
   }

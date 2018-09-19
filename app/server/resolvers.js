@@ -70,7 +70,7 @@ module.exports = {
       if (context.user.isAdmin && args.userId) {
         userId = args.userId
       } else if (!context.user.isAdmin) {
-        guest = pick(params, NON_ADMIN_GUEST_WHITELIST)
+        guest = pick(guest, NON_ADMIN_GUEST_WHITELIST)
       }
       await context.audit('UPDATE_GUEST', { guestId, guest })
 
