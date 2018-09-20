@@ -45,7 +45,7 @@ export default function Logistics ({ user }) {
           drive. If you are looking for a larger town to base yourself in then
           Kingsbridge or Ivybridge are both lovely. You can find holiday
           cottages, BnBs and hotels in all of these places via websites such as{' '}
-          <Link href='https://www.airbnb.co.uk/'>Airbnb</Link> and{' '}
+          <Link href='https://www.airbnb.co.uk/c/owoodings'>Airbnb</Link> and{' '}
           <Link href='https://www.booking.com/'>Booking.com</Link>.
         </P>
         <P>
