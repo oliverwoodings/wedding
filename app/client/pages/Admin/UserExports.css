@@ -1,0 +1,11 @@
+@import '../../variables.css';
+
+.exports {
+  justify-content: center;
+  margin-top: var(--spacing-l);
+  display: flex;
+}
+
+.exports > *:last-child {
+  margin-left: var(--spacing-l);
+}

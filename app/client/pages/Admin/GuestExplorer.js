@@ -1,5 +1,5 @@
 import React, { Component, Fragment } from 'react'
-import { flatten, map, forEach, get } from 'lodash-es'
+import { flatten, map, forEach } from 'lodash-es'
 import Select from '../../components/Select'
 import Table from '../../components/Table'
 import Nope from '../../components/Nope'
@@ -35,7 +35,7 @@ const VIEWS = [
   },
   {
     name: 'Missing address',
-    filter: guest => !get(guest, 'user.address', '').trim()
+    filter: guest => !(guest.user.address || '').trim()
   }
 ]
 

@@ -10,6 +10,7 @@ import Button from '../../components/Button'
 import EditUserModal from './EditUserModal'
 import UsersTable from './UsersTable'
 import UsersSummary from './UsersSummary'
+import UserExports from './UserExports'
 import GuestExplorer from './GuestExplorer'
 import UsersQuery from './Users.graphql'
 import CreateUserMutation from './CreateUser.graphql'
@@ -48,6 +49,7 @@ function Admin ({ query, createUser }) {
             </Button>
             <H>Summary</H>
             <UsersSummary users={users} />
+            <UserExports users={users} />
             <H>Guest list</H>
             <GuestExplorer
               users={users}
