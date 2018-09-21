@@ -35,7 +35,7 @@ const VIEWS = [
   },
   {
     name: 'Missing address',
-    filter: guest => !get(guest, 'address', '').trim()
+    filter: guest => !get(guest, 'user.address', '').trim()
   }
 ]
 
