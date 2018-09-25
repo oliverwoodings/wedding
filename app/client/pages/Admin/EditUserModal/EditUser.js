@@ -48,12 +48,14 @@ function EditUser ({ user, updateUser, refetchUser }) {
         <DebouncedInput
           initialValue={address}
           onChange={value =>
-            updateUser.execute({
-              userId: user.id,
-              user: {
-                address: value
-              }
-            })
+            updateUser
+              .execute({
+                userId: user.id,
+                user: {
+                  address: value
+                }
+              })
+              .then(refetchUser)
           }
         >
           {props => <textarea {...props} className={styles.address} />}
