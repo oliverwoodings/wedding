@@ -23,13 +23,14 @@ export default function UserExport ({ users }) {
 }
 
 function downloadInvites (users) {
-  const rows = [['Guests', 'Group', 'Type', 'Address']]
+  const rows = [['Guests', 'Code', 'Group', 'Type', 'Address']]
 
   for (const user of users) {
     rows.push([
       user.guests
         .map(({ firstName, lastName }) => `${firstName} ${lastName}`)
         .join(', '),
+      user.code,
       user.group,
       user.eveningOnly ? 'Evening' : 'Reception',
       (user.address || 'Unknown').replace(/\n/g, ', ')
