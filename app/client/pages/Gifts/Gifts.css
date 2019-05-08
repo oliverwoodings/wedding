@@ -1,0 +1,30 @@
+@import '../../variables.css';
+
+.root {
+  max-width: 920px;
+  padding: 0 var(--spacing-m);
+}
+
+.paypalButton {
+  background: #ffc439;
+  align-self: center;
+  padding: 0 var(--spacing-xl);
+  margin: var(--spacing-l) 0;
+}
+
+.paypalButton img {
+  height: 50%;
+}
+
+.paypalButton:hover {
+  background: rgb(238, 173, 42) !important;
+}
+
+.disclaimer {
+  font-size: 12px;
+  line-height: 14px;
+  font-style: italic;
+  text-align: center;
+  width: 80%;
+  align-self: center;
+}

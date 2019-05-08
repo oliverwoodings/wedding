@@ -6,6 +6,7 @@ const ITEMS = {
   'Welcome!': '/',
   RSVP: '/rsvp',
   Logistics: '/logistics',
+  Gifts: '/gifts',
   Photos: '/photos',
   Music: '/music'
 }
