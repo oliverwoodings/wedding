@@ -15,8 +15,8 @@ export default function Gifts () {
       <P>
         We are delighted that you are able to celebrate our wedding with us and
         many of you have kindly asked to see a wedding gift list. We feel that
-        you being here is sufficient and when we started looking at the services
-        on offer were hugely put off by their materialistic nature.
+        you being here is more than enough and when we started looking at the
+        services on offer were hugely put off by their materialistic nature.
       </P>
       <P>
         We are lucky enough to have everything we need in our home, however
