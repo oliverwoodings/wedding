@@ -22,7 +22,7 @@ export default function Logistics ({ user }) {
       title='Logistics'
       className={styles.root}
       prev='/rsvp'
-      next='/photos'
+      next='/gifts'
     >
       <Block header='Getting to the area'>
         <P>
