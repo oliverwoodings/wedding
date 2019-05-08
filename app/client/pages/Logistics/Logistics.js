@@ -22,7 +22,7 @@ export default function Logistics ({ user }) {
       title='Logistics'
       className={styles.root}
       prev='/rsvp'
-      next='/photos'
+      next='/gifts'
     >
       <Block header='Getting to the area'>
         <P>
@@ -62,10 +62,11 @@ export default function Logistics ({ user }) {
       <Block header='On the day'>
         <InviteType eveningOnly={user.eveningOnly} />
         <P>
-          Parking will be available in a nearby field in Ringmore. We'll update
-          you once we have a location confirmed! There will also be signage on
-          the day. Please <Strong>do not</Strong> use the pub car park (opposite
-          the church) or the National Trust car park in the village.
+          Parking is available in a field on the right as you come into the
+          village, which you can see on the map below. There will also be
+          signage on the day for each location. Please <Strong>do not</Strong>{' '}
+          use the pub car park (opposite the church) or the National Trust car
+          park in the village.
         </P>
         {!user.eveningOnly && (
           <P>

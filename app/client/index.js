@@ -16,6 +16,7 @@ import Photos from './pages/Photos'
 import RSVP from './pages/RSVP'
 import Admin from './pages/Admin'
 import Logistics from './pages/Logistics'
+import Gifts from './pages/Gifts'
 import App from './App'
 import { evolve, initialState } from './evolve'
 import createDeviceListener from './lib/deviceListener'
@@ -43,12 +44,13 @@ const router = createRouter([
       ['/login', access(Login, ACCESS_LEVELS.PUBLIC)],
       ['/music', Music],
       ['/admin', access(Admin, ACCESS_LEVELS.ADMIN)],
+      ['/gifts', Gifts],
       ['*', NotFound]
     ]
   ]
 ])
 
-console.log("Well you're a bit of a nosy parker, aren't you?")
+console.log("Well you're a bit nosy, aren't you?")
 console.log(
   'This is probably what you are after: https://github.com/oliverwoodings/wedding'
 )

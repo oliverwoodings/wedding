@@ -12,7 +12,7 @@
 }
 
 .header:not(:first-child) {
-  margin-top: var(--spacing-s);
+  margin-top: var(--spacing-l);
 }
 
 .header {

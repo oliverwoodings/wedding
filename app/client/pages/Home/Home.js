@@ -13,7 +13,13 @@ export default function Home ({ user }) {
       <P>
         You are invited to join us at our wedding on the 27th of July 2019! The
         big day will be taking place in the lovely village of{' '}
-        <Link href='http://www.ringmore.info/'>Ringmore, South Devon</Link>.
+        <Link
+          href='https://www.google.com/maps/d/viewer?mid=1gTwUgiOVTc5bIdy9KYu6L5j9mgqLgfbx'
+          target='_blank'
+        >
+          Ringmore, South Devon
+        </Link>
+        .
       </P>
       <Image src='/static/images/us.jpg' />
       <InviteType eveningOnly={user.eveningOnly} />

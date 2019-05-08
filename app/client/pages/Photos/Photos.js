@@ -8,7 +8,7 @@ export default function Photos () {
   return (
     <PageBody
       title='Photos'
-      prev='/logistics'
+      prev='/gifts'
       next='/music'
       className={styles.root}
     >
