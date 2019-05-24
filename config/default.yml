@@ -19,3 +19,9 @@ mysql:
 sentry:
   enabled: false
   dsn: https://94e680aa0e3b4cec8fb1b78c735f5124@sentry.io/1270305
+
+photos:
+  folder: 1NHtcvKmY7P-37ikts4Hk6uzlnFjUACK4
+
+forcePostWedding: false
+weddingDate: '2019-07-27'

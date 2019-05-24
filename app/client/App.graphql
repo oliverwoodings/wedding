@@ -13,4 +13,5 @@ query App {
     eveningOnly
     isAdmin
   }
+  isAfterWedding
 }

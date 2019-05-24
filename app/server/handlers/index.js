@@ -4,17 +4,19 @@ const Router = require('express-promise-router')
 const { graphqlExpress, graphiqlExpress } = require('apollo-server-express')
 const bodyParser = require('body-parser')
 const express = require('express')
-const graphqlOptions = require('./graphqlOptions')
-const previewSpotifyTrack = require('./lib/previewSpotifyTrack')
-const spotify = require('./lib/spotify')
-const authenticate = require('./middleware/authenticate')
-const requireAdmin = require('./middleware/requireAdmin')
+const graphqlOptions = require('../graphqlOptions')
+const spotify = require('../lib/spotify')
+const authenticate = require('../middleware/authenticate')
+const requireAdmin = require('../middleware/requireAdmin')
+const previewSpotifyTrack = require('./previewSpotifyTrack')
+const proxyThumbnail = require('./proxyThumbnail')
 
 const router = Router()
 
 router.use('/graphql', bodyParser.json(), graphqlExpress(graphqlOptions))
 router.get('/graphiql', graphiqlExpress({ endpointURL: '/graphql' }))
 router.get('/preview/:url', authenticate, previewSpotifyTrack)
+router.get('/thumbnail/:url', authenticate, proxyThumbnail)
 router.get(
   '/spotify/callback',
   authenticate,
@@ -28,7 +30,10 @@ router.get('/spotify/auth', authenticate, requireAdmin, (req, res) => {
   res.redirect(spotify.getAuthUrl())
 })
 
-router.use('/static', express.static(path.resolve(__dirname, '../../static')))
+router.use(
+  '/static',
+  express.static(path.resolve(__dirname, '../../../static'))
+)
 
 router.get('/client/*', handle)
 router.get('*', (req, res) => {

@@ -9,12 +9,13 @@ export default function PageBody ({
   children,
   fill,
   className,
+  bodyClassName,
   next,
   prev
 }) {
   return (
     <div
-      className={classnames(styles.body, {
+      className={classnames(styles.body, bodyClassName, {
         [styles.fill]: fill
       })}
     >
