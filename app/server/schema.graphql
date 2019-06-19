@@ -1,8 +1,16 @@
+enum WeddingStatus {
+  PRE
+  TODAY
+  POST
+}
+
 type Query {
   publicUser(codeOrEmail: String!): PublicUser
   tracks(query: String!): [SpotifyTrack!]!
+  photos: [Photo!]!
   user: User
   users: [User!]!
+  weddingStatus: WeddingStatus!
 }
 
 type PublicUser {
@@ -14,9 +22,20 @@ type PublicGuest {
   firstName: String!
 }
 
+type SharedUser {
+  id: ID!
+  guests: [SharedGuest!]!
+}
+
+type SharedGuest {
+  id: ID!
+  firstName: String!
+  lastName: String!
+}
+
 type User {
   id: ID!
-  guests: [Guest]!
+  guests: [Guest!]!
   new: Boolean!
   code: String!
   email: String
@@ -64,6 +83,17 @@ type SpotifyArtist {
 
 type SpotifyExternalUrls {
   spotify: String
+}
+
+type Photo {
+  id: ID!
+  name: String!
+  width: Int!
+  height: Int!
+  thumbnailLink: String!
+  downloadLink: String!
+  uploader: SharedUser
+  tags: [String!]!
 }
 
 input GuestInput {

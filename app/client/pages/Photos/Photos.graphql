@@ -1,0 +1,18 @@
+query Photos {
+  photos {
+    id
+    name
+    width
+    height
+    thumbnailLink
+    downloadLink
+    uploader {
+      id
+      guests {
+        firstName
+        lastName
+      }
+    }
+    tags
+  }
+}

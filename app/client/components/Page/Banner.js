@@ -2,7 +2,7 @@ import React, { Fragment } from 'react'
 import { Title } from '../typography'
 import styles from './Banner.css'
 
-export default function Banner ({ minimalist }) {
+export default function Banner ({ minimalist, weddingStatus }) {
   return (
     <div className={styles.banner}>
       <div className={styles.top}>
@@ -15,7 +15,11 @@ export default function Banner ({ minimalist }) {
           <Title className={styles.names}>Oli & Danni</Title>
           <div className={styles.bottom}>
             <Chevrons />
-            <div className={styles.date}>27th July 2019</div>
+            <div className={styles.date}>
+              {weddingStatus === 'TODAY'
+                ? "TODAY'S THE DAY!"
+                : '27th July 2019'}
+            </div>
             <Chevrons />
           </div>
         </Fragment>

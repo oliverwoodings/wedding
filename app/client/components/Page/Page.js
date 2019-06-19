@@ -13,7 +13,14 @@ export default class Page extends Component {
   }
 
   render () {
-    const { children, minimalist, nav, path, isAdmin } = this.props
+    const {
+      children,
+      minimalist,
+      nav,
+      path,
+      isAdmin,
+      weddingStatus
+    } = this.props
     return (
       <div
         className={styles.page}
@@ -23,7 +30,7 @@ export default class Page extends Component {
       >
         <div className={styles.header}>
           <HeaderBackground image='church' />
-          <Banner minimalist={minimalist} />
+          <Banner minimalist={minimalist} weddingStatus={weddingStatus} />
           {nav && <Navigation path={path} isAdmin={isAdmin} />}
         </div>
         {children}

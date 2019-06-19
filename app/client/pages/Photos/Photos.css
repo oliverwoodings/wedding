@@ -1,6 +1,15 @@
 @import '../../variables.css';
 
-.root {
+.beforeWedding {
   max-width: 920px;
   padding: 0 var(--spacing-m);
+}
+
+.afterWedding {
+  flex-grow: 1;
+  width: 100%;
+}
+
+.bodyAfterWedding {
+  height: calc(100vh - 46px);
 }

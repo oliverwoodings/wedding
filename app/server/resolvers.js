@@ -1,8 +1,10 @@
 const { pick } = require('lodash')
 const getUser = require('./queries/getUser')
+const getUserById = require('./queries/getUserById')
 const getUsers = require('./queries/getUsers')
 const getUserGuests = require('./queries/getUserGuests')
 const searchSpotify = require('./queries/searchSpotify')
+const getPhotos = require('./queries/getPhotos')
 const login = require('./commands/login')
 const changePassword = require('./commands/changePassword')
 const updateGuest = require('./commands/updateGuest')
@@ -12,6 +14,7 @@ const addGuest = require('./commands/addGuest')
 const removeGuest = require('./commands/removeGuest')
 const removeUser = require('./commands/removeUser')
 const addTrackToPlaylist = require('./commands/addTrackToPlaylist')
+const weddingStatus = require('./lib/weddingStatus')
 
 const NON_ADMIN_GUEST_WHITELIST = [
   'isAttending',
@@ -37,6 +40,19 @@ module.exports = {
     async users (obj, args, context) {
       await context.requireAdmin()
       return getUsers()
+    },
+    async photos (obj, args, context) {
+      await context.authenticate()
+      return getPhotos()
+    },
+    weddingStatus
+  },
+  Photo: {
+    uploader (obj) {
+      if (!obj.uploader) {
+        return null
+      }
+      return getUserById(obj.uploader)
     }
   },
   Mutation: {
@@ -118,6 +134,11 @@ module.exports = {
     }
   },
   User: {
+    guests (obj) {
+      return getUserGuests(obj.id)
+    }
+  },
+  SharedUser: {
     guests (obj) {
       return getUserGuests(obj.id)
     }
