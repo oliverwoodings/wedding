@@ -1,10 +1,16 @@
+enum WeddingStatus {
+  PRE
+  TODAY
+  POST
+}
+
 type Query {
   publicUser(codeOrEmail: String!): PublicUser
   tracks(query: String!): [SpotifyTrack!]!
   photos: [Photo!]!
   user: User
   users: [User!]!
-  isAfterWedding: Boolean!
+  weddingStatus: WeddingStatus!
 }
 
 type PublicUser {

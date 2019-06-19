@@ -23,5 +23,5 @@ sentry:
 photos:
   folder: 1NHtcvKmY7P-37ikts4Hk6uzlnFjUACK4
 
-forcePostWedding: false
 weddingDate: '2019-07-27'
+weddingStatusOverride: 'TODAY'

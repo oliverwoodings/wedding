@@ -14,7 +14,7 @@ const addGuest = require('./commands/addGuest')
 const removeGuest = require('./commands/removeGuest')
 const removeUser = require('./commands/removeUser')
 const addTrackToPlaylist = require('./commands/addTrackToPlaylist')
-const isAfterWedding = require('./lib/isAfterWedding')
+const weddingStatus = require('./lib/weddingStatus')
 
 const NON_ADMIN_GUEST_WHITELIST = [
   'isAttending',
@@ -45,7 +45,7 @@ module.exports = {
       await context.authenticate()
       return getPhotos()
     },
-    isAfterWedding
+    weddingStatus
   },
   Photo: {
     uploader (obj) {

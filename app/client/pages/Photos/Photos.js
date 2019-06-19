@@ -4,8 +4,8 @@ import PhotosBeforeWedding from './PhotosBeforeWedding'
 import PhotosAfterWedding from './PhotosAfterWedding'
 import styles from './Photos.css'
 
-export default function Photos ({ isAfterWedding }) {
-  if (isAfterWedding) {
+export default function Photos ({ weddingStatus }) {
+  if (weddingStatus === 'TODAY' || weddingStatus === 'POST') {
     return (
       <PageBody
         title='Photos'
