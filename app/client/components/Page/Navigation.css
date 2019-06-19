@@ -10,7 +10,7 @@
 }
 
 .item {
-  background: var(--color-white-25);
+  background: var(--color-black-25);
   color: white;
   display: inline-block;
   margin: 0 var(--spacing-s) var(--spacing-s) 0;
@@ -22,5 +22,5 @@
 
 .item:hover,
 .activeItem {
-  background: var(--color-white-55);
+  background: var(--color-black-55);
 }

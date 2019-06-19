@@ -9,14 +9,14 @@
 }
 
 .background {
-  background-image: url('/static/images/church.jpg');
+  background-image: url('/static/images/beach.jpg');
   background-size: cover;
   background-position: center;
   background-repeat: no-repeat;
-  filter: blur(3px) contrast(150%);
   width: 110%;
   height: 110%;
   position: relative;
   top: -5%;
   left: -5%;
+  opacity: 1;
 }
