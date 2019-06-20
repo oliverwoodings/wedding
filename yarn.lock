@@ -8009,9 +8009,10 @@ source-map@^0.6.0, source-map@^0.6.1, source-map@~0.6.1:
   version "0.6.1"
   resolved "https://registry.yarnpkg.com/source-map/-/source-map-0.6.1.tgz#74722af32e9614e9c287a8d0bbde48b5e2f1a263"
 
-space-router@^0.5.1:
-  version "0.5.1"
-  resolved "https://registry.yarnpkg.com/space-router/-/space-router-0.5.1.tgz#6f439897ea8bc7e4f51a06fb30d59314c54481ef"
+space-router@^0.5.3:
+  version "0.5.3"
+  resolved "https://registry.yarnpkg.com/space-router/-/space-router-0.5.3.tgz#f2e89758e72d92208ca8eddeb8f5aef52b12c248"
+  integrity sha512-KGTBIF1novONRScYDYyvRenCAle8KuHQMCvqird86G5WUux26mnQ5JwXW8IQ4flG0Jr1W2i//H69EnE0CNNV3Q==
 
 spdx-correct@^3.0.0:
   version "3.0.0"

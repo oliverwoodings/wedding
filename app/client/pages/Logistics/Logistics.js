@@ -134,6 +134,23 @@ export default function Logistics ({ user, weddingStatus }) {
         ))}
       </Block>
       <Block header='Map'>
+        <P>
+          We've created a handy printable map of the village, annoted with
+          timings and locations for the day, which you can download by clicking{' '}
+          <Link href='/static/images/map.png' target='_blank'>
+            this link
+          </Link>
+          .
+        </P>
+        <P>
+          Below you can find a fully interactive Google Map, annotated with the
+          locations for the day. If you are using your mobile phone as a satnav,
+          you should be able to use this map to navigate directly to the
+          village. If not, the best postcode to use is in your satnav is{' '}
+          <Strong>TQ7 4HL</Strong>. This will take you right to the village, at
+          which point you can just follow signs for parking.
+        </P>
+        <br />
         <iframe
           src='https://www.google.com/maps/d/embed?mid=1gTwUgiOVTc5bIdy9KYu6L5j9mgqLgfbx'
           className={styles.map}
