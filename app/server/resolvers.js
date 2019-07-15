@@ -1,4 +1,5 @@
 const { pick } = require('lodash')
+const config = require('config')
 const getUser = require('./queries/getUser')
 const getUserById = require('./queries/getUserById')
 const getUsers = require('./queries/getUsers')
@@ -45,7 +46,10 @@ module.exports = {
       await context.authenticate()
       return getPhotos()
     },
-    weddingStatus
+    weddingStatus,
+    acceptPlaylistSubmissions () {
+      return config.acceptPlaylistSubmissions
+    }
   },
   Photo: {
     uploader (obj) {
@@ -123,6 +127,9 @@ module.exports = {
     },
     async addTrackToPlaylist (obj, args, context) {
       await context.authenticate()
+      if (!config.acceptPlaylistSubmissions) {
+        throw new Error('Playlist submissions are disabled')
+      }
       const { trackId } = args
       await context.audit('ADD_TO_PLAYLIST', { trackId })
       return addTrackToPlaylist(trackId)

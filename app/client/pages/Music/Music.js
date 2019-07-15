@@ -4,7 +4,7 @@ import { Paragraph as P, Link } from '../../components/typography'
 import SearchSpotify from './SearchSpotify'
 import styles from './Music.css'
 
-export default function Music () {
+export default function Music ({ acceptPlaylistSubmissions }) {
   return (
     <PageBody title='Music' prev='/photos' className={styles.body}>
       <P className={styles.p}>
@@ -13,12 +13,15 @@ export default function Music () {
         rest of the day (and night!), we need your help! Give us a hand by
         adding your favourite songs to our Spotify playlist:
       </P>
-      <SearchSpotify />
+      {acceptPlaylistSubmissions && <SearchSpotify />}
       <P className={styles.playlistLink}>
+        {!acceptPlaylistSubmissions &&
+          'Submissions for our wedding playlist are now closed while we prepare (and prune!!) it for the big day. '}
         Wanna check out what's already been added? Follow the playlist on{' '}
         <Link href='https://open.spotify.com/playlist/7ECCTRm37FPMkOMJ5nNvmr'>
           Spotify
-        </Link>.
+        </Link>
+        .
       </P>
     </PageBody>
   )

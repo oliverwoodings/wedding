@@ -61,11 +61,10 @@ class App extends Component {
       return null
     }
 
-    const user = query.data && query.data.user
+    const { user, ...otherData } = query.data || {}
     if (user) {
       ga.set('userId', user.id)
     }
-    const weddingStatus = get(query, 'data.weddingStatus')
 
     return (
       <Page
@@ -73,10 +72,10 @@ class App extends Component {
         nav={!isPublicRoute}
         path={path}
         isAdmin={user && user.isAdmin}
-        weddingStatus={weddingStatus}
+        {...otherData}
       >
         {children({
-          weddingStatus,
+          ...otherData,
           user,
           refetchUser: query.execute,
           goToHome

@@ -11,6 +11,7 @@ type Query {
   user: User
   users: [User!]!
   weddingStatus: WeddingStatus!
+  acceptPlaylistSubmissions: Boolean!
 }
 
 type PublicUser {
