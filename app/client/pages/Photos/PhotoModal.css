@@ -1,0 +1,16 @@
+@import '../../variables.css';
+
+.root {
+  top: 0;
+  bottom: 0;
+  right: 0;
+  left: 0;
+  position: fixed;
+}
+
+.backdrop {
+  background: var(--color-black-70);
+  position: absolute;
+  width: 100%;
+  height: 100%;
+}

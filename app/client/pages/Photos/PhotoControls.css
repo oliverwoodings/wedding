@@ -1,0 +1,51 @@
+@import '../../variables.css';
+
+.root {
+  align-items: center;
+  display: flex;
+  justify-content: center;
+  margin-bottom: var(--spacing-m);
+}
+
+.toggle {
+  display: flex;
+}
+
+.toggle div {
+  align-items: center;
+  border: 1px solid var(--color-blue-55);
+  color: var(--color-blue-55);
+  cursor: pointer;
+  display: flex;
+  justify-content: center;
+  height: 44px;
+  padding: 0 var(--spacing-l);
+  text-align: center;
+  transition: all var(--transition-short);
+}
+
+.toggle div:hover {
+  background: var(--color-blue-10);
+}
+
+.toggle div:first-child {
+  border-top-left-radius: var(--border-radius-m);
+  border-bottom-left-radius: var(--border-radius-m);
+  border-right: none;
+}
+
+.toggle div:last-child {
+  border-top-right-radius: var(--border-radius-m);
+  border-bottom-right-radius: var(--border-radius-m);
+}
+
+.official div:first-child,
+.guest div:last-child {
+  background: var(--color-blue-55);
+  cursor: default;
+  color: white;
+}
+
+.upload {
+  margin-left: var(--spacing-m);
+}

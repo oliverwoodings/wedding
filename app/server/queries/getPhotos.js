@@ -10,7 +10,7 @@ const FILE_FIELDS = [
   'description'
 ]
 
-module.exports = async function getPhotos () {
+module.exports = async function getPhotos (type = 'OFFICIAL') {
   const drive = await getClient()
 
   const photos = []
@@ -23,7 +23,7 @@ module.exports = async function getPhotos () {
       pageSize: 100,
       pageToken: nextPageToken,
       fields: `nextPageToken, files(${FILE_FIELDS.join(', ')})`,
-      q: `'${config.photos.folder}' in parents`
+      q: `'${config.photos.folders[type]}' in parents`
     })
     photos.push(...data.files)
     if (data.nextPageToken) {

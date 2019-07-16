@@ -1,4 +1,33 @@
+@import '../../variables.css';
+
 .root {
+  display: flex;
+  flex-direction: column;
+  flex-grow: 1;
+}
+
+.gallery {
+  display: flex;
+  flex-grow: 1;
+}
+
+.pyramid {
   width: 100%;
   height: 100%;
+}
+
+:global(.pyramid__element__img) {
+  cursor: pointer !important;
+}
+
+:global(.pyramid__element:hover) {
+  filter: brightness(80%);
+}
+
+.modal {
+  position: fixed;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
 }

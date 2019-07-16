@@ -21,7 +21,9 @@ sentry:
   dsn: https://94e680aa0e3b4cec8fb1b78c735f5124@sentry.io/1270305
 
 photos:
-  folder: 1NHtcvKmY7P-37ikts4Hk6uzlnFjUACK4
+  folders:
+    GUEST: 1MCV5yLNzSXOm5Zfz_W2-Oj1sYxXIkQtG
+    OFFICIAL: 1Vc-5MGhcHsnyBL4Jl685sCS-SKPtJZnA
 
 weddingDate: '2019-07-27'
 weddingStatusOverride: null

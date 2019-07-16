@@ -44,7 +44,7 @@ module.exports = {
     },
     async photos (obj, args, context) {
       await context.authenticate()
-      return getPhotos()
+      return getPhotos(args.type)
     },
     weddingStatus,
     acceptPlaylistSubmissions () {

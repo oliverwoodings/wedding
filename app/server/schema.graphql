@@ -7,7 +7,7 @@ enum WeddingStatus {
 type Query {
   publicUser(codeOrEmail: String!): PublicUser
   tracks(query: String!): [SpotifyTrack!]!
-  photos: [Photo!]!
+  photos(type: PhotoType!): [Photo!]!
   user: User
   users: [User!]!
   weddingStatus: WeddingStatus!
@@ -84,6 +84,11 @@ type SpotifyArtist {
 
 type SpotifyExternalUrls {
   spotify: String
+}
+
+enum PhotoType {
+  OFFICIAL
+  GUEST
 }
 
 type Photo {
