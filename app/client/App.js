@@ -73,7 +73,6 @@ class App extends Component {
     if (statusFromQuery && user.isAdmin) {
       otherData.weddingStatus = statusFromQuery
     }
-    console.log(otherData)
 
     return (
       <Page
