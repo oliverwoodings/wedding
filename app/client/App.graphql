@@ -15,4 +15,5 @@ query App {
   }
   weddingStatus
   acceptPlaylistSubmissions
+  hasOfficialPhotos
 }

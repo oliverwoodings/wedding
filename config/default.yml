@@ -22,9 +22,10 @@ sentry:
 
 photos:
   folders:
-    GUEST: 1MCV5yLNzSXOm5Zfz_W2-Oj1sYxXIkQtG
-    OFFICIAL: 1Vc-5MGhcHsnyBL4Jl685sCS-SKPtJZnA
+    GUEST: 1UxdGVeWWX6ew78KSNPc90qugKQ99NCFd
+    OFFICIAL: 10kvZmL6Iu9siR4gPw9wkJ4OwiwdGf4jV
 
 weddingDate: '2019-07-27'
 weddingStatusOverride: null
 acceptPlaylistSubmissions: true
+hasOfficialPhotos: false

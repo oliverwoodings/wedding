@@ -4,7 +4,7 @@ import PhotosBeforeWedding from './PhotosBeforeWedding'
 import PhotosAfterWedding from './PhotosAfterWedding'
 import styles from './Photos.css'
 
-export default function Photos ({ weddingStatus }) {
+export default function Photos ({ weddingStatus, hasOfficialPhotos }) {
   if (weddingStatus === 'TODAY' || weddingStatus === 'POST') {
     return (
       <PageBody
@@ -12,7 +12,7 @@ export default function Photos ({ weddingStatus }) {
         className={styles.afterWedding}
         bodyClassName={styles.bodyAfterWedding}
       >
-        <PhotosAfterWedding />
+        <PhotosAfterWedding hasOfficialPhotos={hasOfficialPhotos} />
       </PageBody>
     )
   }

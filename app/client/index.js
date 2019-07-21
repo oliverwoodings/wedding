@@ -1,4 +1,6 @@
 import './global.css'
+import 'react-dropzone-uploader/dist/styles.css'
+import 'react-toastify/dist/ReactToastify.css'
 
 import React from 'react'
 import ReactDom from 'react-dom'

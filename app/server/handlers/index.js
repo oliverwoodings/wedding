@@ -1,6 +1,7 @@
 const { handle, options } = require('jetpack/handle')
 const path = require('path')
 const Router = require('express-promise-router')
+const fileUpload = require('express-fileupload')
 const { graphqlExpress, graphiqlExpress } = require('apollo-server-express')
 const bodyParser = require('body-parser')
 const express = require('express')
@@ -9,14 +10,23 @@ const spotify = require('../lib/spotify')
 const authenticate = require('../middleware/authenticate')
 const requireAdmin = require('../middleware/requireAdmin')
 const previewSpotifyTrack = require('./previewSpotifyTrack')
-const proxyThumbnail = require('./proxyThumbnail')
+const proxyImage = require('./proxyImage')
+const uploadImage = require('./uploadImage')
 
 const router = Router()
 
 router.use('/graphql', bodyParser.json(), graphqlExpress(graphqlOptions))
 router.get('/graphiql', graphiqlExpress({ endpointURL: '/graphql' }))
 router.get('/preview/:url', authenticate, previewSpotifyTrack)
-router.get('/thumbnail/:url', authenticate, proxyThumbnail)
+router.get('/image/:type/:id', authenticate, proxyImage)
+router.post(
+  '/image',
+  authenticate,
+  fileUpload({
+    limits: { fileSize: 5 * 1024 * 1024 } // 5mb
+  }),
+  uploadImage
+)
 router.get(
   '/spotify/callback',
   authenticate,

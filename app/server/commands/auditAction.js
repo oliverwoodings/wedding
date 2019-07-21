@@ -10,7 +10,8 @@ const ALLOWED_ACTIONS = [
   'REMOVE_GUEST',
   'REMOVE_USER',
   'ADD_TO_PLAYLIST',
-  'SEARCH_SPOTIFY'
+  'SEARCH_SPOTIFY',
+  'UPLOAD_IMAGE'
 ]
 
 module.exports = async function auditAction (userId, action, meta = {}) {

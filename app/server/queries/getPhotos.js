@@ -10,7 +10,25 @@ const FILE_FIELDS = [
   'description'
 ]
 
+const CACHE_FOR = 1000 * 60 * 15
+let photos = {
+  OFFICIAL: null,
+  GUEST: null
+}
+
 module.exports = async function getPhotos (type = 'OFFICIAL') {
+  if (!photos[type]) {
+    photos[type] = await getPhotosOfType(type)
+    setTimeout(() => module.exports.clearCache(type), CACHE_FOR)
+  }
+  return photos[type]
+}
+
+module.exports.clearCache = function clearCache (type) {
+  photos[type] = null
+}
+
+async function getPhotosOfType (type) {
   const drive = await getClient()
 
   const photos = []

@@ -12,6 +12,7 @@ type Query {
   users: [User!]!
   weddingStatus: WeddingStatus!
   acceptPlaylistSubmissions: Boolean!
+  hasOfficialPhotos: Boolean!
 }
 
 type PublicUser {
@@ -96,8 +97,6 @@ type Photo {
   name: String!
   width: Int!
   height: Int!
-  thumbnailLink: String!
-  downloadLink: String!
   uploader: SharedUser
   tags: [String!]!
 }

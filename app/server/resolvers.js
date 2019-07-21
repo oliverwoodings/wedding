@@ -49,6 +49,9 @@ module.exports = {
     weddingStatus,
     acceptPlaylistSubmissions () {
       return config.acceptPlaylistSubmissions
+    },
+    hasOfficialPhotos () {
+      return config.hasOfficialPhotos
     }
   },
   Photo: {

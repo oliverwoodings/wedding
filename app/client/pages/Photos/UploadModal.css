@@ -1,0 +1,103 @@
+@import '../../variables.css';
+
+.root {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.backdrop {
+  position: absolute;
+  top: 0;
+  right: 0;
+  left: 0;
+  bottom: 0;
+  background: var(--color-black-70);
+}
+
+.modal {
+  background: white;
+  display: flex;
+  flex-direction: column;
+  max-width: 400px;
+  max-height: 90%;
+  z-index: var(--zIndex-infront);
+  width: 90%;
+}
+
+.mobile .modal {
+  max-width: 100%;
+  max-height: 100%;
+  width: 100%;
+  height: 100%;
+}
+
+.controls {
+  display: flex;
+  padding: var(--spacing-l);
+}
+
+.controls button {
+  flex: 1 1 0;
+}
+
+.controls button:first-child {
+  margin-right: var(--spacing-s);
+}
+
+.controls button:last-child {
+  margin-left: var(--spacing-s);
+  height: 44px;
+}
+
+:global(.dzu-previewButton) {
+  margin: 0 0 0 var(--spacing-l);
+}
+
+:global(.dzu-previewButton:last-child) {
+  display: none;
+}
+
+:global(.dzu-dropzone) {
+  border: none;
+  flex-grow: 1;
+}
+
+:global(.dzu-previewContainer) {
+  border: none;
+  flex-shrink: 0;
+  padding: var(--spacing-l) var(--spacing-l);
+}
+
+:global(.dzu-previewContainer progress) {
+  display: none;
+}
+
+:global(.dzu-previewContainer:nth-child(odd)) {
+  background: var(--color-grey-25);
+}
+
+:global(.dzu-previewImage) {
+  max-height: 70px;
+}
+
+:global(.dzu-inputLabelWithFiles),
+:global(.dzu-inputLabel) {
+  color: var(--color-font-primary);
+  font-family: inherit;
+}
+
+:global(.dzu-inputLabelWithFiles) {
+  align-self: center;
+  margin: var(--spacing-m) 0 0 0;
+  transition: background-color var(--transition-short);
+}
+
+:global(.dzu-inputLabelWithFiles:hover) {
+  background-color: var(--color-darkGrey-25);
+}

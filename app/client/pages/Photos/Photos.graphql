@@ -4,8 +4,6 @@ query Photos ($type: PhotoType!) {
     name
     width
     height
-    thumbnailLink
-    downloadLink
     uploader {
       id
       guests {

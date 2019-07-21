@@ -1,0 +1,13 @@
+@import '../../variables.css';
+
+.uploader {
+  margin-right: var(--spacing-s);
+}
+
+.download, .uploader a {
+  color: white;
+}
+
+.download:hover, .uploader a:hover {
+  color: var(--color-grey-70);
+}

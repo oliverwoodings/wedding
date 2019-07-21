@@ -4,3 +4,4 @@ config/local*
 dist
 .spotify-tokens
 config/keyfile.json
+.cache
