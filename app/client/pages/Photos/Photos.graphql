@@ -1,11 +1,9 @@
-query Photos {
-  photos {
+query Photos ($type: PhotoType!) {
+  photos(type: $type) {
     id
     name
     width
     height
-    thumbnailLink
-    downloadLink
     uploader {
       id
       guests {

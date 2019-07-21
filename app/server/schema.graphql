@@ -7,11 +7,12 @@ enum WeddingStatus {
 type Query {
   publicUser(codeOrEmail: String!): PublicUser
   tracks(query: String!): [SpotifyTrack!]!
-  photos: [Photo!]!
+  photos(type: PhotoType!): [Photo!]!
   user: User
   users: [User!]!
   weddingStatus: WeddingStatus!
   acceptPlaylistSubmissions: Boolean!
+  hasOfficialPhotos: Boolean!
 }
 
 type PublicUser {
@@ -86,13 +87,16 @@ type SpotifyExternalUrls {
   spotify: String
 }
 
+enum PhotoType {
+  OFFICIAL
+  GUEST
+}
+
 type Photo {
   id: ID!
   name: String!
   width: Int!
   height: Int!
-  thumbnailLink: String!
-  downloadLink: String!
   uploader: SharedUser
   tags: [String!]!
 }

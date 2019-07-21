@@ -4,3 +4,8 @@ sentry:
 spotify:
   opts:
     redirectUri: https://danniandoli.wedding/spotify/callback
+
+photos:
+  folders:
+    GUEST: 1MCV5yLNzSXOm5Zfz_W2-Oj1sYxXIkQtG
+    OFFICIAL: 1Vc-5MGhcHsnyBL4Jl685sCS-SKPtJZnA

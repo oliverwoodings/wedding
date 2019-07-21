@@ -2,7 +2,7 @@ const path = require('path')
 const { google } = require('googleapis')
 
 const KEYFILE = path.resolve(__dirname, '../../../config/keyfile.json')
-const SCOPES = ['https://www.googleapis.com/auth/drive.readonly']
+const SCOPES = ['https://www.googleapis.com/auth/drive']
 
 let clientPromise = null
 

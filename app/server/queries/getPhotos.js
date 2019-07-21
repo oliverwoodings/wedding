@@ -10,7 +10,25 @@ const FILE_FIELDS = [
   'description'
 ]
 
-module.exports = async function getPhotos () {
+const CACHE_FOR = 1000 * 60 * 15
+let photos = {
+  OFFICIAL: null,
+  GUEST: null
+}
+
+module.exports = async function getPhotos (type = 'OFFICIAL') {
+  if (!photos[type]) {
+    photos[type] = await getPhotosOfType(type)
+    setTimeout(() => module.exports.clearCache(type), CACHE_FOR)
+  }
+  return photos[type]
+}
+
+module.exports.clearCache = function clearCache (type) {
+  photos[type] = null
+}
+
+async function getPhotosOfType (type) {
   const drive = await getClient()
 
   const photos = []
@@ -23,7 +41,7 @@ module.exports = async function getPhotos () {
       pageSize: 100,
       pageToken: nextPageToken,
       fields: `nextPageToken, files(${FILE_FIELDS.join(', ')})`,
-      q: `'${config.photos.folder}' in parents`
+      q: `'${config.photos.folders[type]}' in parents`
     })
     photos.push(...data.files)
     if (data.nextPageToken) {

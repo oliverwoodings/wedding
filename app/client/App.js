@@ -1,6 +1,8 @@
 import React, { Component } from 'react'
 import compose from 'compose-function'
+import url from 'urlite/extra'
 import { get } from 'lodash-es'
+import { ToastContainer } from 'react-toastify'
 import ga from 'universal-ga'
 import Page from './components/Page'
 import withQuery from './lib/withQuery'
@@ -8,6 +10,7 @@ import withAtom from './lib/withAtom'
 import withDevice from './lib/withDevice'
 import Query from './App.graphql'
 import { ACCESS_LEVELS } from './constants'
+import './App.css'
 
 function mapAtom (state, split) {
   return {
@@ -66,6 +69,12 @@ class App extends Component {
       ga.set('userId', user.id)
     }
 
+    const statusFromQuery = getStatusFromQuery()
+    if (statusFromQuery && user.isAdmin) {
+      otherData.weddingStatus = statusFromQuery
+    }
+    console.log(otherData)
+
     return (
       <Page
         minimalist={device === 'mobile' && !isPublicRoute && path !== '/'}
@@ -80,9 +89,15 @@ class App extends Component {
           refetchUser: query.execute,
           goToHome
         })}
+        <ToastContainer autoClose={4000} />
       </Page>
     )
   }
 }
 
 export default compose(withAtom(mapAtom), withQuery(Query), withDevice())(App)
+
+function getStatusFromQuery () {
+  const parsed = url.parse(window.location.href)
+  return parsed.search.status
+}

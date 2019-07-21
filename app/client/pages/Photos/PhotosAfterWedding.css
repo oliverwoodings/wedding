@@ -1,4 +1,39 @@
+@import '../../variables.css';
+
 .root {
+  display: flex;
+  flex-direction: column;
+  flex-grow: 1;
+}
+
+.gallery {
+  display: flex;
+  flex-grow: 1;
+}
+
+.loading {
+  margin: var(--spacing-l) auto 0 auto;
+}
+
+.noPhotos {
+  margin: var(--spacing-l) auto 0 auto;
+  text-align: center;
+  max-width: 400px;
+}
+
+.pyramid {
   width: 100%;
   height: 100%;
+}
+
+:global(.pyramid__element__img) {
+  cursor: pointer !important;
+}
+
+:global(.pyramid__element:hover) {
+  filter: brightness(80%);
+}
+
+:global(.react-images__container) {
+  font: normal normal 400 16px/22px 'Raleway', sans-serif;
 }
