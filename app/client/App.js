@@ -99,5 +99,5 @@ export default compose(withAtom(mapAtom), withQuery(Query), withDevice())(App)
 
 function getStatusFromQuery () {
   const parsed = url.parse(window.location.href)
-  return parsed.search.status
+  return parsed.search && parsed.search.status
 }
