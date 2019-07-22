@@ -23,7 +23,7 @@ router.post(
   '/image',
   authenticate,
   fileUpload({
-    limits: { fileSize: 5 * 1024 * 1024 } // 5mb
+    limits: { fileSize: 15 * 1024 * 1024 } // 15mb
   }),
   uploadImage
 )
