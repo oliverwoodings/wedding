@@ -23,3 +23,6 @@ logs:
 
 lint:
 	npx standard
+
+start:
+	NODE_ENV=production JETPACK_ARGS=start node ./app/server
