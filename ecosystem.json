@@ -1,11 +1,14 @@
 {
-  "apps" : [{
-    "name": "wedding",
-    "script": "npx jetpack start",
-    "env_production": {
-      "NODE_ENV": "production"
+  "apps": [
+    {
+      "name": "wedding",
+      "script": "node ./app/server",
+      "env_production": {
+        "JETPACK_ARGS": "start",
+        "NODE_ENV": "production"
+      }
     }
-  }],
+  ],
   "deploy": {
     "production": {
       "user": "root",
@@ -13,7 +16,7 @@
       "ref": "origin/master",
       "repo": "git@github.com:oliverwoodings/wedding.git",
       "path": "/root/apps/wedding",
-      "post-deploy" : "nvm use && yarn && make build && make migrate && npx pm2 startOrRestart ecosystem.json --env production"
+      "post-deploy": "nvm use && yarn && make build && make migrate && npx pm2 startOrRestart ecosystem.json --env production"
     }
   }
 }
