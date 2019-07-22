@@ -37,7 +37,7 @@ module.exports = async function uploadImage (req, res) {
     filename
   })
 
-  clearCache()
+  clearCache('GUEST')
 
   res.sendStatus(201)
 }
