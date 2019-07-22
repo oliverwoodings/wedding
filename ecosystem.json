@@ -2,7 +2,7 @@
   "apps": [
     {
       "name": "wedding",
-      "script": "node ./app/server",
+      "script": "/bin/sh node ./app/server",
       "env_production": {
         "JETPACK_ARGS": "start",
         "NODE_ENV": "production"
