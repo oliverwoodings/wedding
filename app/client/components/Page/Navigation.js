@@ -11,8 +11,14 @@ const ITEMS = {
   Music: '/music'
 }
 
-export default function Navigation ({ path, isAdmin }) {
-  const items = { ...ITEMS }
+const ITEMS_POST_WEDDING = {
+  'Welcome!': '/',
+  Gifts: '/gifts',
+  Photos: '/photos'
+}
+
+export default function Navigation ({ path, isAdmin, weddingStatus }) {
+  const items = { ...(weddingStatus === 'POST' ? ITEMS_POST_WEDDING : ITEMS) }
   if (isAdmin) {
     items['Admin'] = '/admin'
   }

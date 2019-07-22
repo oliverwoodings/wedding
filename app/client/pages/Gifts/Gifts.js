@@ -4,12 +4,12 @@ import { Paragraph as P, Link } from '../../components/typography'
 import Button from '../../components/Button'
 import styles from './Gifts.css'
 
-export default function Gifts () {
+export default function Gifts ({ weddingStatus }) {
   return (
     <PageBody
       title='Gifts'
-      prev='/logistics'
-      next='/photos'
+      prev={weddingStatus !== 'POST' && '/logistics'}
+      next={weddingStatus !== 'POST' && '/photos'}
       className={styles.root}
     >
       <P>

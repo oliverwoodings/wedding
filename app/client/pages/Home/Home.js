@@ -3,13 +3,15 @@ import PreWeddingHome from './PreWeddingHome'
 import DuringWeddingHome from './DuringWeddingHome'
 import PostWeddingHome from './PostWeddingHome'
 
-export default function Home ({ user, weddingStatus }) {
+export default function Home ({ user, weddingStatus, hasOfficialPhotos }) {
   switch (weddingStatus) {
     case 'PRE':
       return <PreWeddingHome user={user} />
     case 'TODAY':
       return <DuringWeddingHome user={user} />
     case 'POST':
-      return <PostWeddingHome user={user} />
+      return (
+        <PostWeddingHome user={user} hasOfficialPhotos={hasOfficialPhotos} />
+      )
   }
 }

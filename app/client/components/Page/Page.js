@@ -31,7 +31,13 @@ export default class Page extends Component {
         <div className={styles.header}>
           <HeaderBackground image='church' />
           <Banner minimalist={minimalist} weddingStatus={weddingStatus} />
-          {nav && <Navigation path={path} isAdmin={isAdmin} />}
+          {nav && (
+            <Navigation
+              path={path}
+              isAdmin={isAdmin}
+              weddingStatus={weddingStatus}
+            />
+          )}
         </div>
         {children}
         <Footer />
