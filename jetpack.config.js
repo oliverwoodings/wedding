@@ -58,8 +58,6 @@ module.exports = {
 
     if (process.env.NODE_ENV === 'production') {
       config.devtool = 'source-map'
-      config.output.filename = '[name].js'
-      delete config.optimization.splitChunks
     }
 
     return config
