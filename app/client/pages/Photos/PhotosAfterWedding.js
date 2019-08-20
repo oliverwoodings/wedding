@@ -83,8 +83,9 @@ class PhotosAfterWedding extends Component {
       <div className={styles.pyramid}>
         <Pyramid
           elements={photos}
-          transition='all 150ms ease'
+          transition='all 50ms ease'
           onElementClick={::this.onPhotoClick}
+          magicValues={{ default: 3 }}
         />
       </div>
     )

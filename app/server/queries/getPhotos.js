@@ -1,4 +1,5 @@
 const config = require('config')
+const _ = require('lodash')
 const { getClient } = require('../lib/gdrive')
 
 const FILE_FIELDS = [
@@ -7,7 +8,8 @@ const FILE_FIELDS = [
   'webContentLink',
   'imageMediaMetadata',
   'thumbnailLink',
-  'description'
+  'description',
+  'parents'
 ]
 
 const CACHE_FOR = 1000 * 60 * 15
@@ -30,18 +32,24 @@ module.exports.clearCache = function clearCache (type) {
 
 async function getPhotosOfType (type) {
   const drive = await getClient()
+  const q = config.photos.folders[type]
+    .map(id => `'${id}' in parents`)
+    .join(' or ')
 
   const photos = []
   await fetchPage()
 
-  return photos.map(toPhotoResource)
+  return _(photos)
+    .map(photo => toPhotoResource(photo, type))
+    .filter(Boolean)
+    .sortBy(photo => `${photo.parentIndex}_${photo.name}`)
 
   async function fetchPage (nextPageToken) {
     const { data } = await drive.files.list({
       pageSize: 100,
       pageToken: nextPageToken,
       fields: `nextPageToken, files(${FILE_FIELDS.join(', ')})`,
-      q: `'${config.photos.folders[type]}' in parents`
+      q
     })
     photos.push(...data.files)
     if (data.nextPageToken) {
@@ -50,15 +58,18 @@ async function getPhotosOfType (type) {
   }
 }
 
-function toPhotoResource (file) {
+function toPhotoResource (file, type) {
   let {
     id,
     name,
     webContentLink,
     imageMediaMetadata,
     thumbnailLink,
-    description
+    description,
+    parents
   } = file
+
+  if (!imageMediaMetadata) return
 
   const { width, height } = imageMediaMetadata
   try {
@@ -70,6 +81,7 @@ function toPhotoResource (file) {
   return {
     id,
     name,
+    parentIndex: config.photos.folders[type].indexOf(parents[0]) || 0,
     thumbnailLink: thumbnailLink.replace(/(=s\d+)$/, '=s1000'),
     width,
     height,
