@@ -86,6 +86,7 @@ class PhotosAfterWedding extends Component {
           transition='all 50ms ease'
           onElementClick={::this.onPhotoClick}
           magicValues={{ default: 3 }}
+          derenderIfNotInViewAnymore
         />
       </div>
     )
