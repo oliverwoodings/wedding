@@ -1,0 +1,24 @@
+@import '../../variables.css';
+
+.root {
+  background: linear-gradient(rgba(0, 0, 0, 0.33), rgba(0, 0, 0, 0));
+  color: rgba(255, 255, 255, 0.9);
+  padding: 10px 10px 20px;
+  display: flex;
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+}
+
+.close {
+  margin-left: auto;
+  cursor: pointer;
+  fill: white;
+  height: 32px;
+  width: 32px;
+}
+
+.close:hover {
+  fill: var(--color-grey-70);
+}

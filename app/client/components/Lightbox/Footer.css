@@ -1,0 +1,30 @@
+@import '../../variables.css';
+
+.root {
+  background: linear-gradient(rgba(0, 0, 0, 0), rgba(0, 0, 0, 0.33));
+  color: rgba(255, 255, 255, 0.9);
+  font-size: 13px;
+  padding: 20px 15px 15px;
+  position: absolute;
+  display: flex;
+  bottom: 0;
+  left: 0;
+  right: 0;
+}
+
+.uploader {
+  margin-right: var(--spacing-s);
+}
+
+.download, .uploader a {
+  color: white;
+}
+
+.download:hover, .uploader a:hover {
+  color: var(--color-grey-70);
+}
+
+.right {
+  margin-left: auto;
+  padding-left: var(--spacing-l);
+}

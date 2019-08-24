@@ -1,0 +1,29 @@
+@import '../../variables.css';
+
+.prev, .next {
+  background: var(--color-white-10);
+  border-radius: 24px;
+  display: inline-block;
+  cursor: pointer;
+  fill: white;
+  height: 48px;
+  stroke: white;
+  stroke-width: 0;
+  width: 48px;
+  position: absolute;
+  z-index: 2;
+  top: 50%;
+  margin-top: -24px;
+}
+
+.prev:hover, .next:hover {
+  background: var(--color-white-40);
+}
+
+.prev {
+  left: 24px;
+}
+
+.next {
+  right: 24px;
+}

@@ -1,15 +1,23 @@
 import React from 'react'
 import hello from '../../lib/hello'
-import styles from './PhotoCaption.css'
+import styles from './Footer.css'
 
-export default function PhotoCaption ({ currentView }) {
+export default function Footer ({
+  photo,
+  official,
+  src,
+  currentIndex,
+  totalPhotos
+}) {
   return (
-    <div>
-      <Uploader
-        uploader={currentView.uploader}
-        official={currentView.official}
-      />
-      <Download src={currentView.src} name={currentView.name} />
+    <div className={styles.root}>
+      <div className={styles.left}>
+        <Uploader uploader={photo.uploader} official={official} />
+        <Download src={src} name={photo.name} />
+      </div>
+      <div className={styles.right}>
+        {currentIndex + 1}/{totalPhotos}
+      </div>
     </div>
   )
 }
@@ -34,9 +42,13 @@ function Uploader ({ uploader, official }) {
 }
 
 function Download ({ src, name }) {
-  const url = src.download || src.regular
   return (
-    <a className={styles.download} href={url} download={name} target='_blank'>
+    <a
+      className={styles.download}
+      href={src + '?download=1'}
+      download={name}
+      target='_blank'
+    >
       Click here to download
     </a>
   )

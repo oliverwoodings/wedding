@@ -1,11 +1,10 @@
 import React, { Component } from 'react'
 import Pyramid from '@oliverwoodings/react-pyramid'
-import Carousel, { Modal, ModalGateway } from 'react-images'
 import { toast } from 'react-toastify'
 import withQuery from '../../lib/withQuery'
 import Spinner from '../../components/Spinner'
+import Lightbox from '../../components/Lightbox'
 import PhotoControls from './PhotoControls'
-import PhotoCaption from './PhotoCaption'
 import UploadModal from './UploadModal'
 import PhotosQuery from './Photos.graphql'
 import styles from './PhotosAfterWedding.css'
@@ -32,7 +31,7 @@ class PhotosAfterWedding extends Component {
           onClickUpload={::this.toggleUploader}
         />
         <div className={styles.gallery}>{this.renderGallery()}</div>
-        <ModalGateway>{this.renderModal()}</ModalGateway>
+        {this.renderModal()}
         {this.renderUploader()}
       </div>
     )
@@ -99,31 +98,24 @@ class PhotosAfterWedding extends Component {
     }
 
     const { photos } = this.props.query.data
-    const views = photos.map(photo => {
-      const thumb = `/image/${selectedTab.toLowerCase()}/${photo.id}`
-      return {
-        name: photo.name,
-        uploader: photo.uploader,
-        official: selectedTab === 'OFFICIAL',
-        width: photo.width,
-        height: photo.height,
-        src: {
-          regular: thumb,
-          fullscreen: thumb,
-          thumbnail: thumb,
-          download: thumb + '?download=1'
-        }
+
+    const selectIndex = delta => {
+      return () => {
+        this.setState({
+          selectedPhotoIndex: selectedPhotoIndex + delta
+        })
       }
-    })
+    }
 
     return (
-      <Modal onClose={::this.onCloseModal}>
-        <Carousel
-          views={views}
-          currentIndex={selectedPhotoIndex}
-          components={{ FooterCaption: PhotoCaption }}
-        />
-      </Modal>
+      <Lightbox
+        photos={photos}
+        currentIndex={selectedPhotoIndex}
+        tab={selectedTab}
+        onNext={selectIndex(1)}
+        onPrev={selectIndex(-1)}
+        onClose={::this.onCloseModal}
+      />
     )
   }
 
