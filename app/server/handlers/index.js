@@ -18,7 +18,7 @@ const router = Router()
 router.use('/graphql', bodyParser.json(), graphqlExpress(graphqlOptions))
 router.get('/graphiql', graphiqlExpress({ endpointURL: '/graphql' }))
 router.get('/preview/:url', authenticate, previewSpotifyTrack)
-router.get('/image/:type/:id', authenticate, proxyImage)
+router.get('/image/:type/:id', proxyImage)
 router.post(
   '/image',
   authenticate,

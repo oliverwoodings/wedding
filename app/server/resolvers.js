@@ -43,7 +43,6 @@ module.exports = {
       return getUsers()
     },
     async photos (obj, args, context) {
-      await context.authenticate()
       return getPhotos(args.type)
     },
     weddingStatus,

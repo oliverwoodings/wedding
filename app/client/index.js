@@ -42,7 +42,7 @@ const router = createRouter([
       ['/', Home],
       ['/rsvp', RSVP],
       ['/logistics', Logistics],
-      ['/photos', Photos],
+      ['/photos', access(Photos, ACCESS_LEVELS.PUBLIC)],
       ['/login', access(Login, ACCESS_LEVELS.PUBLIC)],
       ['/music', Music],
       ['/admin', access(Admin, ACCESS_LEVELS.ADMIN)],
