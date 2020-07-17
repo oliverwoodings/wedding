@@ -32,7 +32,7 @@
     "graphql-tools": "^2.21.0",
     "jetpack": "^0.8.1",
     "knex": "^0.14.4",
-    "lodash": "^4.17.10",
+    "lodash": "^4.17.19",
     "lodash-es": "^4.17.7",
     "mysql": "^2.16.0",
     "normalize.css": "^8.0.0",
