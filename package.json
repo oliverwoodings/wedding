@@ -9,7 +9,7 @@
   "dependencies": {
     "@oliverwoodings/react-pyramid": "^1.0.5",
     "apollo-server-express": "^1.3.2",
-    "axios": "^0.18.0",
+    "axios": "^0.21.1",
     "body-parser": "^1.18.2",
     "change-case-object": "^2.0.0",
     "classnames": "^2.2.5",
